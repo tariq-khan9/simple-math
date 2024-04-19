@@ -1,4 +1,66 @@
 /* src/styles.css */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-tab {
+   @apply p-2 md:px-4 rounded-md border mx-2 font-thin border-gray-400  bg-white hover:shadow-lg  hover:shadow-slate-300
+}
+
+.btn-selected {
+ @apply bg-green-800 text-white
+  /* Add any other styles you want for the selected button */
+}
+
+.card-drill {
+   @apply p-4  md:px-8 md:p-12 h-64 md:h-96  rounded-md mt-6 md:mt-8 bg-white
+}
+
+
+.hd-drill {
+    @apply text-[20px] md:text-[30px] font-thin italic
+}
+
+.sub-hd {
+    @apply font-thin text-[14px] md:text-[20px]
+}
+
+.digit {
+  @apply  text-[15px] md:text-[25px] font-semibold italic text-gray-500 text-center
+}
+.line-tr {
+    @apply flex items-center mt-2 mb-2 md:mt-4 md:mb-4
+}
+.line {
+    @apply border-t border md:border-2  border-gray-500 w-4  md:w-6 mx-auto
+}
+
+.line-input {
+    @apply border-t border md:border-2  border-gray-500 w-8 md:w-14 mx-auto
+
+}
+
+.solution-digit {
+  @apply text-[10px] md:text-[15px] font-semibold italic text-gray-500 text-center mt-4
+}
+
+.digit-input {
+    @apply text-[14px]  md:text-[22px] font-semibold italic text-gray-500 text-center
+  }
+
+.input {
+    @apply w-10 md:w-20 text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
+}
+
+.input-div {
+  @apply w-8 text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
+}
+
+.btn-drill {
+  @apply px-8 p-1 md:px-20 md:p-2 text-[12px] md:text-[15px] text-blue-800 rounded-[3px] md:rounded-[5px] hover:bg-blue-800 hover:text-white focus:bg-blue-800 focus:text-white  border   border-blue-800
+}
+
+.tr-different-deno {
+ @apply flex  items-center md:mr-3 px-2 md:px-0
+}
+

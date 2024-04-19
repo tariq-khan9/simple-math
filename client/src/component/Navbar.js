@@ -40,7 +40,7 @@ const Navbar = () => {
            : <img className=' w-10 h-8' src={menu} alt="Icon" />
             }</button>
 
-          <div className={`flex flex-col md:flex-row w-[60%] lg:w-[70%]  ${isOpen ? 'bg-white  shadow-md  w-32 pt-2  pl-3 h-32 justify-start items-start rounded-md' : 'items-center hidden md:flex'} `}>
+          <div className={`flex flex-col md:flex-row w-[60%] lg:w-[70%]  ${isOpen ? 'bg-white  shadow-md  w-40 pt-2  pl-3 h-32 justify-start items-start rounded-md' : 'items-center hidden md:flex'} `}>
              <button className='pt-2 lg:mx-2 text-gray-800 hover:text-blue-800 lg:text-[18px] border-b-4 border-white focus:border-blue-800 md:ml-8'>Arithmetic</button>
 
              <button className='pt-2 lg:mx-2 text-gray-800 hover:text-blue-800 lg:text-[18px] border-b-4 border-white focus:border-blue-800 md:ml-8 '>Algebra</button>

@@ -1,13 +1,13 @@
 
 import Navbar from "./component/Navbar";
-import Arithmetic from "./component/arithmetic/Arithmetic";
+import Main from "./component/arithmetic/Main";
 
 
 function App() {
   return (
     <div className="App">
        <Navbar/>
-       <Arithmetic/>
+       <Main/>
     </div>
   );
 }
