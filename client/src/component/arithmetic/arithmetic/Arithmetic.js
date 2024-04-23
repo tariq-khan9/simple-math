@@ -374,18 +374,29 @@ const Arithmetic = () => {
   }
 
   return (
-    <div className='px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col pt-12 mt-[30px]'>
+    <div className='px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col pt-2 mt-[30px]'>
         
     {/******************************  difficulty level *******************************/}
     
      
-       <div className='difficulty-div w-100 h-20 mt-6  rounded-md flex flex-row  justify-start'>
+       <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-4 md:mb-6 flex flex-row  justify-start'>
           <div className=' w-[25%]  flex items-center justify-start'>
               <DropdownMulti setOperation={setOperation} setMixOperation={setMixOperation} setSameDenoms={setSameDenoms}/>
           </div >
-          <div className=' w-[50%] pt-1 '> 
-            <h4 className='sub-hd italic text-orange-600 text-center'>Difficulty level</h4>
-             <div className='flex gap-[50px] justify-center  mt-3'>                      
+       </div>
+
+   
+            <h4 className='text-[12px] sm:text-[15px] md:text-[18px] text-gray-700 text-start'>Level of difficulty</h4>
+
+       <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2 rounded-md flex flex-row  justify-start'>
+          <button onClick={()=> setDifficulty(1)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+
+          <button onClick={()=> setDifficulty(2)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+
+          <button onClick={()=> setDifficulty(3)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+
+          <button onClick={()=> setDifficulty(4)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
+             {/* <div className='flex gap-[50px] justify-center'>                      
                    <div className='flex items-center'>
                       <input checked={difficulty===1? true : false}  onChange={(e)=>setDifficulty(1)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-600 checked:border-transparent    focus:ring-opacity-50' id="level1" name="options" value="1"/>
                       <label className='ml-2 text-gray-500 text-[15px]'>First</label>
@@ -406,9 +417,7 @@ const Arithmetic = () => {
                       <input onChange={(e)=>setDifficulty(4)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-orange-700 checked:border-transparent    focus:ring-opacity-50' id="level5" name="options" value="5"/>
                       <label className='ml-2 text-gray-500 text-[15px]'>Fourth</label>
                    </div> 
-            </div>
-       
-        </div>
+            </div> */}
        </div>
        
 

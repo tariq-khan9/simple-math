@@ -71,7 +71,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
     <div className=' pt-8 relative h-[100px]'>
          <div className=" z-50" ref={dropdownRef}>
       <button
-        className="px-6 md:px-12 py-1 md:py-2 z-50 border border-blue-800  text-blue-800 hover:text-white bg-white hover:bg-blue-800 rounded-[5px] "
+        className="px-6 md:px-12 py-1 md:py-2 z-50 border border-blue-800  text-blue-800 hover:text-white bg-white hover:bg-blue-800  "
         onClick={toggleDropdown}
       >
         Operation

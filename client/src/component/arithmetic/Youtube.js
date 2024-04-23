@@ -2,7 +2,7 @@ import React from 'react'
 
 const Youtube = () => {
   return (
-    <div className='flex flex-row px-8 mt-[50px]'>
+    <div className='flex flex-row px-8 mt-[50px] mb-4'>
       <div className='w-[5%] sm:w-[20%] lg:w-[15%]'>
             
       </div>
