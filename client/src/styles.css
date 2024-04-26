@@ -13,7 +13,7 @@
 }
 
 .card-drill {
-   @apply p-4  md:px-8 md:p-12 h-64 md:h-96  rounded-md mt-6 md:mt-8 bg-white
+   @apply p-4  md:px-8 md:p-12 h-56 md:h-80  rounded-md mt-6 md:mt-8 bg-white
 }
 
 

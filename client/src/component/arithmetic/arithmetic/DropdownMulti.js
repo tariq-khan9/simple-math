@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import dropdown from './../../../images/dropdown.png'
 
-const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
+const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAdditionSubOpen, setIsAdditionSubOpen] = useState(false);
   const [isSubtractionSubOpen, setIsSubtractionSubOpen] = useState(false);
@@ -74,7 +75,22 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
         className="px-6 md:px-12 py-1 md:py-2 z-50 border border-blue-800  text-blue-800 hover:text-white bg-white hover:bg-blue-800  "
         onClick={toggleDropdown}
       >
-        Operation
+        <div className='flex flex-row'>
+        {
+          operation>0 ? <div>
+            {operation===1 && <div>Addition</div>}
+            {operation===2 && <div>Subtraction</div>}
+            {operation===3 && <div>Multiplication</div>}
+            {operation===4 && <div>Division</div>}
+          </div> 
+          : 
+          <div>Mix Operation</div>
+        }
+        {/* <div className=' ml-1 flex items-center '>
+        <img src={dropdown} alt='dropdown' className='w-[8px] md:w-[10px]   h-[6px]'/>
+        </div> */}
+        
+        </div>
       </button>
       {isOpen && (
         <div className="absolute left-0 mt-2 w-42 font-thin bg-white rounded-md shadow-lg">
@@ -86,7 +102,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
           >
             Addition
             {isAdditionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[140px] bg-white rounded-md shadow-lg">
+              <div className="absolute top-0 left-full mt-0 w-[160px] bg-white rounded-md shadow-lg">
                 <button
                   className="block w-full p-2 pl-3  text-left hover:bg-blue-100 focus:outline-none"
                   onClick={()=>handleOperation(1, true)} // Close dropdown when clicked
@@ -110,7 +126,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
           >
             Subtraction
             {isSubtractionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[140px] bg-white rounded-md shadow-lg">
+              <div className="absolute top-0 left-full mt-0 w-[160px] bg-white rounded-md shadow-lg">
                 <button
                   className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
                   onClick={()=>handleOperation(2, true)} // Close dropdown when clicked

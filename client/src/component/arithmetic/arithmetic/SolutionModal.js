@@ -14,18 +14,35 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
    
          <div className='bg-white rounded-md z-40 w-96 max-h-85 mt-[80px] overflow-y-auto  p-4  mb-[200px]'>
                <div className='text-center w-full'>
-                 <h2 className='text-[20px] font-bold underline text-orange-500 '>Solution</h2>
+                 <h2 className='text-[20px] font-bold underline text-blue-800 '>Solution</h2>
                </div>
                <div className='overflow-y-auto max-h-[380px]'>
                     <div>
                                 <h2 className='font-bold'>Your answer:</h2>
                                 <div className='solution-digit'>
-                                    {console.log(inputs)}
                                       {(inputs.inputNum || inputs.inputDenom) &&
-                                                <div className='text-[20px] flex items-start mb-2'>
-                                                  <TeX>{`\= \\frac{${inputs.inputNum}}{${inputs.inputDenom}}`}</TeX>
+                                            <div className=' flex items-center mb-2'>
+                                                 {/* <TeX>{`\= \\frac{${inputs.inputNum}}{${inputs.inputDenom}}`}</TeX> */}
+                                                 <td className='= px-2 '>
+                                                    <tr>=</tr>
+                                                    </td>
+                                                    <td className='first-col px-1'>
+                                                    <table className=''>
+                                                        <tbody className=''>
+                                                            <tr className=''>
+                                                                {inputs.inputNum}
+                                                            </tr>
+                                                            <tr className='flex items-center mt-1 mb-1'>
+                                                                <div class="border-t border-2  border-gray-500   w-5 mx-auto"></div>
+                                                            </tr>
+                                                            <tr>
+                                                                {inputs.inputDenom}
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    </td>
 
-                                                 </div>
+                                            </div>
                                                                                              
                                                 
                                         }
@@ -1550,7 +1567,7 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                             <table className='solution-digit'>
                                                                 <tr className=''>
                                                             
-                                                                <td className='first-col px-1'>
+                                                                <td className='first-col font-bold px-1'>
                                                                     <table className=''>
                                                                     <tbody className=''>
                                                                             <tr className=''>
@@ -1577,7 +1594,7 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                </div>
                   {/* ====================================== close button ======================================== */}
                   <div className='flex flex-row w-full  justify-end mt-4 pr-4'>
-                        <button className='flex justify-items-end p-1 pb-2 px-8 text-white rounded-md bg-orange-500' onClick={()=>
+                        <button className='flex justify-items-end p-1 pb-2 px-8 border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white' onClick={()=>
                         { setShowCheckModal(false)
                         setShowSolutionModal(false)}}>Close</button>
                 </div>

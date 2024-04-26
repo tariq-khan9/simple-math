@@ -8,11 +8,9 @@ import MathInput from './MathInput';
 
 
 
-
-
-
-
 const Arithmetic = () => {
+
+  const btnNextRef = useRef(null)
 
   const [randomNums, setRandomNums] = useState({
     numerator1 : 1,
@@ -56,16 +54,18 @@ const Arithmetic = () => {
   const [totalSheets, setTotalSheets] = useState(0);
   const [showCheckModal, setShowCheckModal] = useState(false)
   const [showSolutionModal, setShowSolutionModal]= useState(false)
-
+  const [prevRandomNums, setPrevRandomNums] = useState();
   
  
 
   useEffect(() => {
 
-   
-
-
-     handleNext()
+    if (prevRandomNums !== randomNums) {
+      handleNext();
+      setPrevRandomNums(randomNums);
+    }
+     
+     console.log("difficulty in use effect ", difficulty)
      setInputs({
       inputNum: '',
       inputDenom: ''
@@ -83,11 +83,9 @@ const Arithmetic = () => {
       numerator2:'',
       denominator1:'',
       denominator2:''
-     })
+     })                
  
-    
-    
-  
+    handleNext()
   }, [difficulty, operation, sameDenoms, showRandomSheets, totalSheets])
 
 
@@ -113,10 +111,7 @@ const Arithmetic = () => {
     return randomNum;
   };
 
- 
-
   const handleNext = () => {
-    console.log(additionInputs)
 
     if(mixOperation>0){
        setOperation(0)
@@ -157,14 +152,12 @@ const Arithmetic = () => {
         if (denominator1 < 0) negativeCount++;
         if (numerator2 < 0) negativeCount++;
         if (denominator2 < 0) negativeCount++;  
+        
+        console.log("negative count", negativeCount)
          // Check if difficulty is 3 and there are more than 1 negative numbers
         if ((difficulty === 3 && negativeCount>1) || (sameDenoms && denominator1<0)) {
           continue; // Skip this iteration and generate new numbers
-        }
-
-        
-
-       
+        }       
 
       // when operation is add or subtranct and sameDenoms is true
         if(operation<3 && sameDenoms){
@@ -212,25 +205,12 @@ const Arithmetic = () => {
         numerator2: numerator2,
         denominator2: denominator2
     });
+
+    console.log("random in the end. ", randomNums)
     
   }
 
-  // const handleShowRandom = () => {
-  //   if(totalSheets>2){
-  //     if(showRandomSheets){
-  //       setShowRandomSheets(false)
-  //       setShowRandomSheets(true)
-  //     }
-  //     else{
-  //       setShowRandomSheets(true)
-  //     }
-      
-  //   }
-  //   else{
-  //     setTotalSheets(0)
-  //   }
-    
-  // }
+
 
   const handleSetTotalSheets = (value) => {
     const intValue = parseInt(value);
@@ -378,10 +358,9 @@ const Arithmetic = () => {
         
     {/******************************  difficulty level *******************************/}
     
-     
        <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-4 md:mb-6 flex flex-row  justify-start'>
           <div className=' w-[25%]  flex items-center justify-start'>
-              <DropdownMulti setOperation={setOperation} setMixOperation={setMixOperation} setSameDenoms={setSameDenoms}/>
+              <DropdownMulti setOperation={setOperation} setMixOperation={setMixOperation} setSameDenoms={setSameDenoms} operation={operation} />
           </div >
        </div>
 
@@ -389,13 +368,25 @@ const Arithmetic = () => {
             <h4 className='text-[12px] sm:text-[15px] md:text-[18px] text-gray-700 text-start'>Level of difficulty</h4>
 
        <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2 rounded-md flex flex-row  justify-start'>
-          <button onClick={()=> setDifficulty(1)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+          <button onClick={()=> {setDifficulty(1)
+           setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
 
-          <button onClick={()=> setDifficulty(2)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+          <button onClick={()=> {setDifficulty(2)
+          setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
 
-          <button onClick={()=> setDifficulty(3)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+          <button onClick={()=> {setDifficulty(3)
+          setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
 
-          <button onClick={()=> setDifficulty(4)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
+          <button onClick={()=> {setDifficulty(4)
+          setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
              {/* <div className='flex gap-[50px] justify-center'>                      
                    <div className='flex items-center'>
                       <input checked={difficulty===1? true : false}  onChange={(e)=>setDifficulty(1)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-600 checked:border-transparent    focus:ring-opacity-50' id="level1" name="options" value="1"/>
@@ -424,8 +415,8 @@ const Arithmetic = () => {
        
    {/******************************  Drill section  *******************************/}
         <div className='card-drill'>
-                <h1 className='hd-drill text-green-600'>Try Out this Drill..</h1>
-                <h5 className='sub-hd'>Solve this fraction</h5>
+                {/* <h1 className='hd-drill text-green-600'>Try Out this Drill..</h1>
+                <h5 className='sub-hd'>Solve this fraction</h5> */}
 
                 <div className='math  flex justify-start  mt-6'>
                       {(operation===4 || mixOperation===4)?
@@ -705,7 +696,7 @@ const Arithmetic = () => {
                                   }
                               </td>
 
-                              <td className='opertor px-2 md:px-3 '>
+                              <td className='opertor px-2 md:px-3 pl-3 md:pl-5 '>
                                   <table>
                                     <tbody>
                                       {(operation>0)?
@@ -804,7 +795,7 @@ const Arithmetic = () => {
                 <div className='buttons w-full  flex flex-row justify-start mt-14'>
                       <button onClick={handleCheck} className='btn-drill'>Check</button>
 
-                      <button onClick={handleNext} className='btn-drill ml-1 md:ml-3'>Next</button>
+                      <button ref={btnNextRef} onClick={handleNext} className='btn-drill ml-1 md:ml-3'>Next</button>
                      
                       
                 </div>
@@ -828,7 +819,9 @@ const Arithmetic = () => {
 
         {/* <Temp totalSheets={totalSheets} temp={temp}/> */}
         
-        <CheckModal showCheckModal={showCheckModal}  setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} result={result}/>
+        <CheckModal showCheckModal={showCheckModal}  setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} result={result} setInputs={setInputs} setAdditionInputs={setAdditionInputs} setDivisionInputs={setDivisionInputs}/>
+
+
         <SolutionModal showSolutionModal={showSolutionModal} setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} randomNums={randomNums} operation={operation} mixOperation={mixOperation} inputs={inputs} sameDenoms={sameDenoms}/>
 
        
