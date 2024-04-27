@@ -72,7 +72,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
     <div className=' pt-8 relative h-[100px]'>
          <div className=" z-50" ref={dropdownRef}>
       <button
-        className="px-6 md:px-12 py-1 md:py-2 z-50 border border-blue-800  text-blue-800 hover:text-white bg-white hover:bg-blue-800  "
+        className="px-6 md:px-12 py-1 md:py-2 z-50 font-inter font-semibold rounded-sm border border-gray-800  text-gray-800 hover:text-white bg-white hover:bg-gray-700  "
         onClick={toggleDropdown}
       >
         <div className='flex flex-row'>
@@ -93,24 +93,24 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
         </div>
       </button>
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-42 font-thin bg-white rounded-md shadow-lg">
+        <div className="absolute left-0 mt-2 w-42 font-inter  bg-white rounded-md shadow-lg">
           <button
-            className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none relative"
+            className="block font-inter w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
             onMouseEnter={handleAdditionMouseEnter}
             onMouseLeave={handleAdditionMouseLeave}
              // Close dropdown when clicked
           >
             Addition
             {isAdditionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[160px] bg-white rounded-md shadow-lg">
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
                 <button
-                  className="block w-full p-2 pl-3  text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(1, true)} // Close dropdown when clicked
                 >
                   Same-Denoms
                 </button>
                 <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(1, false)} // Close dropdown when clicked
                 >
                   Different-Denoms
@@ -119,22 +119,22 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
             )}
           </button>
           <button
-            className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none relative"
+            className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none relative"
             onMouseEnter={handleSubtractionMouseEnter}
             onMouseLeave={handleSubtractionMouseLeave}
              // Close dropdown when clicked
           >
             Subtraction
             {isSubtractionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[160px] bg-white rounded-md shadow-lg">
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
                 <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700 hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(2, true)} // Close dropdown when clicked
                 >
                   Same-Denoms
                 </button>
                 <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700 hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(2, false)} // Close dropdown when clicked
                 >
                   Different-Denoms
@@ -142,13 +142,13 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
               </div>
             )}
           </button>
-          <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none" >
+          <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Multiplication
           </button>
-          <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none" >
+          <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none" >
             Division
           </button>
-          <button onClick={()=>handleOperation(5, false)} className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none" >
+          <button onClick={()=>handleOperation(5, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Mixed
           </button>
         </div>

@@ -67,8 +67,8 @@ const Arithmetic = () => {
      
      console.log("difficulty in use effect ", difficulty)
      setInputs({
-      inputNum: '',
-      inputDenom: ''
+      inputNum: null,
+      inputDenom: null
      })
 
      setAdditionInputs({
@@ -355,7 +355,7 @@ const Arithmetic = () => {
 
   return (
     <div className='px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col pt-2 mt-[30px]'>
-        
+      
     {/******************************  difficulty level *******************************/}
     
        <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-4 md:mb-6 flex flex-row  justify-start'>
@@ -365,28 +365,28 @@ const Arithmetic = () => {
        </div>
 
    
-            <h4 className='text-[12px] sm:text-[15px] md:text-[18px] text-gray-700 text-start'>Level of difficulty</h4>
+            <h4 className='font-inter text-[12px] sm:text-[15px] md:text-[18px] text-black text-start'>Level of Difficulty</h4>
 
        <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2 rounded-md flex flex-row  justify-start'>
           <button onClick={()=> {setDifficulty(1)
            setTimeout(() => {
             btnNextRef.current.click();
-           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+           }, 20)}} className={`flex-1 border font-inter font-semibold rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
 
           <button onClick={()=> {setDifficulty(2)
           setTimeout(() => {
             btnNextRef.current.click();
-           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+           }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
 
           <button onClick={()=> {setDifficulty(3)
           setTimeout(() => {
             btnNextRef.current.click();
-           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+           }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
 
           <button onClick={()=> {setDifficulty(4)
           setTimeout(() => {
             btnNextRef.current.click();
-           }, 20)}} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
+           }, 20)}} className={`flex-1 font-inter rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
              {/* <div className='flex gap-[50px] justify-center'>                      
                    <div className='flex items-center'>
                       <input checked={difficulty===1? true : false}  onChange={(e)=>setDifficulty(1)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-600 checked:border-transparent    focus:ring-opacity-50' id="level1" name="options" value="1"/>
@@ -554,7 +554,7 @@ const Arithmetic = () => {
                                          </table>
                                      </td>
       
-                                     <td className='opertor px-2 md:px-4'>
+                                     <td className='opertor px-2  md:pl-4'>
                                          <table>
                                            <tbody>
                                              {(operation>0)?

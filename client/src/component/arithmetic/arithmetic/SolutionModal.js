@@ -17,8 +17,9 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                  <h2 className='text-[20px] font-bold underline text-blue-800 '>Solution</h2>
                </div>
                <div className='overflow-y-auto max-h-[380px]'>
-                    <div>
-                                <h2 className='font-bold'>Your answer:</h2>
+                {console.log("inputs in there",inputs)}
+                    <div>       {(inputs.inputNum!==null  || inputs.inputDenom!==null) &&
+                                <h2 className='font-bold'>Your answer:</h2>}
                                 <div className='solution-digit'>
                                       {(inputs.inputNum || inputs.inputDenom) &&
                                             <div className=' flex items-center mb-2'>
