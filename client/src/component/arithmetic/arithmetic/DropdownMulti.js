@@ -84,7 +84,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
             {operation===4 && <div>Division</div>}
           </div> 
           : 
-          <div>Mix Operation</div>
+          <div>Mixed</div>
         }
         {/* <div className=' ml-1 flex items-center '>
         <img src={dropdown} alt='dropdown' className='w-[8px] md:w-[10px]   h-[6px]'/>

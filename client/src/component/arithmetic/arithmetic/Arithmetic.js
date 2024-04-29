@@ -178,6 +178,7 @@ const Arithmetic = () => {
         }
 
         if(mixOperation>0){
+          console.log("mix operation in ", mixOperation)
             if(mixOperation===1)  var checkNum = (numerator1 * denominator2) + (numerator2 * denominator1);
             if(mixOperation===2)  var checkNum = (numerator1 * denominator2) - (numerator2 * denominator1);
             if(mixOperation===3)  var checkNum = (numerator1 * numerator2);
@@ -189,6 +190,7 @@ const Arithmetic = () => {
         
 
         var checkResult = checkNum / checkDeno;
+        console.log("checkresult is ", checkResult)
         
         if (difficulty === 3) {
             if (checkResult > 0) {
@@ -476,7 +478,8 @@ const Arithmetic = () => {
                                                    <div className='line'></div>
                                                </tr>
                                                <tr>
-                                                 {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
+                                                 {/* //{(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2} */}
+                                                 {randomNums.denominator2}
                                                </tr>
                                            </tbody>
                                          </table>
@@ -587,7 +590,9 @@ const Arithmetic = () => {
                                                    <div class="line"></div>
                                                </tr>
                                                <tr>
-                                                 {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
+                                                 {/* {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
+                                                  */} 
+                                                  {randomNums.denominator2}
                                                </tr>
                                            </tbody>
                                          </table>
