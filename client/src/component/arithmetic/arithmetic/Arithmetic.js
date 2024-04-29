@@ -112,9 +112,7 @@ const Arithmetic = () => {
   };
 
   const handleNext = () => {
-    console.log(
-      "mix operation in top ", mixOperation
-    )
+
     if(mixOperation>0){
        setOperation(0)
        const operator = getRandomOperation()
@@ -155,6 +153,7 @@ const Arithmetic = () => {
         if (numerator2 < 0) negativeCount++;
         if (denominator2 < 0) negativeCount++;  
         
+        console.log("negative count", negativeCount)
          // Check if difficulty is 3 and there are more than 1 negative numbers
         if ((difficulty === 3 && negativeCount>1) || (sameDenoms && denominator1<0)) {
           continue; // Skip this iteration and generate new numbers
@@ -390,13 +389,36 @@ const Arithmetic = () => {
           setTimeout(() => {
             btnNextRef.current.click();
            }, 20)}} className={`flex-1 font-inter rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
-           
+             {/* <div className='flex gap-[50px] justify-center'>                      
+                   <div className='flex items-center'>
+                      <input checked={difficulty===1? true : false}  onChange={(e)=>setDifficulty(1)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-600 checked:border-transparent    focus:ring-opacity-50' id="level1" name="options" value="1"/>
+                      <label className='ml-2 text-gray-500 text-[15px]'>First</label>
+                   </div>
+
+                   <div className='flex items-center'>
+                      <input onChange={(e)=>setDifficulty(2)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-800 checked:border-transparent    focus:ring-opacity-50' id="level2" name="options" value="2"/>
+                      <label className='ml-2 text-gray-500 text-[15px]'>Second</label>
+                   </div>
+
+
+                   <div className='flex items-center'>
+                      <input onChange={(e)=>setDifficulty(3)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-orange-500 checked:border-transparent    focus:ring-opacity-50' id="level4" name="options" value="4"/>
+                      <label className='ml-2 text-gray-500 text-[15px]'>Third</label>
+                   </div>
+
+                   <div className='flex items-center'>
+                      <input onChange={(e)=>setDifficulty(4)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-orange-700 checked:border-transparent    focus:ring-opacity-50' id="level5" name="options" value="5"/>
+                      <label className='ml-2 text-gray-500 text-[15px]'>Fourth</label>
+                   </div> 
+            </div> */}
        </div>
        
 
        
    {/******************************  Drill section  *******************************/}
         <div className='card-drill'>
+                {/* <h1 className='hd-drill text-green-600'>Try Out this Drill..</h1>
+                <h5 className='sub-hd'>Solve this fraction</h5> */}
 
                 <div className='math  flex justify-start  mt-6'>
                       {(operation===4 || mixOperation===4)?
