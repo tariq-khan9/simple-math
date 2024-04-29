@@ -22,7 +22,7 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
  const [arrayResult, setArrayResult] = useState(false)
  const [submitResult, setSubmitResult] =  useState(0)
  const [objectSubmitCount, setObjectSubmitCount] = useState(0)
- const mixOperation= 1;
+ const mixOperation= 0;
 
  
  const [inputs, setInputs] = useState(randomSheetArray.map(() => ({
@@ -454,25 +454,25 @@ const handleDivisionInputsChange = (index, field, value) => {
  if(showRandomSheets)
 
   return  (
-    <div className='flex flex-col justify-center mt-6 rounded-md '>
-        <div className='px-auto flex flex-col  gap-4 bg-gray-50'>
-                     <button onClick={()=>console.log(randomSheetArray, "new array", divisionArrayResult,"submit result", submitResult)}>show</button>
+    <div className='flex flex-col justify-center mt-4 rounded-md '>
+        <div className='px-auto flex flex-col  gap-4 '>
+                    
                       {randomSheetArray.map((randomNums, index)=> (
-                        <div className='px-[40px]  pt-6 pb-4  mt-6 mx-4 bg-white rounded-md'>
-                          <div className='bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center'><h2 className='text-gray-500 italic text-[18px]' >{index+1}</h2></div>
+                        <div className='px-[8px] sm:px-[15px] md:px-[40px] pt-2 sm:pt-4  md:pt-6 pb-2 md:pb-4 mt-3 md:mt-6 bg-white rounded-md'>
+                          <div className='bg-gray-100 w-5 h-5 md:w-10 md:h-10 rounded-full flex items-center justify-center mb-2 md:mb-4'><h2 className='text-gray-500 italic text-[12px] md:text-[18px]' >{index+1}</h2></div>
                               {(operation===4 || randomNums.mixOperation===4)?
-                                    <div className='flex items-center justify-center '>
+                                    <div className='flex items-center justify-start   '>
                                       {difficulty===1 &&
                                             <table className='digit '>
                                             <tr className=''>
-                                              <td className='first-col px-4'>
+                                              <td className='first-col px-2'>
                                                   <table className=''>
                                                     <tbody className=''>
                                                         <tr className=''>
                                                           {randomNums.numerator1}
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line"></div>
                                                         </tr>
                                                         <tr>
                                                           {randomNums.denominator1}
@@ -484,7 +484,7 @@ const handleDivisionInputsChange = (index, field, value) => {
 
                                           
                 
-                                              <td className='opertor px-4'>
+                                              <td className='opertor px-1 md:px-4'>
                                                   <table>
                                                     <tbody>
                                                       {(operation>0)?
@@ -507,14 +507,14 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>
                 
-                                              <td className='second-col px-4'>
+                                              <td className='second-col px-2'>
                                                   <table>
                                                     <tbody>
                                                         <tr>
                                                           {randomNums.numerator2}
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line"></div>
                                                         </tr>
                                                         <tr>
                                                           {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
@@ -523,19 +523,19 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>
                 
-                                              <td className='= px-6'>
+                                              <td className='= px-1 md:px-6'>
                                                 <tr>=</tr>
                                               </td>
                         {/* ================================================== input side ========================================== */}
-                                              <td className='inputs px-4 flex flex-row'>
-                                              <td className='first-col px-4'>
+                                              <td className='inputs md:px-4 flex flex-row  items-center'>
+                                              <td className='first-col px-2 md:px-4'>
                                                   <table className=''>
                                                     <tbody className=''>
                                                         <tr className=''>
                                                           {randomNums.numerator1}
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line"></div>
                                                         </tr>
                                                         <tr>
                                                           {randomNums.denominator1}
@@ -544,26 +544,26 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>
                 
-                                              <td className='opertor px-4  flex items-center'>
+                                              <td className='opertor px-2 md:px-4  flex items-center'>
                                                   <table>
                                                     <tbody className=''>
                                                         <tr>
                                                         <td className="text-center"> {/* Add a td element to center the input */}
-                                                        <input onChange={(e)=>handleDivisionInputsChange(index, 'sign', e.target.value)} id='sign' className='input digit-input'/>
+                                                        <input onChange={(e)=>handleDivisionInputsChange(index, 'sign', e.target.value)} id='sign' className='input-div digit-input text-center'/>
                                                         </td>
                                                       </tr>
                                                     </tbody>
                                                   </table>
                                               </td>
                 
-                                              <td className='second-col px-4'>
+                                              <td className='second-col md:px-4'>
                                                   <table>
                                                     <tbody>
                                                         <tr className=''>
                                                         <input onChange={(e)=>handleDivisionInputsChange(index, 'divisionNum2', parseInt(e.target.value))} id='divisionNum2' className='input digit-input'/>
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-16 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line-input"></div>
                                                         </tr>
                                                         <tr>
                                                         <input onChange={(e)=>handleDivisionInputsChange(index, 'divisionDenom2', parseInt(e.target.value))} id='divisionDenom2' className='input digit-input'/>
@@ -579,14 +579,14 @@ const handleDivisionInputsChange = (index, field, value) => {
                                       {difficulty>1 &&
                                             <table className='digit'>
                                             <tr className=''>
-                                              <td className='first-col px-4'>
+                                              <td className='first-col'>
                                                   <table className=''>
                                                     <tbody className=''>
                                                         <tr className=''>
                                                           {randomNums.numerator1}
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line"></div>
                                                         </tr>
                                                         <tr>
                                                           {randomNums.denominator1}
@@ -595,7 +595,7 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>
                 
-                                              <td className='opertor px-4'>
+                                              <td className='opertor px-2 md:px-4'>
                                                   <table>
                                                     <tbody>
                                                       {(operation>0)?
@@ -618,14 +618,14 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>
                 
-                                              <td className='second-col px-4'>
+                                              <td className='second-col md:px-4'>
                                                   <table>
                                                     <tbody>
                                                         <tr>
                                                           {randomNums.numerator2}
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line"></div>
                                                         </tr>
                                                         <tr>
                                                           {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
@@ -634,19 +634,19 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>
                 
-                                              <td className='= px-6'>
+                                              <td className='= px-2 md:px-6'>
                                                 <tr>=</tr>
                                               </td>
         {/* ================================================== input side ========================================== */}
-                                              <td className='inputs px-4 flex flex-row'>
-                                              <td className='first-col px-4'>
+                                              <td className='inputs md:px-4 flex flex-row items-center'>
+                                              <td className='first-col md:px-4'>
                                                   <table>
                                                     <tbody>
                                                         <tr className=''>
                                                           <input onChange={(e)=>handleDivisionInputsChange(index, 'divisionNum1', parseInt(e.target.value))} id='divisionNum1' className='input digit-input'/>
                                                         </tr>
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-16 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line-input"></div>
                                                         </tr>
                                                         <tr>
                                                         <input onChange={(e)=>handleDivisionInputsChange(index, 'divisionDenom1', parseInt(e.target.value))} id='divisionDenom1' className='input digit-input'/>
@@ -656,27 +656,27 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                   </table>
                                               </td>  
                 
-                                              <td className='opertor px-4  flex items-center'>
+                                              <td className='opertor px-2 md:px-4  flex items-center'>
                                                   <table>
                                                     <tbody className=''>
                                                         <tr>
                                                         <td className="text-center"> {/* Add a td element to center the input */}
-                                                        <input onChange={(e)=>handleDivisionInputsChange(index, 'sign', e.target.value)} id='divisionSign' className='input digit-input'/>
+                                                        <input onChange={(e)=>handleDivisionInputsChange(index, 'sign', e.target.value)} id='divisionSign' className='input-div digit-input text-center'/>
                                                         </td>
                                                       </tr>
                                                     </tbody>
                                                   </table>
                                               </td>
                 
-                                              <td className='second-col px-4'>
+                                              <td className='second-col md:px-4'>
                                                   <table>
                                                     <tbody>
                                                         <tr className=''>
                                                         <input  onChange={(e)=>handleDivisionInputsChange(index, 'divisionNum2', parseInt(e.target.value))} id='divisionNum2' className='input digit-input'/>
                                                         </tr>
                                                       
-                                                        <tr className='flex items-center mt-4 mb-4'>
-                                                            <div class="border-t border-2  border-gray-500   w-16 mx-auto"></div>
+                                                        <tr className='line-tr'>
+                                                            <div class="line-input"></div>
                                                         </tr>
                                                         <tr>
                                                         <input onChange={(e)=>handleDivisionInputsChange(index, 'divisionDenom2', parseInt(e.target.value))} id='divisionDenom2' className='input digit-input'/>
@@ -691,18 +691,18 @@ const handleDivisionInputsChange = (index, field, value) => {
                                       
                                     </div>
                                 :
-                                   <div className='flex items-center justify-center '>
+                                   <div className='digit  pl-0 pr-0 justify-start'>
 
-                                      <table className='digit'>
+                                      <table className=''>
                                       <tr className=''>
-                                        <td className='first-col flex flex-row px-4'>
+                                        <td className='first-col flex flex-row justify-start '>
                                             <table className=''>
                                               <tbody className=''>
                                                   <tr className=''>
                                                     {randomNums.numerator1}
                                                   </tr>
-                                                  <tr className='flex items-center mt-4 mb-4'>
-                                                      <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                  <tr className='line-tr'>
+                                                      <div class="line"></div>
                                                   </tr>
                                                   <tr>
                                                     {randomNums.denominator1}
@@ -711,7 +711,7 @@ const handleDivisionInputsChange = (index, field, value) => {
                                             </table>
                                       {/* ======= check if the operation is addition and denominators are different, then put extra inputs. */}
                                             {(operation<3 && !sameDenoms) &&
-                                                    <div className='ml-4 flex flex-row'>
+                                                    <div className='md:ml-4 flex flex-row'>
                                                         <table className='flex items-center'>
                                                           <tbody>
                                                           <tr className='tr-different-deno'>
@@ -724,13 +724,13 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                         <table className=''>
                                                         <tbody className=''>
                                                             <tr className=''>
-                                                              <div className='max-w-4'>
+                                                              <div className='max-w-3'>
                                                               <input onChange={(e)=>setAdditionInputs({...additionInputs, numerator1: e.target.value})} id='num' className='input digit-input'/>
                                                               </div>
                                                             
                                                             </tr>
-                                                            <tr className='flex items-center mt-4 mb-4'>
-                                                                <div class="border-t border-2  border-gray-500   w-16 mx-auto"></div>
+                                                            <tr className='line-tr'>
+                                                                <div class="line-input"></div>
                                                             </tr>
                                                             <tr>
                                                             <input required onChange={(e)=>setAdditionInputs({...additionInputs, denominator1: e.target.value})} id='num' className='input digit-input'/>
@@ -741,7 +741,7 @@ const handleDivisionInputsChange = (index, field, value) => {
                                             }
                                         </td>
 
-                                        <td className='opertor px-4'>
+                                        <td className='operator px-2 md:px-3 pl-3 md:pl-5'>
                                             <table>
                                               <tbody>
                                                 {(operation>0)?
@@ -764,14 +764,14 @@ const handleDivisionInputsChange = (index, field, value) => {
                                             </table>
                                         </td>
 
-                                        <td className='second-col flex flex-row px-4'>
+                                        <td className='second-col flex  flex-row px-2 md:px-3'>
                                             <table>
                                               <tbody>
                                                   <tr>
                                                     {randomNums.numerator2}
                                                   </tr>
-                                                  <tr className='flex items-center mt-4 mb-4'>
-                                                      <div class="border-t border-2  border-gray-500   w-6 mx-auto"></div>
+                                                  <tr className='line-tr'>
+                                                      <div class="line"></div>
                                                   </tr>
                                                   <tr>
                                                     {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
@@ -779,7 +779,7 @@ const handleDivisionInputsChange = (index, field, value) => {
                                               </tbody>
                                             </table>
                                             {(operation<3 && !sameDenoms) &&
-                                                    <div className='ml-4 flex flex-row'>
+                                                    <div className='md:ml-4 flex flex-row'>
                                                         <table className='flex items-center'>
                                                           <tbody>
                                                           <tr className='tr-different-deno'>
@@ -797,8 +797,8 @@ const handleDivisionInputsChange = (index, field, value) => {
                                                               </div>
                                                             
                                                             </tr>
-                                                            <tr className='flex items-center mt-4 mb-4'>
-                                                                <div class="border-t border-2  border-gray-500   w-16 mx-auto"></div>
+                                                            <tr className='line-tr'>
+                                                                <div class="line-input"></div>
                                                             </tr>
                                                             <tr>
                                                             <input onChange={(e)=>setAdditionInputs({...additionInputs, denominator2: e.target.value})} id='num' className='input digit-input'/>
@@ -809,19 +809,19 @@ const handleDivisionInputsChange = (index, field, value) => {
                                             }
                                         </td>
 
-                                        <td className='= px-6'>
+                                        <td className='= md:px-3'>
                                           <tr>=</tr>
                                         </td>
 
-                                        <td className='inputs px-4'>
+                                        <td className='inputs md:px-3'>
                                             <table>
                                               <tbody>
                                              
                                                   <tr>
                                                   <MathArrayInput  type='inputNum' index={index}  randomSheetArray={randomSheetArray} setRandomSheetArray={setRandomSheetArray} difficulty={difficulty} operation={operation} sameDenoms={sameDenoms}/>
                                                   </tr>
-                                                  <tr className='flex items-center mt-4 mb-4'>
-                                                      <div class="border-t border-2  border-gray-500   w-20 mx-auto"></div>
+                                                  <tr className='line-tr'>
+                                                      <div class="line-input"></div>
                                                   </tr>
                                                   <tr>
                                                   <MathArrayInput  type='inputDenom' index={index}  randomSheetArray={randomSheetArray} setRandomSheetArray={setRandomSheetArray} difficulty={difficulty} operation={operation} sameDenoms={sameDenoms}/>
@@ -843,44 +843,44 @@ const handleDivisionInputsChange = (index, field, value) => {
                                     {(operation===4 || mixOperation===4) ?
                                       <div>{console.log("divisionarrayresutl in submite", divisionArrayResult)}
                                          { divisionArrayResult[index]?.objectResult ? (
-                                        <div className='w-full flex justify-center'>
+                                        <div className='w-full flex justify-start'>
                                           
-                                        <button className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-green-800 hover:bg-green-600'>Excellent!</button>
+                                        <button className='btn-random text-white bg-blue-600 px-8 sm:px-14 md:px-0'>Excellent!</button>
                                         </div>
                                       ) : (
-                                        <div className='w-full flex justify-center'>
+                                        <div className='w-full flex justify-start'>
                                             {console.log("after submited random objectresult ", randomNums.objectResult)}
-                                        <button  onClick={() => handleShowSolutionModal(index, true)} className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-orange-600 hover:bg-orange-500'>Oops.. Solution?</button>
+                                        <button  onClick={() => handleShowSolutionModal(index, true)} className='btn-random text-white bg-orange-600 hover:bg-orange-500'>Oops.. Solution?</button>
                                         </div>
                                       )}
                                       </div>
                                     :
                                      <div>
                                       { randomNums.objectResult ? (
-                                        <div className='w-full flex justify-center'>
+                                        <div className='w-full flex justify-start'>
                                           
-                                        <button className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-green-800 hover:bg-green-600'>Excellent!</button>
+                                        <button className='btn-random text-white bg-blue-600 px-8 sm:px-16 md:px-0'>Excellent!</button>
                                         </div>
                                       ) : (
-                                        <div className='w-full flex justify-center'>
+                                        <div className='w-full flex justify-start'>
                                             {console.log("after submited random objectresult ", randomNums.objectResult)}
-                                        <button  onClick={() => handleShowSolutionModal(index, true)} className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-orange-600 hover:bg-orange-500'>Oops.. Solution?</button>
+                                        <button  onClick={() => handleShowSolutionModal(index, true)} className='btn-random text-white bg-orange-600 hover:bg-orange-500'>Oops.. Solution?</button>
                                         </div>
                                       )}
                                       </div>}
                                       
                                     </div>
                                   ) : (
-                                    <div className='w-full flex justify-center'>
-                                    <button  disabled={true} className=' w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 bg-yellow-300 italic'>Submitted</button>
+                                    <div className='w-full flex justify-start'>
+                                    <button  disabled={true} className=' btn-random bg-yellow-300 italic'>Submitted</button>
                                     </div>
                                   )}
 
                             </div>
                            :
-                           <div className='w-full flex justify-center '>
+                           <div className='w-full flex justify-start '>
                        
-                               <button onClick={()=>handleArrayCheck({randomNums}, index)} className=' w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 hover:text-white hover:bg-green-800'>Submit</button>
+                               <button onClick={()=>handleArrayCheck({randomNums}, index)} className=' btn-random border-blue-600 text-blue-600 hover:text-white hover:bg-blue-600'>Submit</button>
                           </div>
                         }
                           </div>
@@ -900,8 +900,8 @@ const handleDivisionInputsChange = (index, field, value) => {
                       ))} 
 
 
-                      <div className=' w-full text-center  items-center  my-4 '>
-                         <button onClick={()=>handleSubmitSheets()} disabled={objectSubmitCount<totalSheets}  className=' w-[60%] rounded-[5px] py-1 border border-1 border-gray-400  hover:text-white hover:bg-green-800'>Submit your sheets</button>
+                      <div className=' w-full text-center  items-center  my-4 pb-4 md:pb-8'>
+                         <button onClick={()=>handleSubmitSheets()} disabled={objectSubmitCount<totalSheets}  className=' w-[60%] rounded-[5px] text-[12px] sm:text-[14px] md:text-[18px] py-2 border text-blue-600  border-blue-600 bg-white  hover:text-white hover:bg-blue-600 font-inter'>Submit your sheets</button>
                       </div>
               </div>
               

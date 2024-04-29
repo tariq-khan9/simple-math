@@ -356,7 +356,7 @@ const Arithmetic = () => {
   }
 
   return (
-    <div className='px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col pt-2 mt-[30px]'>
+    <div className='px-[8px] sm:px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col pt-2 mt-[30px]'>
       
     {/******************************  difficulty level *******************************/}
     
@@ -445,7 +445,7 @@ const Arithmetic = () => {
 
                                 
       
-                                     <td className='opertor px-2 '>
+                                     <td className='opertor px-4 '>
                                          <table>
                                            <tbody>
                                              {(operation>0)?
@@ -806,12 +806,12 @@ const Arithmetic = () => {
                 </div>
         </div>
 
-        <div className='buttons-div w-100 h-16 bg-slate-50 mt-6 rounded-md flex items-center justify-center '> 
+        <div className='buttons-div w-100 h-12 md:h-16 bg-white mt-10 rounded-md flex items-center justify-start px-4 '> 
             <div className='flex flex-row justify-center  items-center'>
-              <label className=' text-[20px] font-thin text-gray-700 mx-2'>Random Sheets:</label>
-               <input  className='input digit-input' onChange={(e)=>handleSetTotalSheets(e.target.value)}/>
+              <label className='text-[10px] sm:text-[14px] md:text-[20px] font-thin text-blue-600 md:mx-2'>Generate Sheets:</label>
+               <input  className='input digit-input mx-1' onChange={(e)=>handleSetTotalSheets(e.target.value)}/>
                <div className=' items-end h-4'>
-                 <label className='text-[12px] italic mx-2 text-orange-500'>Please provide numbers ranging from 6 to 20.</label>
+                 <label className='text-[6px] sm:text-[8px] md:text-[12px] italic  md:mx-2 text-gray-400'>Please provide numbers ranging from 6 to 20.</label>
                </div>
 
             </div>

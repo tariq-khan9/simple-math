@@ -10,16 +10,17 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
     if(showSolutionModal)
     {
      return (
-       <div className=' fixed top-0 left-0 w-full h-full pt-48 bg-transparent w-scree  backdrop-blur-sm flex justify-center items-center '>
+       <div className=' fixed top-0 left-0 w-full h-full pt-48  bg-transparent w-scree  backdrop-blur-sm flex justify-center items-center '>
    
-         <div className='bg-white rounded-md z-40 w-96 max-h-85 mt-[80px] overflow-y-auto  p-4  mb-[200px]'>
+         <div className='bg-white border border-gray-300 rounded-md z-40 w-96 max-h-85 mt-[80px] overflow-y-auto  p-4  mb-[200px]'>
                <div className='text-center w-full'>
                  <h2 className='text-[20px] font-bold underline text-blue-800 '>Solution</h2>
                </div>
                <div className='overflow-y-auto max-h-[380px]'>
-                {console.log("inputs in there",inputs)}
-                    <div>       {(inputs.inputNum!==null  || inputs.inputDenom!==null) &&
-                                <h2 className='font-bold'>Your answer:</h2>}
+                    <div>       {(inputs.inputNum!==null  ||
+                                  inputs.inputDenom!==null
+                                ) &&
+                               (<h2 className='font-bold'>Your answer:</h2>)}
                                 <div className='solution-digit'>
                                       {(inputs.inputNum || inputs.inputDenom) &&
                                             <div className=' flex items-center mb-2'>
@@ -909,7 +910,9 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                         {/**========================  first row =========================================**/}
                                                 <table className='solution-digit'>
                                                         <tr className=''>
-                                                        
+                                                           <td className='= px-2'>
+                                                            <tr>=</tr>
+                                                            </td>
                                                             <td className='first-col px-1'>
                                                             <table className=''>
                                                                 <tbody className=''>
