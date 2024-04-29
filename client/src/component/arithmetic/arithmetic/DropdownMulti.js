@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import dropdown from './../../../images/dropdown.png'
 
-const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
+const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAdditionSubOpen, setIsAdditionSubOpen] = useState(false);
   const [isSubtractionSubOpen, setIsSubtractionSubOpen] = useState(false);
@@ -71,30 +72,45 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
     <div className=' pt-8 relative h-[100px]'>
          <div className=" z-50" ref={dropdownRef}>
       <button
-        className="px-6 md:px-12 py-1 md:py-2 z-50 border border-blue-800  text-blue-800 hover:text-white bg-white hover:bg-blue-800  "
+        className="px-6 md:px-12 py-1 md:py-2 z-50 font-inter font-semibold rounded-sm border border-gray-800  text-gray-800 hover:text-white bg-white hover:bg-gray-700  "
         onClick={toggleDropdown}
       >
-        Operation
+        <div className='flex flex-row'>
+        {
+          operation>0 ? <div>
+            {operation===1 && <div>Addition</div>}
+            {operation===2 && <div>Subtraction</div>}
+            {operation===3 && <div>Multiplication</div>}
+            {operation===4 && <div>Division</div>}
+          </div> 
+          : 
+          <div>Mixed</div>
+        }
+        {/* <div className=' ml-1 flex items-center '>
+        <img src={dropdown} alt='dropdown' className='w-[8px] md:w-[10px]   h-[6px]'/>
+        </div> */}
+        
+        </div>
       </button>
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-42 font-thin bg-white rounded-md shadow-lg">
+        <div className="absolute left-0 mt-2 w-42 font-inter  bg-white rounded-md shadow-lg">
           <button
-            className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none relative"
+            className="block font-inter w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
             onMouseEnter={handleAdditionMouseEnter}
             onMouseLeave={handleAdditionMouseLeave}
              // Close dropdown when clicked
           >
             Addition
             {isAdditionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[140px] bg-white rounded-md shadow-lg">
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
                 <button
-                  className="block w-full p-2 pl-3  text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(1, true)} // Close dropdown when clicked
                 >
                   Same-Denoms
                 </button>
                 <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(1, false)} // Close dropdown when clicked
                 >
                   Different-Denoms
@@ -103,22 +119,22 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
             )}
           </button>
           <button
-            className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none relative"
+            className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none relative"
             onMouseEnter={handleSubtractionMouseEnter}
             onMouseLeave={handleSubtractionMouseLeave}
              // Close dropdown when clicked
           >
             Subtraction
             {isSubtractionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[140px] bg-white rounded-md shadow-lg">
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
                 <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700 hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(2, true)} // Close dropdown when clicked
                 >
                   Same-Denoms
                 </button>
                 <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-blue-100 focus:outline-none"
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700 hover:text-white focus:outline-none"
                   onClick={()=>handleOperation(2, false)} // Close dropdown when clicked
                 >
                   Different-Denoms
@@ -126,13 +142,13 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms}) => {
               </div>
             )}
           </button>
-          <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none" >
+          <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Multiplication
           </button>
-          <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none" >
+          <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none" >
             Division
           </button>
-          <button onClick={()=>handleOperation(5, false)} className="block w-full py-2 px-4 text-left hover:bg-blue-100 focus:outline-none" >
+          <button onClick={()=>handleOperation(5, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Mixed
           </button>
         </div>

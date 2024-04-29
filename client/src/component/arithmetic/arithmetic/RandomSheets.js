@@ -10,10 +10,11 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
  
   
   let sheets = totalSheets;
- 
+  let DivisionResult = []
   
  const [randomSheetArray, setRandomSheetArray] = useState([])
  const [divisionInputs, setDivisionInputs] = useState([])
+ const [divisionArrayResult, setDivisionArrayResult] = useState([])
  const [showCheckModal, setShowCheckModal] = useState(false)
  const [showSolutionModal, setShowSolutionModal] = useState(false)
  const [showSubmitResultModal, setShowSubmitResultModal] = useState(false)
@@ -42,7 +43,7 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
   
    
   
-  }, [totalSheets, showRandomSheets,showSolutionModal,difficulty, operation]);
+  }, [totalSheets, showRandomSheets,showSolutionModal,difficulty, operation, sameDenoms]);
  
  
 
@@ -101,24 +102,21 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
     }
 
     if (operation === 4 || randomNums.randomNums.mixOperation===4) {
-      console.log("whole object ", divisionInputs[i])
+      console.log("whole object ", divisionInputs[i], "operation", operation, randomNums.randomNums.mixOperation)
          
        const {divisionNum1, divisionDenom1, divisionNum2, divisionDenom2, sign} = divisionInputs[i]
-      //  if(!divisionNum1 || !divisionNum2|| !divisionDenom1 || !divisionDenom2 || !sign ){
-      //   console.log("please fill all fields")
-      //   return
-      //  }
+
 
         if (difficulty === 1) {
             var deno2 = divisionDenom2
             var num2 = divisionNum2
             console.log(numerator2,deno2,denominator2,num2, divisionInputs[i].sign)
-            if (numerator2 === deno2 && denominator2 === num2 && divisionInputs[i].sign === '*') {
+            if (numerator2 === divisionDenom2 && denominator2 === divisionNum2 && sign === '*') {
                 const updatedArray = randomSheetArray.map((item, index) => {
                   // Check if the index matches the index of the item to update
                   
                   if (index === i) {
-                      
+                      console.log("true is hit", index, i)
                       // Return a new object with updated properties
                       return { ...item, isSubmitted: true, objectResult: true, showSolutionModal: false };
                   }
@@ -126,15 +124,19 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
                   return item;
                 });
                 // Update the state with the updated array
-                let deepCopy = JSON.parse(JSON.stringify(updatedArray));
-                setRandomSheetArray(deepCopy);
+                setDivisionArrayResult((prevArray) => {
+                  const newArray = [...prevArray];
+                  newArray[i] = { index: i, objectResult: true };
+                  return newArray;
+                });
+
+                setRandomSheetArray(updatedArray);
                 setSubmitResult(submitResult + 1);
-                console.log("updated array in true deep",deepCopy,"and random array ", randomSheetArray)
 
           } else {
             const updatedArray = randomSheetArray.map((item, index) => {
               if (index === i) {
-             
+                  
                   // If the properties match, return a new object with the updated 
                   return { ...item, isSubmitted: true, objectResult: false, showSolutionModal: false };
               }
@@ -142,9 +144,14 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
               return item;
           });
           
-          let deepCopy = JSON.parse(JSON.stringify(updatedArray));
-          setRandomSheetArray(deepCopy);
-          console.log("updated array in false deep",deepCopy,"and random array ", randomSheetArray)
+          setDivisionArrayResult((prevArray) => {
+            const newArray = [...prevArray];
+            newArray[i] = { index: i, objectResult: false};
+            return newArray;
+          });
+
+          setRandomSheetArray(updatedArray);
+      
               
 
           }
@@ -177,6 +184,13 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
                         return item;
                       });
                       // Update the state with the updated array
+
+                      setDivisionArrayResult((prevArray) => {
+                        const newArray = [...prevArray];
+                        newArray[i] = { index: i, objectResult: true};
+                        return newArray;
+                      });
+
                       setRandomSheetArray(updatedArray);
                       setSubmitResult(submitResult + 1);
             }
@@ -190,12 +204,74 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
                 // If the properties don't match, return the original object
                 return item;
             });
-            console.log("updated array in false", updatedArray)
+            setDivisionArrayResult((prevArray) => {
+              const newArray = [...prevArray];
+              newArray[i] = { index: i, objectResult: false};
+              return newArray;
+            });
+            
             setRandomSheetArray(updatedArray);
             }
         }
 
     }
+
+  //   if (operation === 4 || randomNums.randomNums.mixOperation ===4) {
+  //     var inputResult = randomNums.randomNums.inputNum / randomNums.randomNums.inputDenom;
+
+  //     console.log(inputResult)
+  //      var newCheckResult = parseFloat(checkResult).toFixed(2);
+  //      var newInputResult = parseFloat(inputResult).toFixed(2)
+
+  //      console.log(randomNums.randomNums.numerator2,divisionInputs[i].divisionDenom2, randomNums.randomNums.denominator2,divisionInputs[i].divisionNum2)
+  //     if (
+  //       randomNums.randomNums.numerator2 === divisionInputs[i].divisionDenom2 &&
+  //       randomNums.randomNums.denominator2 === divisionInputs[i].divisionNum2 &&
+  //       divisionInputs[i].sign === '*'
+  //     ) {
+  //         const updatedArray = randomSheetArray.map((item, index) => {
+  //           // Compare properties of the objects to determine if they are equal
+  //           if (index===i) {
+  //               // If the properties match, return a new object with the updated 
+                
+  //               return { ...item, isSubmitted:true, objectResult: true, showSolutionModal: false };
+               
+  //           }
+  //           // If the properties don't match, return the original object
+  //           return item;
+  //       });
+
+  //       setDivisionArrayResult((prevArray) => {
+  //         const newArray = [...prevArray];
+  //         newArray[i] = { index: i, objectResult: true };
+  //         return newArray;
+  //       });
+  //       setRandomSheetArray(updatedArray);
+  //       setSubmitResult(submitResult+1)
+        
+
+         
+  //     } else {
+  //       const updatedArray = randomSheetArray.map((item, index)=> {
+  //         // Compare properties of the objects to determine if they are equal
+  //         if (index===i) {
+  //             // If the properties match, return a new object with the updated 
+  //             return { ...item, isSubmitted: true, objectResult: false, showSolutionModal: false };
+              
+  //         }
+  //         // If the properties don't match, return the original object
+  //         return item;
+  //     });
+  //     setDivisionArrayResult((prevArray) => {
+  //       const newArray = [...prevArray];
+  //       newArray[i] = { index: i, objectResult: false };
+  //       return newArray;
+  //     });
+  //     setRandomSheetArray(updatedArray);
+      
+  //     }
+
+  // }
 
     if (operation !== 4 || randomNums.randomNums.mixOperation!==4) {
         var inputResult = randomNums.randomNums.inputNum / randomNums.randomNums.inputDenom;
@@ -209,13 +285,23 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
               if (index===i) {
                   // If the properties match, return a new object with the updated 
                   return { ...item, isSubmitted:true, objectResult: true, showSolutionModal: false };
+                  
               }
               // If the properties don't match, return the original object
               return item;
           });
           setRandomSheetArray(updatedArray);
           setSubmitResult(submitResult+1)
-            
+
+          if(operation===0){
+            setDivisionArrayResult((prevArray) => {
+              const newArray = [...prevArray];
+              newArray[i] = { index: i, objectResult: true };
+              return newArray;
+            });
+          }
+          
+  
            
         } else {
           const updatedArray = randomSheetArray.map((item, index)=> {
@@ -228,10 +314,41 @@ const RandomSheets = ({getRandomNumber, showRandomSheets, totalSheets,  setShowR
             return item;
         });
         setRandomSheetArray(updatedArray);
-            
+
+        if(operation===0){
+          setDivisionArrayResult((prevArray) => {
+            const newArray = [...prevArray];
+            newArray[i] = { index: i, objectResult: false };
+            return newArray;
+          });
         }
+        
+        }
+ 
     }
  
+}
+
+const handleSubmitSheets = () => {
+  if(operation===4 || mixOperation===4){
+    function countTrueValues(array) {
+      const trueValues = array.filter(item => item.objectResult === true);
+       return trueValues.length;   }
+    
+      setSubmitResult(countTrueValues(divisionArrayResult))
+  }
+
+  // if(operation===0){
+  //   function countTrueValues(array) {
+  //     const trueValues = array.filter(item => item.objectResult === true);
+  //      return trueValues.length;   }
+    
+  //     setSubmitResult(countTrueValues(divisionArrayResult))
+  // }
+  
+  setSubmitted(true)
+  setShowSubmitResultModal(true)
+
 }
 
 const handleShowSolutionModal = (index) => {
@@ -281,51 +398,6 @@ const handleCloseSolutionModal = (index) => {
     const numerator2 = getRandomNumber(inputRange.min, inputRange.max);
     const denominator2 = getRandomNumber(inputRange.min, inputRange.max);
 
-
-      // var denominator1 = getRandomNumber(inputRange.min, inputRange.max);
-      // var numerator2 = getRandomNumber(inputRange.min, inputRange.max);
-      // var denominator2 = getRandomNumber(inputRange.min, inputRange.max);
-
-  
-
-  //   do {
-  //     var numerator1 = getRandomNumber(inputRange.min, inputRange.max);
-  //     var denominator1 = getRandomNumber(inputRange.min, inputRange.max);
-  //     var numerator2 = getRandomNumber(inputRange.min, inputRange.max);
-  //     var denominator2 = getRandomNumber(inputRange.min, inputRange.max);
-
-  //     var checkDeno = denominator1 * denominator2;
-  //     if(operation>0){
-  //         if(operation===1)  var checkNum = (numerator1 * denominator2) + (numerator2 * denominator1);
-  //         if(operation===2)  var checkNum = (numerator1 * denominator2) - (numerator2 * denominator1);
-  //         if(operation===3)  var checkNum = (numerator1 * numerator2);
-  //         if(operation===4){
-  //           checkDeno= denominator1*numerator2;
-  //           checkNum= numerator1*denominator2
-  //         }
-  //     }
-
-  //     if(mixOperation>0){
-  //         if(mixOperation===1)  var checkNum = (numerator1 * denominator2) + (numerator2 * denominator1);
-  //         if(mixOperation===2)  var checkNum = (numerator1 * denominator2) - (numerator2 * denominator1);
-  //         if(mixOperation===3)  var checkNum = (numerator1 * numerator2);
-  //         if(mixOperation===4){
-  //           checkDeno= denominator1*numerator2;
-  //           checkNum= numerator1*denominator2
-  //         }
-  //     }
-      
-
-  //     var checkResult = checkNum / checkDeno;
-      
-  //     if (difficulty === 3) {
-  //         if (checkResult > 0) {
-  //             break; // Exit the loop if checkResult is greater than 0
-  //         }
-  //     } else {
-  //         break; // Exit the loop if difficulty is not 3
-  //     }
-  // } while (true);
   
     updatedArray.push({
       numerator1,
@@ -384,7 +456,7 @@ const handleDivisionInputsChange = (index, field, value) => {
   return  (
     <div className='flex flex-col justify-center mt-6 rounded-md '>
         <div className='px-auto flex flex-col  gap-4 bg-gray-50'>
-                     <button onClick={()=>console.log(randomSheetArray)}>show</button>
+                     <button onClick={()=>console.log(randomSheetArray, "new array", divisionArrayResult,"submit result", submitResult)}>show</button>
                       {randomSheetArray.map((randomNums, index)=> (
                         <div className='px-[40px]  pt-6 pb-4  mt-6 mx-4 bg-white rounded-md'>
                           <div className='bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center'><h2 className='text-gray-500 italic text-[18px]' >{index+1}</h2></div>
@@ -768,7 +840,22 @@ const handleDivisionInputsChange = (index, field, value) => {
                              <div className='w-full'>
                                 {submitted ? (
                                     <div>
-                                    
+                                    {(operation===4 || mixOperation===4) ?
+                                      <div>{console.log("divisionarrayresutl in submite", divisionArrayResult)}
+                                         { divisionArrayResult[index]?.objectResult ? (
+                                        <div className='w-full flex justify-center'>
+                                          
+                                        <button className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-green-800 hover:bg-green-600'>Excellent!</button>
+                                        </div>
+                                      ) : (
+                                        <div className='w-full flex justify-center'>
+                                            {console.log("after submited random objectresult ", randomNums.objectResult)}
+                                        <button  onClick={() => handleShowSolutionModal(index, true)} className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-orange-600 hover:bg-orange-500'>Oops.. Solution?</button>
+                                        </div>
+                                      )}
+                                      </div>
+                                    :
+                                     <div>
                                       { randomNums.objectResult ? (
                                         <div className='w-full flex justify-center'>
                                           
@@ -780,6 +867,8 @@ const handleDivisionInputsChange = (index, field, value) => {
                                         <button  onClick={() => handleShowSolutionModal(index, true)} className='w-[50%] rounded-[5px] py-1 border border-1 border-gray-400 text-white bg-orange-600 hover:bg-orange-500'>Oops.. Solution?</button>
                                         </div>
                                       )}
+                                      </div>}
+                                      
                                     </div>
                                   ) : (
                                     <div className='w-full flex justify-center'>
@@ -812,15 +901,12 @@ const handleDivisionInputsChange = (index, field, value) => {
 
 
                       <div className=' w-full text-center  items-center  my-4 '>
-                         <button onClick={()=>{
-                          setSubmitted(true)
-                          setShowSubmitResultModal(true)
-                          }} disabled={objectSubmitCount<totalSheets}  className=' w-[60%] rounded-[5px] py-1 border border-1 border-gray-400  hover:text-white hover:bg-green-800'>Submit your sheets</button>
+                         <button onClick={()=>handleSubmitSheets()} disabled={objectSubmitCount<totalSheets}  className=' w-[60%] rounded-[5px] py-1 border border-1 border-gray-400  hover:text-white hover:bg-green-800'>Submit your sheets</button>
                       </div>
               </div>
               
               <CheckModal showCheckModal={showCheckModal} setShowCheckModal={setShowCheckModal} result={arrayResult}/>
-              <SubmitResultModal showSubmitResultModal={showSubmitResultModal} setShowSubmitResultModal={setShowSubmitResultModal} submitResult={submitResult} sheets={sheets}/>
+              <SubmitResultModal showSubmitResultModal={showSubmitResultModal} setShowSubmitResultModal={setShowSubmitResultModal} submitResult={submitResult} divisionArrayResult={divisionArrayResult} sheets={sheets}/>
            
     </div>
   )
@@ -829,7 +915,7 @@ const handleDivisionInputsChange = (index, field, value) => {
 export default RandomSheets
 
 
-const SubmitResultModal = ({showSubmitResultModal, setShowSubmitResultModal, submitResult, sheets}) => {
+const SubmitResultModal = ({showSubmitResultModal, setShowSubmitResultModal,divisionArrayResult, submitResult, sheets}) => {
   
   useEffect(()=>{
     console.log("final result", submitResult)

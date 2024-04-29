@@ -1,4 +1,6 @@
 /* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +15,7 @@
 }
 
 .card-drill {
-   @apply p-4  md:px-8 md:p-12 h-64 md:h-96  rounded-md mt-6 md:mt-8 bg-white
+   @apply p-4  md:px-8 md:p-12 h-56 md:h-80  rounded-md mt-6 md:mt-8 bg-white
 }
 
 
@@ -26,7 +28,7 @@
 }
 
 .digit {
-  @apply  text-[15px] md:text-[25px] font-semibold italic text-gray-500 text-center
+  @apply  text-[15px] md:text-[25px] font-semibold  text-gray-500 text-center
 }
 .line-tr {
     @apply flex items-center mt-2 mb-2 md:mt-4 md:mb-4
@@ -41,11 +43,11 @@
 }
 
 .solution-digit {
-  @apply text-[10px] md:text-[15px] font-semibold italic text-gray-500 text-center mt-4
+  @apply text-[10px] md:text-[15px] font-semibold  text-gray-500 text-center mt-4
 }
 
 .digit-input {
-    @apply text-[14px]  md:text-[22px] font-semibold italic text-gray-500 text-center
+    @apply text-[14px]  md:text-[22px] font-semibold  text-gray-500 text-center
   }
 
 .input {

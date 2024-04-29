@@ -8,11 +8,9 @@ import MathInput from './MathInput';
 
 
 
-
-
-
-
 const Arithmetic = () => {
+
+  const btnNextRef = useRef(null)
 
   const [randomNums, setRandomNums] = useState({
     numerator1 : 1,
@@ -56,19 +54,21 @@ const Arithmetic = () => {
   const [totalSheets, setTotalSheets] = useState(0);
   const [showCheckModal, setShowCheckModal] = useState(false)
   const [showSolutionModal, setShowSolutionModal]= useState(false)
-
+  const [prevRandomNums, setPrevRandomNums] = useState();
   
  
 
   useEffect(() => {
 
-   
-
-
-     handleNext()
+    if (prevRandomNums !== randomNums) {
+      handleNext();
+      setPrevRandomNums(randomNums);
+    }
+     
+     console.log("difficulty in use effect ", difficulty)
      setInputs({
-      inputNum: '',
-      inputDenom: ''
+      inputNum: null,
+      inputDenom: null
      })
 
      setAdditionInputs({
@@ -83,11 +83,9 @@ const Arithmetic = () => {
       numerator2:'',
       denominator1:'',
       denominator2:''
-     })
+     })                
  
-    
-    
-  
+    handleNext()
   }, [difficulty, operation, sameDenoms, showRandomSheets, totalSheets])
 
 
@@ -113,11 +111,10 @@ const Arithmetic = () => {
     return randomNum;
   };
 
- 
-
   const handleNext = () => {
-    console.log(additionInputs)
-
+    console.log(
+      "mix operation in top ", mixOperation
+    )
     if(mixOperation>0){
        setOperation(0)
        const operator = getRandomOperation()
@@ -157,14 +154,11 @@ const Arithmetic = () => {
         if (denominator1 < 0) negativeCount++;
         if (numerator2 < 0) negativeCount++;
         if (denominator2 < 0) negativeCount++;  
+        
          // Check if difficulty is 3 and there are more than 1 negative numbers
         if ((difficulty === 3 && negativeCount>1) || (sameDenoms && denominator1<0)) {
           continue; // Skip this iteration and generate new numbers
-        }
-
-        
-
-       
+        }       
 
       // when operation is add or subtranct and sameDenoms is true
         if(operation<3 && sameDenoms){
@@ -185,6 +179,7 @@ const Arithmetic = () => {
         }
 
         if(mixOperation>0){
+          console.log("mix operation in ", mixOperation)
             if(mixOperation===1)  var checkNum = (numerator1 * denominator2) + (numerator2 * denominator1);
             if(mixOperation===2)  var checkNum = (numerator1 * denominator2) - (numerator2 * denominator1);
             if(mixOperation===3)  var checkNum = (numerator1 * numerator2);
@@ -196,6 +191,7 @@ const Arithmetic = () => {
         
 
         var checkResult = checkNum / checkDeno;
+        console.log("checkresult is ", checkResult)
         
         if (difficulty === 3) {
             if (checkResult > 0) {
@@ -212,25 +208,12 @@ const Arithmetic = () => {
         numerator2: numerator2,
         denominator2: denominator2
     });
+
+    console.log("random in the end. ", randomNums)
     
   }
 
-  // const handleShowRandom = () => {
-  //   if(totalSheets>2){
-  //     if(showRandomSheets){
-  //       setShowRandomSheets(false)
-  //       setShowRandomSheets(true)
-  //     }
-  //     else{
-  //       setShowRandomSheets(true)
-  //     }
-      
-  //   }
-  //   else{
-  //     setTotalSheets(0)
-  //   }
-    
-  // }
+
 
   const handleSetTotalSheets = (value) => {
     const intValue = parseInt(value);
@@ -375,57 +358,45 @@ const Arithmetic = () => {
 
   return (
     <div className='px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col pt-2 mt-[30px]'>
-        
+      
     {/******************************  difficulty level *******************************/}
     
-     
        <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-4 md:mb-6 flex flex-row  justify-start'>
           <div className=' w-[25%]  flex items-center justify-start'>
-              <DropdownMulti setOperation={setOperation} setMixOperation={setMixOperation} setSameDenoms={setSameDenoms}/>
+              <DropdownMulti setOperation={setOperation} setMixOperation={setMixOperation} setSameDenoms={setSameDenoms} operation={operation} />
           </div >
        </div>
 
    
-            <h4 className='text-[12px] sm:text-[15px] md:text-[18px] text-gray-700 text-start'>Level of difficulty</h4>
+            <h4 className='font-inter text-[12px] sm:text-[15px] md:text-[18px] text-black text-start'>Level of Difficulty</h4>
 
        <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2 rounded-md flex flex-row  justify-start'>
-          <button onClick={()=> setDifficulty(1)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+          <button onClick={()=> {setDifficulty(1)
+           setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 border font-inter font-semibold rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
 
-          <button onClick={()=> setDifficulty(2)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+          <button onClick={()=> {setDifficulty(2)
+          setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
 
-          <button onClick={()=> setDifficulty(3)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+          <button onClick={()=> {setDifficulty(3)
+          setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
 
-          <button onClick={()=> setDifficulty(4)} className={`flex-1 border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
-             {/* <div className='flex gap-[50px] justify-center'>                      
-                   <div className='flex items-center'>
-                      <input checked={difficulty===1? true : false}  onChange={(e)=>setDifficulty(1)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-600 checked:border-transparent    focus:ring-opacity-50' id="level1" name="options" value="1"/>
-                      <label className='ml-2 text-gray-500 text-[15px]'>First</label>
-                   </div>
-
-                   <div className='flex items-center'>
-                      <input onChange={(e)=>setDifficulty(2)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-green-800 checked:border-transparent    focus:ring-opacity-50' id="level2" name="options" value="2"/>
-                      <label className='ml-2 text-gray-500 text-[15px]'>Second</label>
-                   </div>
-
-
-                   <div className='flex items-center'>
-                      <input onChange={(e)=>setDifficulty(3)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-orange-500 checked:border-transparent    focus:ring-opacity-50' id="level4" name="options" value="4"/>
-                      <label className='ml-2 text-gray-500 text-[15px]'>Third</label>
-                   </div>
-
-                   <div className='flex items-center'>
-                      <input onChange={(e)=>setDifficulty(4)} type="radio" className='appearance-none w-4 h-4 border border-gray-400 rounded-[3px] checked:bg-orange-700 checked:border-transparent    focus:ring-opacity-50' id="level5" name="options" value="5"/>
-                      <label className='ml-2 text-gray-500 text-[15px]'>Fourth</label>
-                   </div> 
-            </div> */}
+          <button onClick={()=> {setDifficulty(4)
+          setTimeout(() => {
+            btnNextRef.current.click();
+           }, 20)}} className={`flex-1 font-inter rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
+           
        </div>
        
 
        
    {/******************************  Drill section  *******************************/}
         <div className='card-drill'>
-                <h1 className='hd-drill text-green-600'>Try Out this Drill..</h1>
-                <h5 className='sub-hd'>Solve this fraction</h5>
 
                 <div className='math  flex justify-start  mt-6'>
                       {(operation===4 || mixOperation===4)?
@@ -485,7 +456,8 @@ const Arithmetic = () => {
                                                    <div className='line'></div>
                                                </tr>
                                                <tr>
-                                                 {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
+                                                 {/* //{(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2} */}
+                                                 {randomNums.denominator2}
                                                </tr>
                                            </tbody>
                                          </table>
@@ -563,7 +535,7 @@ const Arithmetic = () => {
                                          </table>
                                      </td>
       
-                                     <td className='opertor px-2 md:px-4'>
+                                     <td className='opertor px-2  md:pl-4'>
                                          <table>
                                            <tbody>
                                              {(operation>0)?
@@ -596,7 +568,9 @@ const Arithmetic = () => {
                                                    <div class="line"></div>
                                                </tr>
                                                <tr>
-                                                 {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
+                                                 {/* {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
+                                                  */} 
+                                                  {randomNums.denominator2}
                                                </tr>
                                            </tbody>
                                          </table>
@@ -705,7 +679,7 @@ const Arithmetic = () => {
                                   }
                               </td>
 
-                              <td className='opertor px-2 md:px-3 '>
+                              <td className='opertor px-2 md:px-3 pl-3 md:pl-5 '>
                                   <table>
                                     <tbody>
                                       {(operation>0)?
@@ -804,7 +778,7 @@ const Arithmetic = () => {
                 <div className='buttons w-full  flex flex-row justify-start mt-14'>
                       <button onClick={handleCheck} className='btn-drill'>Check</button>
 
-                      <button onClick={handleNext} className='btn-drill ml-1 md:ml-3'>Next</button>
+                      <button ref={btnNextRef} onClick={handleNext} className='btn-drill ml-1 md:ml-3'>Next</button>
                      
                       
                 </div>
@@ -828,7 +802,9 @@ const Arithmetic = () => {
 
         {/* <Temp totalSheets={totalSheets} temp={temp}/> */}
         
-        <CheckModal showCheckModal={showCheckModal}  setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} result={result}/>
+        <CheckModal showCheckModal={showCheckModal}  setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} result={result} setInputs={setInputs} setAdditionInputs={setAdditionInputs} setDivisionInputs={setDivisionInputs}/>
+
+
         <SolutionModal showSolutionModal={showSolutionModal} setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} randomNums={randomNums} operation={operation} mixOperation={mixOperation} inputs={inputs} sameDenoms={sameDenoms}/>
 
        

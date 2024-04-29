@@ -40,17 +40,18 @@ const Navbar = () => {
            : <img className=' w-10 h-8' src={menu} alt="Icon" />
             }</button>
 
-          <div className={`flex flex-col md:flex-row w-[60%] lg:w-[70%]  ${isOpen ? 'bg-white  shadow-md  w-40 pt-2  pl-3 h-32 justify-start items-start rounded-md' : 'items-center hidden md:flex'} `}>
-             <button className='pt-2 lg:mx-2 text-gray-800 hover:text-blue-800 lg:text-[18px] border-b-4 border-white focus:border-blue-800 md:ml-8'>Arithmetic</button>
+          <div className={`flex flex-col md:flex-row w-[60%] lg:w-[70%] ${isOpen ? 'bg-white  shadow-md  w-44 pt-2  pl-3 h-44 justify-start items-start rounded-md' : 'items-center hidden md:flex'} `}>
+             <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8 '>Home</button>
+             <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8'>Arithmetic</button>
 
-             <button className='pt-2 lg:mx-2 text-gray-800 hover:text-blue-800 lg:text-[18px] border-b-4 border-white focus:border-blue-800 md:ml-8 '>Algebra</button>
-              <button className='pt-2 lg:mx-2 text-gray-800 hover:text-blue-800 lg:text-[18px] border-b-4 border-white focus:border-blue-800 md:ml-8'>Geometary</button>
+             <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8'>Algebra</button>
+              <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8'>Geometry</button>
           </div>
      </div>
        
 
       <div className='buttom-div flex flex-row w-[20%] md:w-[15%] items-center justify-end'>
-        <button className='bg-blue-800 text-white px-2 lg:px-4 h-8 rounded-[5px] text-[12px] md:text-[15px]'>Register</button>
+        <button className='bg-blue-600 hover:bg-blue-700 text-white px-2 lg:px-4 h-8 rounded-[5px] text-[12px] md:text-[15px]'>Register</button>
       </div>
 
     </div>
