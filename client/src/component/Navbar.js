@@ -40,12 +40,18 @@ const Navbar = () => {
            : <img className=' w-10 h-8' src={menu} alt="Icon" />
             }</button>
 
-          <div className={`flex flex-col md:flex-row w-[60%] lg:w-[70%] ${isOpen ? 'bg-white  shadow-md  w-44 pt-2  pl-3 h-44 justify-start items-start rounded-md' : 'items-center hidden md:flex'} `}>
-             <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8 '>Home</button>
-             <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8'>Arithmetic</button>
-
-             <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8'>Algebra</button>
-              <button className='pt-2 lg:mx-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8'>Geometry</button>
+          <div className={`flex flex-col font-inter  items-start md:flex-row md:w-[60%] lg:w-[70%] ${isOpen ? 'bg-white  shadow-md  w-[120px] pt-1  pl-3 h-44 justify-start items-start  rounded-md' : 'items-center hidden md:flex'} `}>
+            
+               <button className='pt-2 text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8 '>Home</button>
+         
+             <button className='pt-2  text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8  '>Arithmetic</button>
+            
+           
+             <button className='pt-2  text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8 '>Algebra</button>
+        
+          
+              <button className='pt-2  text-gray-800 hover:border-blue-600 lg:text-[18px] border-b-4 border-white focus:border-blue-600 focus:font-bold md:ml-8 mb-2 md:mb-0 '>Geometry</button>
+           
           </div>
      </div>
        

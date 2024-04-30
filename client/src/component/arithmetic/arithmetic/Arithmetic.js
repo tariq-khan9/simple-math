@@ -808,7 +808,7 @@ const Arithmetic = () => {
 
         <div className='buttons-div w-100 h-12 md:h-16 bg-white mt-10 rounded-md flex items-center justify-start px-4 '> 
             <div className='flex flex-row justify-center  items-center'>
-              <label className='text-[10px] sm:text-[14px] md:text-[20px] font-thin text-blue-600 md:mx-2'>Generate Sheets:</label>
+              <label className='text-[10px] sm:text-[14px] md:text-[20px] font-thin text-blue-800 md:mx-2'>Generate Sheets:</label>
                <input  className='input digit-input mx-1' onChange={(e)=>handleSetTotalSheets(e.target.value)}/>
                <div className=' items-end h-4'>
                  <label className='text-[6px] sm:text-[8px] md:text-[12px] italic  md:mx-2 text-gray-400'>Please provide numbers ranging from 6 to 20.</label>
