@@ -15,7 +15,7 @@
 }
 
 .card-drill {
-   @apply p-4  md:px-8 md:p-12 h-56 md:h-80  rounded-md mt-6 md:mt-8 bg-white
+   @apply p-2 py-4 sm:p-4  md:px-8 md:p-12 h-56 md:h-80  rounded-md mt-6 md:mt-8 bg-white
 }
 
 
@@ -66,3 +66,6 @@
  @apply flex  items-center md:mr-3 px-2 md:px-0
 }
 
+.btn-random {
+  @apply font-inter w-[40%] sm:w-[50%] md:w-[40%] md:w-[40%] rounded-[3px] md:rounded-[5px] py-1 border text-[10px] sm:text-[12px] md:text-[18px]
+}
