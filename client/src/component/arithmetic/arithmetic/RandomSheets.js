@@ -454,12 +454,12 @@ const handleDivisionInputsChange = (index, field, value) => {
  if(showRandomSheets)
 
   return  (
-    <div className='flex flex-col justify-center mt-4 rounded-md '>
+    <div className='flex flex-col justify-center  rounded-md '>
         <div className='px-auto flex flex-col  gap-4 '>
                     
                       {randomSheetArray.map((randomNums, index)=> (
-                        <div className='px-[8px] sm:px-[15px] md:px-[40px] pt-2 sm:pt-4  md:pt-6 pb-2 md:pb-4 mt-3 md:mt-6 bg-white rounded-md'>
-                          <div className='bg-gray-100 w-5 h-5 md:w-10 md:h-10 rounded-full flex items-center justify-center mb-2 md:mb-4'><h2 className='text-gray-500 italic text-[12px] md:text-[18px]' >{index+1}</h2></div>
+                        <div className='px-[8px] sm:px-[15px] md:px-[40px] pt-1 sm:pt-2  md:pt-4 pb-2  md:pb-4 mt-3 md:mt-6 bg-gray-50 rounded-md'>
+                          <div className='bg-white w-5 h-5 md:w-10 md:h-10 rounded-full flex items-center justify-center mb-2 md:mb-4'><h2 className='text-gray-500 italic text-[12px] md:text-[18px]' >{index+1}</h2></div>
                               {(operation===4 || randomNums.mixOperation===4)?
                                     <div className='flex items-center justify-start   '>
                                       {difficulty===1 &&

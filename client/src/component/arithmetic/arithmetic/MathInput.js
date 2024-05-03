@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 const MathInput = ({setInputs, inputs, type, difficulty, operation, sameDenoms}) => {
   const [expression, setExpression] = useState('');
-
+ 
+  
   useEffect(() => {
     console.log("inputs in mathInput", inputs)
-    setExpression('')
- 
- }, [difficulty, operation, sameDenoms])
+
+    if(inputs.inputNum===null && inputs.inputDenom===null){
+      setExpression('')
+    }
+    
+    
+ }, [difficulty, operation, sameDenoms, inputs])
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
