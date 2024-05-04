@@ -127,14 +127,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                     {sameDenoms? 
                                                         <tbody className=''>
                                                         <tr className=''>
-                                                            (  {randomNums.numerator1} )   +   ( {randomNums.numerator2} )
+                                                              {randomNums.numerator1}  +    {randomNums.numerator2} 
                                                         </tr>
 
                                                         <tr className='flex items-center mt-1 mb-1'>
                                                             <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                         </tr>
                                                         <tr>
-                                                        ( {randomNums.denominator1} )
+                                                         {randomNums.denominator1} 
                                                         </tr>
                                                     </tbody>
                                                     : 
@@ -331,14 +331,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                         {!sameDenoms &&
                                                         <tbody className=''>
                                                             <tr className=''>
-                                                                (  {randomNums.numerator1 * randomNums.denominator2} )   +   ( {randomNums.denominator1 * randomNums.numerator2} )
+                                                                 {randomNums.numerator1 * randomNums.denominator2}   +    {randomNums.denominator1 * randomNums.numerator2} 
                                                             </tr>
 
                                                             <tr className='flex items-center mt-1 mb-1'>
                                                                 <div class="border-t border-2  border-gray-500   w-24 mx-auto"></div>
                                                             </tr>
                                                             <tr>
-                                                            ( {randomNums.denominator1 * randomNums.denominator2} )
+                                                             {randomNums.denominator1 * randomNums.denominator2} 
                                                             </tr>
                                                     </tbody>
                                                         }
@@ -485,14 +485,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                     {sameDenoms? 
                                                         <tbody className=''>
                                                         <tr className=''>
-                                                            (  {randomNums.numerator1} )   -   ( {randomNums.numerator2} )
+                                                              {randomNums.numerator1}    -    {randomNums.numerator2} 
                                                         </tr>
 
                                                         <tr className='flex items-center mt-1 mb-1'>
                                                             <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                         </tr>
                                                         <tr>
-                                                        ( {randomNums.denominator1} )
+                                                         {randomNums.denominator1} 
                                                         </tr>
                                                     </tbody>
                                                     : 
@@ -687,14 +687,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                         {!sameDenoms &&
                                                         <tbody className=''>
                                                             <tr className=''>
-                                                                (  {randomNums.numerator1 * randomNums.denominator2} )   -   ( {randomNums.denominator1 * randomNums.numerator2} )
+                                                                  {randomNums.numerator1 * randomNums.denominator2}   -   {randomNums.denominator1 * randomNums.numerator2} 
                                                             </tr>
 
                                                             <tr className='flex items-center mt-1 mb-1'>
                                                                 <div class="border-t border-2  border-gray-500   w-24 mx-auto"></div>
                                                             </tr>
                                                             <tr>
-                                                            ( {randomNums.denominator1 * randomNums.denominator2} )
+                                                             {randomNums.denominator1 * randomNums.denominator2} 
                                                             </tr>
                                                     </tbody>
                                                         }
@@ -842,14 +842,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        ( {randomNums.numerator1} * {randomNums.numerator2} )
+                                                                         {randomNums.numerator1} * {randomNums.numerator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1} * {randomNums.denominator2} )
+                                                                     {randomNums.denominator1} * {randomNums.denominator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -970,14 +970,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        ( {randomNums.numerator1} * {randomNums.denominator2} )
+                                                                         {randomNums.numerator1} * {randomNums.denominator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1} * {randomNums.numerator2} )
+                                                                     {randomNums.denominator1} * {randomNums.numerator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1101,14 +1101,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        (  {randomNums.numerator1} * {randomNums.denominator2} )   +   ( {randomNums.denominator1} * {randomNums.numerator2} )
+                                                                         {randomNums.numerator1} * {randomNums.denominator2}    +    {randomNums.denominator1} * {randomNums.numerator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1} * {randomNums.denominator2} )
+                                                                     {randomNums.denominator1} * {randomNums.denominator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1125,14 +1125,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        (  {randomNums.numerator1 * randomNums.denominator2} )   +   ( {randomNums.denominator1 * randomNums.numerator2} )
+                                                                          {randomNums.numerator1 * randomNums.denominator2}    +    {randomNums.denominator1 * randomNums.numerator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-24 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1 * randomNums.denominator2} )
+                                                                     {randomNums.denominator1 * randomNums.denominator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1249,14 +1249,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        (  {randomNums.numerator1} * {randomNums.denominator2} )   -  ( {randomNums.denominator1} * {randomNums.numerator2} )
+                                                                          {randomNums.numerator1} * {randomNums.denominator2}    -  {randomNums.denominator1} * {randomNums.numerator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1} * {randomNums.denominator2} )
+                                                                     {randomNums.denominator1} * {randomNums.denominator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1273,14 +1273,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        (  {randomNums.numerator1 * randomNums.denominator2} )   -  ( {randomNums.denominator1 * randomNums.numerator2} )
+                                                                         {randomNums.numerator1 * randomNums.denominator2}    -   {randomNums.denominator1 * randomNums.numerator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-24 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1 * randomNums.denominator2} )
+                                                                     {randomNums.denominator1 * randomNums.denominator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1398,14 +1398,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        ( {randomNums.numerator1} * {randomNums.numerator2} )
+                                                                         {randomNums.numerator1} * {randomNums.numerator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1} * {randomNums.denominator2} )
+                                                                     {randomNums.denominator1} * {randomNums.denominator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1528,14 +1528,14 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                                                             <table className=''>
                                                                 <tbody className=''>
                                                                     <tr className=''>
-                                                                        ( {randomNums.numerator1} * {randomNums.denominator2} )
+                                                                         {randomNums.numerator1} * {randomNums.denominator2} 
                                                                     </tr>
 
                                                                     <tr className='flex items-center mt-1 mb-1'>
                                                                         <div class="border-t border-2  border-gray-500   w-32 mx-auto"></div>
                                                                     </tr>
                                                                     <tr>
-                                                                    ( {randomNums.denominator1} * {randomNums.numerator2} )
+                                                                     {randomNums.denominator1} * {randomNums.numerator2} 
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1598,7 +1598,7 @@ const SolutionModal = ({showSolutionModal,setShowSolutionModal,setShowCheckModal
                </div>
                   {/* ====================================== close button ======================================== */}
                   <div className='flex flex-row w-full  justify-end md:mt-4 pr-4'>
-                        <button className='flex justify-items-end sm:p-1 sm:pb-2 text-[12px] px-4 md:px-8 border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white' onClick={()=>
+                        <button className='flex justify-items-end p-1 text-[12px] md:text-[16px] px-4 md:px-8 border border-blue-800 text-blue-800 hover:bg-blue-800 hover:text-white' onClick={()=>
                         { setShowCheckModal(false)
                         setShowSolutionModal(false)}}>Close</button>
                 </div>

@@ -40,6 +40,7 @@ const Arithmetic = () => {
   const [operation, setOperation] = useState(1);
   const [sameDenoms, setSameDenoms] = useState(true)
   const [mixOperation, setMixOperation] =  useState(0);
+  const [mathInputNull, setMathInputNull ] = useState(false)
 
   const [inputs, setInputs] = useState({
     inputNum: 0,
@@ -80,7 +81,7 @@ const Arithmetic = () => {
      })   
   }
   useEffect(() => {
-
+    
     if (prevRandomNums !== randomNums) {
       handleNext();
       setPrevRandomNums(randomNums);
@@ -379,7 +380,6 @@ const Arithmetic = () => {
             </div>
            <div className=' w-full sm:w-[95%] md:w-[85%] bg-gray-100 pb-8 md:pb-12'>
               <div className='px-[8px] sm:px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col   pt-2 mt-[30px]'>
-        
             {/******************************  difficulty level *******************************/}
                <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-4 md:mb-6 flex flex-row  justify-start'>
               <div className=' w-[25%]  flex items-center justify-start'>
@@ -774,14 +774,14 @@ const Arithmetic = () => {
                                         <tbody>
                                             <tr>
                                                 
-                                                <MathInput  type='inputNum' setInputs={setInputs} inputs={inputs} difficulty={difficulty} operation={operation} sameDenoms={sameDenoms}/>
+                                                <MathInput   type='inputNum' setInputs={setInputs} inputs={inputs} difficulty={difficulty} operation={operation} sameDenoms={sameDenoms} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull}/>
                                                 
                                             </tr>
                                             <tr className='line-tr'>
                                                 <div class="line-input"></div>
                                             </tr>
                                             <tr>
-                                            <MathInput type='inputDenom' setInputs={setInputs} inputs={inputs} difficulty={difficulty} operation={operation} sameDenoms={sameDenoms}/>
+                                            <MathInput type='inputDenom' setInputs={setInputs} inputs={inputs} difficulty={difficulty} operation={operation} sameDenoms={sameDenoms} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull}/>
                                             </tr>
                                         </tbody>
                                       </table>
@@ -796,7 +796,8 @@ const Arithmetic = () => {
                     <div className='buttons w-full  flex flex-row justify-start mt-14'>
                           <button onClick={handleCheck} className='btn-drill'>Check</button>
     
-                          <button ref={btnNextRef} onClick={handleNext} className='btn-drill ml-1 md:ml-3'>Next</button>
+                          <button ref={btnNextRef} onClick={()=>{handleNext()
+                            setMathInputNull(true)}} className='btn-drill ml-1 md:ml-3'>Next</button>
                         
                           
                     </div>
