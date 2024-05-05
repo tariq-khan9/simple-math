@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dropdown from './../../../images/dropdown.png'
 
-const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => {
+const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efraction, setEfraction}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAdditionSubOpen, setIsAdditionSubOpen] = useState(false);
   const [isSubtractionSubOpen, setIsSubtractionSubOpen] = useState(false);
+  const [isEfractionSubOpen, setIsEfractionSubOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleOperation = (op, same) => {
+    setEfraction(0)
     if(op===5){
       setOperation(0)
       setMixOperation(2)
@@ -30,6 +32,14 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
 
   }
 
+  const handleEfraction = (fr) => {
+    setOperation(0)
+    setMixOperation(0)
+       setEfraction(fr)
+       console.log("e fraction ", efraction)
+       setIsOpen(false)
+  }
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -50,14 +60,25 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
     setIsSubtractionSubOpen(false);
   };
 
+  const handleEfractionMouseEnter = () => {
+    setIsEfractionSubOpen(true);
+  };
+
+  const handleEfractionMouseLeave = () => {
+    setIsEfractionSubOpen(false);
+  };
+
   useEffect(() => {
-   
+       setIsAdditionSubOpen(false);
+        setIsSubtractionSubOpen(false);
+        setIsEfractionSubOpen(false);
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
         setIsAdditionSubOpen(false);
         setIsSubtractionSubOpen(false);
+        setIsEfractionSubOpen(false);
       }
     };
 
@@ -66,25 +87,27 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [isOpen]);
 
   return (
     <div className=' pt-8 relative h-[100px]'>
          <div className=" z-50" ref={dropdownRef}>
       <button
-        className="px-6 md:px-12 py-1 md:py-2 z-50 font-inter font-semibold rounded-sm border border-gray-800  text-gray-800 hover:text-white bg-white hover:bg-gray-700  "
+        className="px-2 md:px-4 py-1 w-28 sm:w-36 md:w-52 md:py-2 z-50 font-inter font-semibold rounded-sm border border-gray-800  text-gray-800 hover:text-white bg-white hover:bg-gray-700  "
         onClick={toggleDropdown}
       >
-        <div className='flex flex-row'>
-        {
+        <div className='flex flex-row justify-center'>
+        { 
           operation>0 ? <div>
             {operation===1 && <div>Addition</div>}
             {operation===2 && <div>Subtraction</div>}
             {operation===3 && <div>Multiplication</div>}
             {operation===4 && <div>Division</div>}
           </div> 
-          : 
-          <div>Mixed</div>
+          : efraction>0 ? <div>
+            Equal-Fractions
+          </div>
+          :<div>Mixed</div>
         }
         {/* <div className=' ml-1 flex items-center '>
         <img src={dropdown} alt='dropdown' className='w-[8px] md:w-[10px]   h-[6px]'/>
@@ -93,7 +116,39 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
         </div>
       </button>
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-42 font-inter  bg-white rounded-md shadow-lg">
+        <div className="absolute left-0 mt-2 w-32 md:w-44 font-inter  bg-white rounded-md shadow-lg">
+          <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
+            Multiplication
+          </button>
+          <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none" >
+            Division
+          </button>
+          <button
+            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
+            onMouseEnter={handleEfractionMouseEnter}
+            onMouseLeave={handleEfractionMouseLeave}
+             // Close dropdown when clicked
+          >
+            Equal Fractions
+            {isEfractionSubOpen && (
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
+                <button
+                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(1)} // Close dropdown when clicked
+                >
+                  Fraction 1
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(2)} // Close dropdown when clicked
+                >
+                  Fraction 2
+                </button>
+              </div>
+            )}
+          </button>
+
+
           <button
             className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
             onMouseEnter={handleAdditionMouseEnter}
@@ -142,12 +197,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
               </div>
             )}
           </button>
-          <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
-            Multiplication
-          </button>
-          <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none" >
-            Division
-          </button>
+          
           <button onClick={()=>handleOperation(5, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Mixed
           </button>
