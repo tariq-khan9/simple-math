@@ -95,7 +95,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation}) => 
       {isOpen && (
         <div className="absolute left-0 mt-2 w-42 font-inter  bg-white rounded-md shadow-lg">
           <button
-            className="block font-inter w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
+            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
             onMouseEnter={handleAdditionMouseEnter}
             onMouseLeave={handleAdditionMouseLeave}
              // Close dropdown when clicked

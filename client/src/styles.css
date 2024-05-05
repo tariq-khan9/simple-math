@@ -51,7 +51,7 @@
   }
 
 .input {
-    @apply w-10 md:w-20 text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
+    @apply w-10 md:w-20  text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
 }
 
 .input-div {
@@ -59,7 +59,7 @@
 }
 
 .btn-drill {
-  @apply px-8 p-1 md:px-20 md:p-2 text-[12px] md:text-[15px] text-blue-800 rounded-[3px] md:rounded-[5px] hover:bg-blue-800 hover:text-white focus:bg-blue-800 focus:text-white  border   border-blue-800
+  @apply px-8 p-1 md:px-20 md:p-2 font-inter md:font-semibold text-[12px] md:text-[15px] text-blue-600 rounded-[3px] md:rounded-[5px] hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white  border md:border-2   border-blue-600
 }
 
 .tr-different-deno {
