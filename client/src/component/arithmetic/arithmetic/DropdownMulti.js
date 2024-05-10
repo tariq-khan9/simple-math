@@ -33,8 +33,6 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
   }
 
   const handleEfraction = (fr) => {
-    setOperation(0)
-    setMixOperation(0)
        setEfraction(fr)
        console.log("e fraction ", efraction)
        setIsOpen(false)
@@ -93,21 +91,30 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
     <div className=' pt-8 relative h-[100px]'>
          <div className=" z-50" ref={dropdownRef}>
       <button
-        className="px-2 md:px-4 py-1 w-28 sm:w-36 md:w-52 md:py-2 z-50 font-inter font-semibold rounded-sm border border-gray-800  text-gray-800 hover:text-white bg-white hover:bg-gray-700  "
+        className="px-2 md:px-4 py-1 w-28 sm:w-36 md:w-60 md:mb-2 md:text-[24px] md:py-2 z-50 font-inter font-semibold rounded-[3px] border border-gray-800  text-gray-800 hover:text-white bg-white hover:bg-gray-700  "
         onClick={toggleDropdown}
       >
         <div className='flex flex-row justify-center'>
-        { 
-          operation>0 ? <div>
-            {operation===1 && <div>Addition</div>}
-            {operation===2 && <div>Subtraction</div>}
-            {operation===3 && <div>Multiplication</div>}
-            {operation===4 && <div>Division</div>}
-          </div> 
-          : efraction>0 ? <div>
-            Equal-Fractions
-          </div>
-          :<div>Mixed</div>
+        { efraction>0?
+          <div>
+              {efraction===1 && <div>Fraction 1</div>}
+              {efraction===2 && <div>Fraction 2</div>}
+              {efraction===3 && <div>Fraction 3</div>}
+              {efraction===4 && <div>Fraction 4</div>}
+            </div>
+            :
+            <div>
+                {
+                    operation>0 ? <div>
+                    {operation===1 && <div>Addition</div>}
+                    {operation===2 && <div>Subtraction</div>}
+                    {operation===3 && <div>Multiplication</div>}
+                    {operation===4 && <div>Division</div>}
+                  </div> 
+                  :<div>Mixed</div>
+                }
+            </div>
+        
         }
         {/* <div className=' ml-1 flex items-center '>
         <img src={dropdown} alt='dropdown' className='w-[8px] md:w-[10px]   h-[6px]'/>
@@ -143,6 +150,18 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
                   onClick={()=>handleEfraction(2)} // Close dropdown when clicked
                 >
                   Fraction 2
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(3)} // Close dropdown when clicked
+                >
+                  Fraction 3
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(4)} // Close dropdown when clicked
+                >
+                  Fraction 4
                 </button>
               </div>
             )}

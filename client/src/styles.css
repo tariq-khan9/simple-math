@@ -28,7 +28,7 @@
 }
 
 .digit {
-  @apply  text-[15px] md:text-[25px] font-semibold  text-gray-500 text-center
+  @apply  text-[15px] md:text-[30px] font-semibold  text-gray-500 text-center
 }
 .line-tr {
     @apply flex items-center mt-2 mb-2 md:mt-4 md:mb-4

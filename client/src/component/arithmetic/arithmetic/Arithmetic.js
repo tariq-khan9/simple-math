@@ -1,13 +1,14 @@
-import React, {useState, useEffect, useRef} from 'react'
-
+import React, {useState, useEffect, useRef, useContext} from 'react'
+import useShared from '../efractions/useShared';
 import CheckModal from './CheckModal';
 import RandomSheets from './RandomSheets';
 import SolutionModal from './SolutionModal';
 import DropdownMulti from './DropdownMulti';
 import MathInput from './MathInput';
 import play from './../../../images/play.png'
-import Fraction2 from '../efractions/Fraction2';
-import Fraction1 from '../efractions/Fraction1';
+import Fraction from '../efractions/Fraction';
+
+
 
 
 
@@ -39,6 +40,7 @@ const Arithmetic = () => {
 
   const [result, setResult] = useState(false)
   const [difficulty, setDifficulty] =  useState(1)
+  const [difficulty2, setDifficulty2] =  useState(1)
   const [operation, setOperation] = useState(3);
   const [sameDenoms, setSameDenoms] = useState(true)
   const [mixOperation, setMixOperation] =  useState(0);
@@ -60,8 +62,9 @@ const Arithmetic = () => {
   const [showCheckModal, setShowCheckModal] = useState(false)
   const [showSolutionModal, setShowSolutionModal]= useState(false)
   const [prevRandomNums, setPrevRandomNums] = useState();
+
   
- 
+
   function clearAllInputs() {
     setInputs({
       inputNum: null,
@@ -83,6 +86,7 @@ const Arithmetic = () => {
       sign:''
      })   
   }
+
   useEffect(() => {
     
     if (prevRandomNums !== randomNums) {
@@ -379,6 +383,7 @@ const Arithmetic = () => {
   return (
     <div className='flex flex-col'>
         <div className='flex flex-row  '>
+          
             <div className=' w-0 sm:w-[5%] md:w-[15%] bg-gray-100'>          
             </div>
            <div className=' w-full sm:w-[95%] md:w-[85%] bg-gray-100 pb-8 md:pb-12'>
@@ -391,41 +396,52 @@ const Arithmetic = () => {
                </div>
     
       
-                <h4 className='font-inter text-[11px] sm:text-[14px] md:text-[16px] text-black text-start'>Level of Difficulty</h4>
-              {efraction>0?
-                  <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2   md:rounded-sm flex flex-row  justify-start'>
-                  <button onClick={()=> setDifficulty(1)} className={`flex-1 border font-inter font-semibold rounded-l-sm md:rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
-      
-                  <button onClick={()=> setDifficulty(2)} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
-                  </div>
-          
-                   :
-                  <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2   md:rounded-sm flex flex-row  justify-start'>
-                        <button onClick={()=> {setDifficulty(1)
-                          setTimeout(() => {
-                          btnNextRef.current.click();
-                          }, 20)}} className={`flex-1 border font-inter font-semibold rounded-l-sm md:rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
-            
-                        <button onClick={()=> {setDifficulty(2)
-                        setTimeout(() => {
-                        btnNextRef.current.click();
-                        }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
-            
-                        <button onClick={()=> {setDifficulty(3)
-                        setTimeout(() => {
-                        btnNextRef.current.click();
-                        }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
-            
-                          <button onClick={()=> {setDifficulty(4)
-                          setTimeout(() => {
-                        btnNextRef.current.click();
-                          }, 20)}} className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
-                  </div>
-              }
+                <h4 className='font-inter text-[11px] sm:text-[13px] md:text-[16px] text-black text-start'>Level of Difficulty</h4>
+
+                {efraction>0?
+                    <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2   md:rounded-[4px] flex flex-row  justify-start'>
+                    <button onClick={()=> setDifficulty2(1)
+                      } className={`flex-1 border font-inter font-semibold rounded-l-sm md:rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+        
+                    <button onClick={()=> setDifficulty2(2)
+                    } className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+        
+                    <button onClick={()=> setDifficulty2(3)
+                    } className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+        
+                      <button onClick={()=> setDifficulty2(4)
+                     } className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard2</button>
+              </div>
+                :
+                
+                <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2   md:rounded-[4px] flex flex-row  justify-start'>
+                <button onClick={()=> {setDifficulty(1)
+                  setTimeout(() => {
+                  btnNextRef.current.click();
+                  }, 20)}} className={`flex-1 border font-inter font-semibold rounded-l-sm md:rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+    
+                <button onClick={()=> {setDifficulty(2)
+                setTimeout(() => {
+                btnNextRef.current.click();
+                }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+    
+                <button onClick={()=> {setDifficulty(3)
+                setTimeout(() => {
+                btnNextRef.current.click();
+                }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+    
+                  <button onClick={()=> {setDifficulty(4)
+                  setTimeout(() => {
+                btnNextRef.current.click();
+                  }, 20)}} className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
+                </div>
+                }
+               
+              
 
               {/******************************  Drill section  *******************************/}
              <div className='card-drill'> 
-                    <div className='math  flex justify-start  mt-6'>
+                    <div className='math  flex justify-start  mt-4'>
                         {efraction===0?
                           <div>
                              {(operation===4 || mixOperation===4)?
@@ -810,8 +826,8 @@ const Arithmetic = () => {
                           </div>
                           :
                           <div>
-                            {efraction===1 && <Fraction1/>}
-                            {efraction===2 && <Fraction2/>}
+                            {efraction>0 && <Fraction efraction={efraction} difficulty2={difficulty2}/>}
+                           
                           </div>
                         
                       }
