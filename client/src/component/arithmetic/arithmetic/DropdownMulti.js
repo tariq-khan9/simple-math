@@ -123,7 +123,7 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
         </div>
       </button>
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-32 md:w-44 font-inter  bg-white rounded-md shadow-lg">
+        <div className="absolute z-10 left-0  w-32 md:w-44 font-inter  bg-white rounded-md shadow-lg">
           <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Multiplication
           </button>

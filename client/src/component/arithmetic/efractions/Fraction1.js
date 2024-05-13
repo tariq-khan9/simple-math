@@ -1,14 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 
 
 
-const Fraction1 = ({randomFrac}) => {
+const Fraction1 = ({randomFrac, multiplyNumber,inputs, setInputs}) => {
  
+  useEffect(()=>{
+    setInputs(prevInputs => ({ inputNum: null, inputDenom: null }));
+  },[])
 
   
   return (
     
                      <table className='digit'>
+                      {/* <button onClick={()=>console.log(inputs)}>show</button> */}
                         <tr>
                           <td className='flex flex-row items-center'>
                              <table className='first col'>
@@ -34,7 +38,7 @@ const Fraction1 = ({randomFrac}) => {
                               <table className='third col'>
                               <tbody className=''>
                                   <tr className=''>
-                                     <input  className='input digit-input '/>
+                                     <input value={inputs.inputNum===null? "" : inputs.inputNum} onChange={(e)=>setInputs({...inputs, inputNum: e.target.value})}   className='input digit-input '/>
                                   </tr>
                                    
                                   <tr className='line-tr'>
@@ -42,7 +46,7 @@ const Fraction1 = ({randomFrac}) => {
                                   </tr>
 
                                   <tr>
-                                     <input  className='input digit-input '/>
+                                     <input value={inputs.inputDenom===null? "" : inputs.inputDenom} onChange={(e)=>setInputs({...inputs, inputDenom: e.target.value})}  className='input digit-input '/>
                                   </tr>      
                                </tbody>
                              </table>
@@ -57,13 +61,13 @@ const Fraction1 = ({randomFrac}) => {
 
                               <table className='fourth col'>
                               <tbody className=''>
-                                  <tr className=''>34</tr>
+                                  <tr className=''>{randomFrac.numerator*multiplyNumber}</tr>
                                    
                                   <tr className='line-tr'>
                                     <div className='line'></div>
                                   </tr>
 
-                                  <tr>32</tr>      
+                                  <tr>{randomFrac.denominator*multiplyNumber}</tr>      
                                </tbody>
                              </table>
                             

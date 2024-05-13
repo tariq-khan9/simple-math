@@ -1,6 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
-const Fraction2 = ({randomFrac}) => {
+
+const Fraction2 = ({randomFrac, inputs, setInputs}) => {
+
+  
+  useEffect(()=>{
+    setInputs(prevInputs => ({ inputNum: null, inputDenom: null }));
+  },[])
   return (
  
                      <table className='digit'>
@@ -30,7 +36,7 @@ const Fraction2 = ({randomFrac}) => {
                               <table className='third col'>
                               <tbody className=''>
                                   <tr className=''>
-                                     <input  className='input digit-input '/>
+                                     <input value={inputs.inputNum===null? "" : inputs.inputNum} onChange={(e)=>setInputs({...inputs, inputNum: e.target.value})}   className='input digit-input '/>
                                   </tr>
                                    
                                   <tr className='line-tr'>
@@ -38,8 +44,8 @@ const Fraction2 = ({randomFrac}) => {
                                   </tr>
 
                                   <tr>
-                                     <input  className='input digit-input '/>
-                                  </tr>      
+                                     <input value={inputs.inputDenom===null? "" : inputs.inputDenom} onChange={(e)=>setInputs({...inputs, inputDenom: e.target.value})}  className='input digit-input '/>
+                                  </tr>        
                                </tbody>
                              </table>
                             

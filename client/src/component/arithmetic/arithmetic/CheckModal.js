@@ -29,7 +29,9 @@ const CheckModal = ({showCheckModal, setShowCheckModal, setShowSolutionModal, re
                  </div>
                  <div className='flex justify-end'>
                    <button onClick={()=>tryMore()}  className='text-[12px] sm:text-[14px] md:text-[18px] text-blue-800 border-blue-800 border px-4 py-1 md:py-2 hover:bg-blue-800 hover:text-white'>{result? 'Try more' : 'Try again'}</button>
-                   {!result && <button onClick={()=>setShowSolutionModal(true)} className='text-[12px] sm:text-[14px] md:text-[18px] text-blue-800 border-blue-800 border px-4 py-1 md:py-2 hover:bg-blue-800 hover:text-white ml-2 md:ml-3'>Solution</button>}
+                   {!result && <button onClick={()=>{setShowSolutionModal(true)
+                    setShowCheckModal(false)
+                   }} className='text-[12px] sm:text-[14px] md:text-[18px] text-blue-800 border-blue-800 border px-4 py-1 md:py-2 hover:bg-blue-800 hover:text-white ml-2 md:ml-3'>Solution</button>}
                  </div>
      
          </div>

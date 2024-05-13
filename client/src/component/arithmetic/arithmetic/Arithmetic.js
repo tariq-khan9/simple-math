@@ -15,6 +15,8 @@ import Fraction from '../efractions/Fraction';
 const Arithmetic = () => {
 
   const btnNextRef = useRef(null)
+  const btnFracNextRef = useRef(null)
+
 
   const [randomNums, setRandomNums] = useState({
     numerator1 : 1,
@@ -163,14 +165,18 @@ const Arithmetic = () => {
         if (denominator1 < 0) negativeCount++;
         if (numerator2 < 0) negativeCount++;
         if (denominator2 < 0) negativeCount++;  
-        
-        console.log("negative count", negativeCount)
-         // Check if difficulty is 3 and there are more than 1 negative numbers
-        if ((difficulty === 3 && negativeCount>1) || (sameDenoms && denominator1<0)) {
-          continue; // Skip this iteration and generate new numbers
-        }       
 
-      // when operation is add or subtranct and sameDenoms is true
+         // Check if difficulty is 3 and there are more than 1 negative numbers
+         if(difficulty===3){
+          if ((operation < 3 && negativeCount>1) || (sameDenoms && denominator1<0)) {
+            continue; // Skip this iteration and generate new numbers
+          } 
+          if ((operation >= 3 && negativeCount>2 )) {
+              
+              continue;
+          }   
+         }
+          
         if(operation<3 && sameDenoms){
           var checkDeno = denominator1 * denominator1;
         }
@@ -189,7 +195,6 @@ const Arithmetic = () => {
         }
 
         if(mixOperation>0){
-          console.log("mix operation in ", mixOperation)
             if(mixOperation===1)  var checkNum = (numerator1 * denominator2) + (numerator2 * denominator1);
             if(mixOperation===2)  var checkNum = (numerator1 * denominator2) - (numerator2 * denominator1);
             if(mixOperation===3)  var checkNum = (numerator1 * numerator2);
@@ -201,14 +206,13 @@ const Arithmetic = () => {
         
 
         var checkResult = checkNum / checkDeno;
-        console.log("checkresult is ", checkResult)
         
         if (difficulty === 3) {
             if (checkResult > 0) {
-                break; // Exit the loop if checkResult is greater than 0
+                break; 
             }
         } else {
-            break; // Exit the loop if difficulty is not 3
+            break; 
         }
     } while (true);
 
@@ -219,7 +223,6 @@ const Arithmetic = () => {
         denominator2: denominator2
     });
 
-    console.log("random in the end. ", randomNums)
     
   }
 
@@ -389,7 +392,7 @@ const Arithmetic = () => {
            <div className=' w-full sm:w-[95%] md:w-[85%] bg-gray-100 pb-8 md:pb-12'>
               <div className='px-[8px] sm:px-[50px] md:px-[20px]  lg:pr-[300px] w-full flex flex-col   pt-2 mt-[30px]'>
             {/******************************  difficulty level *******************************/}
-               <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-4 md:mb-6 flex flex-row  justify-start'>
+               <div className='difficulty-div w-100 h-10 text-[10px] sm:text-[14px] md:text-[18px] sm:mb-6 md:mb-10 flex flex-row  justify-start'>
               <div className=' w-[25%]  flex items-center justify-start'>
                   <DropdownMulti setOperation={setOperation} setMixOperation={setMixOperation} setSameDenoms={setSameDenoms} operation={operation} efraction={efraction} setEfraction={setEfraction}/>
               </div >
@@ -400,17 +403,25 @@ const Arithmetic = () => {
 
                 {efraction>0?
                     <div className='difficulty-div w-100 h-6 sm:h-8 md:h-11 text-[12px] sm:text-[14px] md:text-[16px] mt-2   md:rounded-[4px] flex flex-row  justify-start'>
-                    <button onClick={()=> setDifficulty2(1)
-                      } className={`flex-1 border font-inter font-semibold rounded-l-sm md:rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
+                    <button onClick={()=> {setDifficulty2(1)
+                  setTimeout(() => {
+                  btnFracNextRef.current.click();
+                  }, 20)}} className={`flex-1 border font-inter font-semibold rounded-l-sm md:rounded-l-md border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==1 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Simple</button>
         
-                    <button onClick={()=> setDifficulty2(2)
-                    } className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
+                    <button onClick={()=> {setDifficulty2(2)
+                  setTimeout(() => {
+                  btnFracNextRef.current.click();
+                  }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==2 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Easy</button>
         
-                    <button onClick={()=> setDifficulty2(3)
-                    } className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
+                    <button onClick={()=> {setDifficulty2(3)
+                  setTimeout(() => {
+                  btnFracNextRef.current.click();
+                  }, 20)}} className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==3 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Medium</button>
         
-                      <button onClick={()=> setDifficulty2(4)
-                     } className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard2</button>
+                      <button onClick={()=> {setDifficulty2(4)
+                  setTimeout(() => {
+                  btnFracNextRef.current.click();
+                  }, 20)}}  className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${difficulty2==4 && 'bg-gray-700 text-white hover:tracking-normal'} `}>Hard</button>
               </div>
                 :
                 
@@ -826,7 +837,7 @@ const Arithmetic = () => {
                           </div>
                           :
                           <div>
-                            {efraction>0 && <Fraction efraction={efraction} difficulty2={difficulty2}/>}
+                            {efraction>0 && <Fraction efraction={efraction} difficulty2={difficulty2} btnFracNextRef={btnFracNextRef}/>}
                            
                           </div>
                         

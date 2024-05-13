@@ -47,11 +47,20 @@
 }
 
 .digit-input {
-    @apply text-[14px]  md:text-[22px] font-semibold  text-gray-500 text-center
+    @apply text-[14px]  md:text-[25px] font-semibold  text-gray-500 text-center
   }
+input::placeholder{
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  transform: translateY(-20%);
+  z-index: 100;
+  
+}
+
 
 .input {
-    @apply w-10 md:w-20  text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
+    @apply w-10 md:w-20 z-50  text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
 }
 
 .input-div {
