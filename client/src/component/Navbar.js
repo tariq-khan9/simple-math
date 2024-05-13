@@ -28,7 +28,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className='w-full h-14 px-8 flex flex-row justify-between border-b bg-white fixed top-0 z-10'>
+    <div className='w-full h-14 md:h-16 px-8 flex flex-row justify-between border-b bg-white fixed top-0 z-10'>
       <button className='flex flex-row items-center w-[20%] md:w-[15%]'>
         <img className='w-6 h-6' src={logo} alt="Icon" />
         <h2 className='text-[20px] ml-1 hidden md:flex'><span className='font-bold'>Simplest</span>Math</h2>
@@ -57,7 +57,7 @@ const Navbar = () => {
        
 
       <div className='buttom-div flex flex-row w-[20%] md:w-[15%] items-center justify-end'>
-        <button className='bg-blue-600 hover:bg-blue-700 text-white px-2 lg:px-4 h-8 rounded-[5px] text-[12px] md:text-[15px]'>Register</button>
+        <button className='bg-blue-600 hover:bg-blue-700 text-white px-2 lg:px-4 py-[4px] md:py-[8px]  rounded-[5px] text-[12px] md:text-[15px]'>Register</button>
       </div>
 
     </div>
