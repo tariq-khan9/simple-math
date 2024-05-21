@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-<<<<<<< HEAD
-const MathInputFrac = ({setInputs4, inputs4,type,  mathInputNull, setMathInputNull}) => {
-=======
-const MathInputFrac = ({setInputs4, inputs4,type,   mathInputNull, setMathInputNull}) => {
->>>>>>> working
+const MathInputDec = ({setInputs, inputs,type,   mathInputNull, setMathInputNull}) => {
   const [expression, setExpression] = useState('');
   const [inputWidth, setInputWidth] = useState('w-10 sm:w-20');
   
@@ -45,32 +41,50 @@ const MathInputFrac = ({setInputs4, inputs4,type,   mathInputNull, setMathInputN
     getTextWidth(inputValue.length)
     setExpression(inputValue);
     // Evaluate the expression and update the result
-    if(type==='inputNum'){
+
+    if(type==='inputsNum'){
       try {
         const evalResult = eval(inputValue); // Use of eval can be dangerous, make sure to validate the input
        
        // setResult(isNaN(evalResult) ? null : evalResult); // Check if the result is a valid number
-        setInputs4({...inputs4, inputNum: isNaN(evalResult) ? null : evalResult })
+        setInputs({...inputs, inputsNum: isNaN(evalResult) ? null : evalResult })
       } catch (error) {
-        setInputs4({...inputs4, inputNum:  null  })
+        setInputs({...inputs, inputsNum:  null  })
       }
     }
 
-    if(type==='inputDenom'){
+    if(type==='inputsDenom'){
       try {
         const evalResult = eval(inputValue); // Use of eval can be dangerous, make sure to validate the input
        
        // setResult(isNaN(evalResult) ? null : evalResult); // Check if the result is a valid number
-        setInputs4({...inputs4, inputDenom: isNaN(evalResult) ? null : evalResult })
+        setInputs({...inputs, inputsDenom: isNaN(evalResult) ? null : evalResult })
       } catch (error) {
-        setInputs4({...inputs4, inputDenom:  null  })
+        setInputs({...inputs, inputsDenom:  null  })
       }
     }
-<<<<<<< HEAD
-=======
 
-    
->>>>>>> working
+    if(type==='numerator3'){
+        try {
+          const evalResult = eval(inputValue); // Use of eval can be dangerous, make sure to validate the input
+         
+         // setResult(isNaN(evalResult) ? null : evalResult); // Check if the result is a valid number
+          setInputs({...inputs, numerator3: isNaN(evalResult) ? null : evalResult })
+        } catch (error) {
+          setInputs({...inputs, numerator3:  null  })
+        }
+      }
+  
+      if(type==='denominator3'){
+        try {
+          const evalResult = eval(inputValue); // Use of eval can be dangerous, make sure to validate the input
+         
+         // setResult(isNaN(evalResult) ? null : evalResult); // Check if the result is a valid number
+          setInputs({...inputs, denominator3: isNaN(evalResult) ? null : evalResult })
+        } catch (error) {
+          setInputs({...inputs, denominator3:  null  })
+        }
+      }
   
 
   };
@@ -81,7 +95,6 @@ const MathInputFrac = ({setInputs4, inputs4,type,   mathInputNull, setMathInputN
         className={`text-[14px] md:text-[22px] text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px]   ${inputWidth}`}
         type="text"
         value={expression}
-        placeholder=' 2 × 3 × 4'
         onChange={handleChange}
       />
     
@@ -89,4 +102,4 @@ const MathInputFrac = ({setInputs4, inputs4,type,   mathInputNull, setMathInputN
   );
 };
 
-export default MathInputFrac;
+export default MathInputDec;

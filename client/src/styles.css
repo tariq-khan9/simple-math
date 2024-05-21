@@ -15,7 +15,7 @@
 }
 
 .card-drill {
-   @apply p-2 py-4 sm:p-4  md:px-8 md:p-12 h-56 md:h-80  rounded-md mt-6 md:mt-8 bg-white
+   @apply p-2 py-4 sm:p-4  md:px-8 md:p-12 min-h-56 md:min-h-80  rounded-md mt-6 md:mt-8 bg-white
 }
 
 
@@ -29,6 +29,13 @@
 
 .digit {
   @apply  text-[15px] md:text-[30px] font-semibold  text-gray-500 text-center
+<<<<<<< HEAD
+=======
+}
+
+.digit-decimal {
+  @apply  text-[13px] md:text-[20px] font-semibold  text-gray-500 text-center
+>>>>>>> working
 }
 .line-tr {
     @apply flex items-center mt-2 mb-2 md:mt-4 md:mb-4
@@ -61,6 +68,14 @@ input::placeholder{
 
 .input {
     @apply w-10 md:w-20 z-50  text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[5px] 
+<<<<<<< HEAD
+=======
+}
+
+
+.input-decimal {
+  @apply w-6 md:w-12 z-50  text-center h-5 md:h-8  bg-transparent border border-gray-400 rounded-[3px] 
+>>>>>>> working
 }
 
 .input-div {
