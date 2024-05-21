@@ -5,6 +5,8 @@ import Fraction3 from './Fraction3'
 import Fraction4 from './Fraction4'
 import CheckModal from '../arithmetic/CheckModal'
 import SolutionFracModal from './SolutionFracModal'
+import Decimal1 from './Decimal1'
+import Decimal2 from './Decimal2'
 
 
 
@@ -21,9 +23,30 @@ const Fraction = ({efraction, difficulty2, btnFracNextRef}) => {
     denominator : 1
   })
 
+  const [randomDec, setRandomDec] = useState({
+    numerator1 : 1,
+    denominator1 : 1,
+    number: 1,
+    decimal: 5,
+    numerator2: 1,
+    denominator2: 1
+  })
+
   const [inputs, setInputs] = useState({
     inputNum: null,
     inputDenom: null
+  })
+
+  const [inputsDec, setInputsDec] = useState({
+    numerator1: null,
+    denominator1: null,
+    numerator2: null,
+    denominator2: null,
+    numerator3: null,
+    denominator3: null,
+    inputsNum: null,
+    inputsDenom:null
+
   })
 
   const [inputs4, setInputs4] = useState({
@@ -53,6 +76,17 @@ const Fraction = ({efraction, difficulty2, btnFracNextRef}) => {
       inputNum: null,
       inputDenom: null
      })
+
+     setInputsDec({
+      numerator1: null,
+      denominator1: null,
+      numerator2: null,
+      denominator2: null,
+      numerator3: null,
+      denominator3: null,
+      inputsNum: null,
+      inputsDenom:null
+     })
   }
 
   function findPrimeFactors(num){
@@ -80,6 +114,8 @@ const Fraction = ({efraction, difficulty2, btnFracNextRef}) => {
    
     handleNext(difficulty2)
     clearInputs()
+
+    
    
   }, [difficulty2, efraction]);
 
@@ -128,6 +164,8 @@ const Fraction = ({efraction, difficulty2, btnFracNextRef}) => {
     setMultiplyNumber(getMultiplyNumber())
   clearInputs()
   setMathInputNull(true)
+  const decimalPoint = getRandomNumber(2,9)
+  
   switch (difficulty2) {
     case 1: 
         setInputRange({min:1, max:9});
@@ -149,7 +187,7 @@ const Fraction = ({efraction, difficulty2, btnFracNextRef}) => {
       setInputRange({min:1, max:9});
       break;
   }
-
+//////--------/////////-------random numbers for fractions -----//////////-------///////////////////
   var numerator = getRandomNumber(inputRange.min, inputRange.max);
   var denominator = getRandomNumber(inputRange.min, inputRange.max);
  
@@ -163,10 +201,22 @@ const Fraction = ({efraction, difficulty2, btnFracNextRef}) => {
       numerator: numerator,
       denominator: denominator
   });
-
+////////------/////////----------- random numbers for decimal -------///////////------------/////////////////
   
+  var numerator1 = getRandomNumber(inputRange.min, inputRange.max);
+  var denominator1 = getRandomNumber(inputRange.min, inputRange.max);
+  var num = getRandomNumber(inputRange.min, inputRange.max)
+  var numerator2 = getRandomNumber(inputRange.min, inputRange.max);
+  var denominato2 = getRandomNumber(inputRange.min, inputRange.max);
 
-  
+  setRandomDec({
+    numerator1: numerator1,
+    denominator1: denominator1,
+    number: num,
+    decimal: decimalPoint,
+    numerator2: numerator2,
+    denominator2: denominato2
+  })
 }
 
 const handleCheck = () => {
@@ -217,8 +267,86 @@ const handleCheck = () => {
     }
    
   }
+/////--------////////---------- Decimal checks --------/////////----------///////////////////
+  if(efraction===5){ 
+     if (inputsDec.numerator1!==null && inputsDec.denominator1!== null &&
+         inputsDec.numerator2!==null && inputsDec.denominator2!== null &&
+         inputsDec.numerator3!==null && inputsDec.denominator3!== null &&
+         inputsDec.inputsNum!==null && inputsDec.inputsDenom!==null)
+         {
 
+         
+     const [simplyNum, simplyDenom] =  simplifyFraction(randomDec.number * randomDec.denominator2 + randomDec.numerator2, randomDec.denominator2)
+    
+    //////----------------- multiply random numbers for final  check --------///////////////
+    const [simplyRandomNum, simplyRandomDenom] = simplifyFraction(simplyNum * randomDec.numerator1, simplyDenom * randomDec.denominator1) 
+    
+    //////------------------- multiply random numbers with inputs-3 for final check ------//////////
+    const [simplyInputs3Num, simplyInputs3Denom] = simplifyFraction(randomDec.numerator1 * inputsDec.numerator3, randomDec.denominator1 * inputsDec.denominator3)
+    
+    /////-------------------- simplify the last Inputs for final check ----------////////////////////
+    const [simplyInputsNum, simplyInputsDenom] = simplifyFraction(inputsDec.inputsNum, inputsDec.inputsDenom)
+    
+
+    if(randomDec.number== Number(inputsDec.numerator1) &&
+       inputsDec.denominator1==1 &&
+       randomDec.numerator2== Number(inputsDec.numerator2) &&
+       randomDec.denominator2== Number(inputsDec.denominator2) &&
+
+       simplyRandomNum== simplyInputs3Num &&
+       simplyRandomDenom== simplyInputs3Denom &&
+      
+       simplyRandomNum == simplyInputsNum &&
+       simplyRandomDenom == simplyInputsDenom) 
+      {
+        checkResult=1
+        inputResult=1
+      }
+
+    }
+  }
+
+  if(efraction===6){ 
+    if (inputsDec.numerator1!==null && inputsDec.denominator1!== null &&
+        inputsDec.numerator2!==null && inputsDec.denominator2!== null &&
+        inputsDec.numerator3!==null && inputsDec.denominator3!== null &&
+        inputsDec.inputsNum!==null && inputsDec.inputsDenom!==null)
+        {
+
+        
+    const [simplyNum, simplyDenom] =  simplifyFraction(randomDec.number * 10 + randomDec.decimal, 10)
+   
+   //////----------------- multiply random numbers for final  check --------///////////////
+   const [simplyRandomNum, simplyRandomDenom] = simplifyFraction((randomDec.numerator1*simplyDenom)+(simplyNum*randomDec.denominator1), randomDec.denominator1*simplyDenom) 
+   
+   //////------------------- multiply random numbers with inputs-3 for final check ------//////////
+   const [simplyInputs3Num, simplyInputs3Denom] = simplifyFraction((randomDec.numerator1*inputsDec.denominator3)+(inputsDec.numerator3*randomDec.denominator1), randomDec.denominator1*inputsDec.denominator3)
+   
+   /////-------------------- simplify the last Inputs for final check ----------////////////////////
+   const [simplyInputsNum, simplyInputsDenom] = simplifyFraction(inputsDec.inputsNum, inputsDec.inputsDenom)
+   
+   console.log("simply frac", simplyRandomNum, simplyRandomDenom, simplyInputs3Num, simplyInputs3Denom, simplyInputsNum, simplyInputsDenom)
+
+   if(randomDec.number== Number(inputsDec.numerator1) &&
+      inputsDec.denominator1==1 &&
+      randomDec.decimal== Number(inputsDec.numerator2) &&
+      Number(inputsDec.denominator2) == 10 &&
+
+      simplyRandomNum== simplyInputs3Num &&
+      simplyRandomDenom== simplyInputs3Denom &&
+     
+      simplyRandomNum == simplyInputsNum &&
+      simplyRandomDenom == simplyInputsDenom) 
+     {
+       checkResult=1
+       inputResult=1
+     }
+
+   }
+ }
   
+
+  /////////-------------------------------- final result check -------------------//////////////////
   if(checkResult==inputResult){
     setResult(true)
   }
@@ -244,7 +372,10 @@ const handleCheck = () => {
                     {efraction===2 && <Fraction2 randomFrac={randomFrac} inputs={inputs} setInputs={setInputs} />}   
                     {efraction===3 && <Fraction3 randomFrac={randomFrac} multiplyNumber={multiplyNumber} inputs={inputs} setInputs={setInputs}/>} 
 
-                    {efraction===4 && <Fraction4 randomFrac={randomFrac} multiplyNumber={multiplyNumber} inputs={inputs} setInputs={setInputs} inputs4={inputs4} setInputs4={setInputs4} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}         
+                    {efraction===4 && <Fraction4 randomFrac={randomFrac} multiplyNumber={multiplyNumber} inputs={inputs} setInputs={setInputs} inputs4={inputs4} setInputs4={setInputs4} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}    
+
+                    {efraction===5 && <Decimal1 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}   
+                    {efraction===6 && <Decimal2 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}  
                        
                   </div>
 
@@ -258,7 +389,7 @@ const handleCheck = () => {
 
         <CheckModal showCheckModal={showCheckModal}  setShowSolutionModal={setShowSolutionModal} setShowCheckModal={setShowCheckModal} result={result} />   
 
-        <SolutionFracModal efraction={efraction} showSolutionModal={showSolutionModal} setShowSolutionModal={setShowSolutionModal}  setShowCheckModal={setShowCheckModal} randomFrac={randomFrac} inputs={inputs} multiplyNumber={multiplyNumber} numFactors={numFactors} denomFactors={denomFactors}/>
+        <SolutionFracModal efraction={efraction} showSolutionModal={showSolutionModal} setShowSolutionModal={setShowSolutionModal}  setShowCheckModal={setShowCheckModal} randomFrac={randomFrac} inputs={inputs} multiplyNumber={multiplyNumber} numFactors={numFactors} denomFactors={denomFactors} randomDec={randomDec} inputsDec={inputsDec}/>
     </div>
   )
 }
