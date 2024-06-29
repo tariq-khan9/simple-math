@@ -36,7 +36,7 @@ const Decimal1 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                                 </tbody>
                               </table>
 
-                              <table className='3rd col mr-1 md:mr-2'>
+                              <table className='3rd col '>
                               <tbody className=''>
                                   <tr className=''>
                                      {randomDec.number}
@@ -44,19 +44,19 @@ const Decimal1 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                                </tbody>
                              </table>
 
+                             <table className='.'>
+                              <tbody className='pb-2'>
+                                  <tr className=''>
+                                    .
+                                  </tr> 
+                               </tbody>
+                             </table>
+
                               <table className='4th col'>
                               <tbody className=''>
                                   <tr className=''>
-                                  {randomDec.numerator2}
-                                  </tr>
-                                   
-                                  <tr className='line-tr'>
-                                    <div className='line'></div>
-                                  </tr>
-
-                                  <tr>
-                                     {randomDec.denominator2}
-                                  </tr>      
+                                  {randomDec.decimal}
+                                  </tr> 
                                </tbody>
                              </table>
 
@@ -272,3 +272,4 @@ const Decimal1 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
 }
 
 export default Decimal1
+

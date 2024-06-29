@@ -17,6 +17,12 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
         denominator36: null,
         inputsNum: null,
         inputsDenom: null,
+        inputsDivNum: null,
+        inputsDivDenom: null,
+        inputsAddNum: null,
+        inputsAddDenom: null,
+        inputsSubNum: null,
+        inputsSubDenom: null,
         inputsNum6: null,
         inputsDenom6: null
     })
@@ -53,6 +59,15 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
        const [simpDecNum36, simpDecDenom36] = simplifyFraction(randomDec.number*10+randomDec.decimal, 10)
       
        const [simpDecNum, simpDecDenom] = simplifyFraction(randomDec.numerator1*(randomDec.number*randomDec.denominator2+randomDec.numerator2), randomDec.denominator1*randomDec.denominator2)
+
+    ///////////////    for division, addition and subtraction, each would have their own final simplified inputs results which are calculated here ///////////////////////////////////////////////
+
+       const [simpDecDivNum, simpDecDivDenom] = simplifyFraction(randomDec.numerator1*randomDec.denominator2, randomDec.denominator1*(randomDec.number*randomDec.denominator2+randomDec.numerator2), )
+
+       const [simpDecAddNum, simpDecAddDenom] = simplifyFraction((randomDec.numerator1*simpDecDenom3)+(randomDec.denominator1*simpDecNum3), randomDec.denominator1*simpDecDenom3 )
+       
+       const [simpDecSubNum, simpDecSubDenom] = simplifyFraction((randomDec.numerator1*simpDecDenom3)-(randomDec.denominator1*simpDecNum3), randomDec.denominator1*simpDecDenom3 )
+
        const [simpDecNum6, simpDecDenom6] = simplifyFraction((randomDec.numerator1*simpDecDenom36)+(randomDec.denominator1*simpDecNum36), randomDec.denominator1*simpDecDenom36)
        
        setSimpDec({
@@ -62,6 +77,12 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
         denominator36: simpDecDenom36,
         inputsNum: simpDecNum,
         inputsDenom: simpDecDenom,
+        inputsDivNum: simpDecDivNum,
+        inputsDivDenom: simpDecDivDenom,
+        inputsAddNum: simpDecAddNum,
+        inputsAddDenom: simpDecAddDenom,
+        inputsSubNum: simpDecSubNum,
+        inputsSubDenom: simpDecSubDenom,
         inputsNum6: simpDecNum6,
         inputsDenom6: simpDecDenom6
        })
@@ -405,7 +426,7 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                         <h2 className='font-bold text-[12px] md:text-[16px]'>Your answer:</h2>                                <div className='solution-digit'>
 
                                      </div>
-                                     {efraction===5 &&
+                                     {(efraction>4 && efraction<9) &&
                                           <div className=' flex items-center mb-2 px-2 md:px-4'>
                                           <div className='flex flex-col pl-2 md:pl-0 '>
                                                <div className='flex flex-col md:flex-row'>
@@ -431,7 +452,11 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                <table className='opertor mx-3 md:mx-4'>
                                                                    <tbody>
                                                                        <tr>
-                                                                       <h2>&times;</h2>
+                                                                          {efraction===5 &&  <h2>&times;</h2>}
+                                                                          {efraction===6 &&  <h2>&divide;</h2>}
+                                                                          {efraction===7 &&  <h2>+</h2>}
+                                                                          {efraction===8 &&  <h2>-</h2>}
+                                                                       
                                                                        </tr>
                                                                    </tbody>
                                                                </table>
@@ -502,7 +527,10 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                <table className='opertor mx-2 md:mx-3'>
                                                                    <tbody>
                                                                        <tr>
-                                                                       <h2>&times;</h2>
+                                                                          {efraction===5 &&  <h2>&times;</h2>}
+                                                                          {efraction===6 &&  <h2>&divide;</h2>}
+                                                                          {efraction===7 &&  <h2>+</h2>}
+                                                                          {efraction===8 &&  <h2>-</h2>}
                                                                        </tr>
                                                                    </tbody>
                                                                </table>
@@ -525,7 +553,7 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                    </tr>
                                                                    
                                                                    <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500 md:w-8 '></div>
+                                                                      <div className='border-t border-2  border-gray-500 w-8 '></div>
                                                                    </tr>
 
                                                                    <tr className='bg-gray-200 text-center'>
@@ -609,8 +637,11 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
 
                                                                <table className='opertor mx-3 md:mx-4'>
                                                                    <tbody>
-                                                                       <tr>
-                                                                       <h2>&times;</h2>
+                                                                        <tr>
+                                                                          {efraction===5 &&  <h2>&times;</h2>}
+                                                                          {efraction===6 &&  <h2>&divide;</h2>}
+                                                                          {efraction===7 &&  <h2>+</h2>}
+                                                                          {efraction===8 &&  <h2>-</h2>}
                                                                        </tr>
                                                                    </tbody>
                                                                </table>
@@ -665,253 +696,7 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                    {/*-------------------   solution section ends here -------------------------------*/}
                                        </div>
                                      }
-                                      {efraction===6 &&
-                                          <div className=' flex items-center mb-2 px-2 md:px-4'>
-                                          <div className='flex flex-col pl-2 md:pl-0 '>
-                                               <div className='flex flex-col md:flex-row'>
-                                                   <div className='part-1 md:mt-2 pl-3 md:pl-6'>
-                                                       <table className='digit-solution'>
-                                                       {/* <button onClick={()=>console.log(inputs)}>show</button> */}
-                                                           <tr>
-                                                           <td className='flex flex-row items-center'>
-                                                               <table className='first col'>
-                                                               <tbody className=''>
-                                                                   <tr className='text-center'>
-                                                                   {randomDec.numerator1}
-                                                                   </tr>
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500   w-5 '></div>
-                                                                   </tr>
-
-                                                                   <tr className='text-center'>{randomDec.denominator1}</tr>      
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-3 md:mx-4'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>+</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               <table className='3rd col mr-1 md:mr-2'>
-                                                               <tbody className=''>
-                                                                   <tr className=''>
-                                                                      <td>{randomDec.number}</td>
-                                                                      <td>.</td>
-                                                                      <td>{randomDec.decimal}</td>
-                                                                       
-                                                                   </tr>       
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-3 md:mx-4'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>=</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               
-                                                               
-                                                           </td>
-                                                           </tr>
-                                                       </table>  
-                                                   </div>
-
-                                                   <div className='part-2 flex flex-row mt-8 md:mt-0'>
-                                                       <table className='opertor mr-2 md:mr-4 flex items-center md:hidden'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>=</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                       </table>
-                                                       <table className='digit-solution'>
-                                                       {/* <button onClick={()=>console.log(inputs)}>show</button> */}
-                                                           <tr>
-                                                           <td className='flex flex-row items-center'>
-                                                               <table className='first col'>
-                                                               <tbody className=''>
-                                                                   <tr className=' text-center'>{randomDec.numerator1}</tr>
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500   w-5 '></div>
-                                                                   </tr>
-
-                                                                   <tr className=' text-center'>{randomDec.denominator1}</tr>      
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-2 md:mx-3'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>+</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               <table className='( mr-2 md:mr-4 h-[50px]' >
-                                                                       <tbody  className=' flex items-center md:pb-4 pt-2 md:pt-0'>
-                                                               
-                                                                               <span className='text-[20px] text-gray-500 md:text-[40px]'>{'('}</span>
-                                                                           
-                                                                       </tbody>
-                                                               </table>
-
-
-
-
-                                                               <table className='2nd col'>
-                                                               <tbody className=''>
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-2 '>{inputsDec.numerator1}</label>
-                                                                   </tr>
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500 md:w-8 '></div>
-                                                                   </tr>
-
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-2 '>{inputsDec.denominator1}</label>
-                                                                   </tr>    
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-1 md:mx-2'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>+</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               <table className='3rd col'>
-                                                               <tbody className=''>
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-2 '>{inputsDec.numerator2}</label>
-                                                                   </tr>   
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500   w-8 '></div>
-                                                                   </tr>
-
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-2 '>{inputsDec.denominator2}</label>
-                                                                   </tr>      
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className=') ml-2 md:ml-4 h-[50px]' >
-                                                                       <tbody  className=' flex items-center md:pb-4 pt-2 md:pt-0'>
-                                                               
-                                                                               <span className='text-[20px] text-gray-500 md:text-[40px]'>{')'}</span>
-                                                                           
-                                                                       </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-3 md:mx-4'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>=</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               
-                                                               
-                                                           </td>
-                                                           </tr>
-                                                       </table>  
-                                                  </div>
-                                               </div>
-
-                                               <div className='bottom-row mt-6 md:mt-8 '>
-                                                   <table className='digit-solution'>
-                                                       {/* <button onClick={()=>console.log(inputs)}>show</button> */}
-                                                           <tr>
-                                                           <td className='flex flex-row items-center'>
-                                                               <table className='opertor mr-3 md:mr-6'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>=</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               <table className='first col'>
-                                                               <tbody className=''>
-                                                                   <tr className='text-center'>{randomDec.numerator1}</tr>
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500   w-5 '></div>
-                                                                   </tr>
-
-                                                                   <tr className='text-center'>{randomDec.denominator1}</tr>      
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-3 md:mx-4'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>+</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               <table className='2nd col'>
-                                                               <tbody className=''>
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-2 '>{inputsDec.numerator3}</label>
-                                                                   </tr>  
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500   w-8 '></div>
-                                                                   </tr>
-
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-2'>{inputsDec.denominator3}</label>
-                                                                   </tr>    
-                                                               </tbody>
-                                                               </table>
-
-                                                               <table className='opertor mx-2 md:mx-4'>
-                                                                   <tbody>
-                                                                       <tr>
-                                                                       <h2>=</h2>
-                                                                       </tr>
-                                                                   </tbody>
-                                                               </table>
-
-                                                               <table className='3rd col'>
-                                                               <tbody className=''>
-                                                                  <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-3 '>{inputsDec.inputsNum}</label>
-                                                                   </tr>  
-                                                                   
-                                                                   <tr className='flex items-center mt-1 mb-1'>
-                                                                      <div className='border-t border-2  border-gray-500   w-10 '></div>
-                                                                   </tr>
-
-                                                                   <tr className='bg-gray-200 text-center'>
-                                                                     <label className='px-3 '>{inputsDec.inputsDenom}</label>
-                                                                   </tr>     
-                                                               </tbody>
-                                                               </table>
-
-                                                           </td>
-                                                           </tr>
-                                                   </table>  
-                                               </div>
-
-                                          </div>
-                                            
-                   {/*-------------------   solution section ends here -------------------------------*/}
-                                       </div>
-                                     }
+                                    
                                  </div>
                                     
                                             <div className='flex flex-col justify-items-start'>
@@ -920,7 +705,7 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                 </div>
                                                 
                                     
-                                                {efraction===5  &&
+                                                {(efraction>4  && efraction<9) &&
                                                      <div className=' flex items-center mb-2 px-2 md:px-4'>
                                                      <div className='flex flex-col pl-2 md:pl-0 '>
                                                           <div className='flex flex-col md:flex-row'>
@@ -946,7 +731,10 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                           <table className='opertor mx-3 md:mx-4'>
                                                                               <tbody>
                                                                                   <tr>
-                                                                                  <h2>&times;</h2>
+                                                                                    {efraction===5 &&  <h2>&times;</h2>}
+                                                                                    {efraction===6 &&  <h2>&divide;</h2>}
+                                                                                    {efraction===7 &&  <h2>+</h2>}
+                                                                                    {efraction===8 &&  <h2>-</h2>}
                                                                                   </tr>
                                                                               </tbody>
                                                                           </table>
@@ -1017,7 +805,10 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                           <table className='opertor mx-2 md:mx-3'>
                                                                               <tbody>
                                                                                   <tr>
-                                                                                  <h2>&times;</h2>
+                                                                                    {efraction===5 &&  <h2>&times;</h2>}
+                                                                                    {efraction===6 &&  <h2>&divide;</h2>}
+                                                                                    {efraction===7 &&  <h2>+</h2>}
+                                                                                    {efraction===8 &&  <h2>-</h2>}
                                                                                   </tr>
                                                                               </tbody>
                                                                           </table>
@@ -1040,7 +831,7 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                               </tr>
                                                                               
                                                                               <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500 md:w-8 '></div>
+                                                                                 <div className='border-t border-2  border-gray-500 w-8 '></div>
                                                                               </tr>
 
                                                                               <tr className='bg-gray-200 text-center'>
@@ -1115,7 +906,7 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                               <tr className='text-center'>{randomDec.numerator1}</tr>
                                                                               
                                                                               <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-5 '></div>
+                                                                                 <div className='border-t border-2  border-gray-500   w-5'></div>
                                                                               </tr>
 
                                                                               <tr className='text-center'>{randomDec.denominator1}</tr>      
@@ -1125,7 +916,10 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                           <table className='opertor mx-3 md:mx-4'>
                                                                               <tbody>
                                                                                   <tr>
-                                                                                  <h2>&times;</h2>
+                                                                                    {efraction===5 &&  <h2>&times;</h2>}
+                                                                                    {efraction===6 &&  <h2>&divide;</h2>}
+                                                                                    {efraction===7 &&  <h2>+</h2>}
+                                                                                    {efraction===8 &&  <h2>-</h2>}
                                                                                   </tr>
                                                                               </tbody>
                                                                           </table>
@@ -1155,19 +949,84 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                                           </table>
 
                                                                           <table className='3rd col'>
-                                                                          <tbody className=''>
-                                                                             <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-3 '>{simpDec.inputsNum}</label>
-                                                                              </tr>  
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-10 '></div>
-                                                                              </tr>
+                                                                           {efraction===5 &&
+                                                                                <tbody className=''>
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                        <label className='px-3 '>{simpDec.inputsNum}</label>
+                                                                                    </tr>  
+                                                                                    
+                                                                                    <tr className='flex items-center mt-1 mb-1'>
+                                                                                        <div className='border-t border-2  border-gray-500   w-10 '></div>
+                                                                                    </tr>
 
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-3 '>{simpDec.inputsDenom}</label>
-                                                                              </tr>     
-                                                                          </tbody>
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                        <label className='px-3 '>{simpDec.inputsDenom}</label>
+                                                                                    </tr>     
+                                                                                </tbody>
+                                                                           }
+                                                                           {efraction===6 &&
+                                                                                <tbody className=''>
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                        <label className='px-3 '>{simpDec.inputsDivNum}</label>
+                                                                                    </tr>  
+                                                                                    
+                                                                                    <tr className='flex items-center mt-1 mb-1'>
+                                                                                        <div className='border-t border-2  border-gray-500   w-10 '></div>
+                                                                                    </tr>
+
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                        <label className='px-3 '>{simpDec.inputsDivDenom}</label>
+                                                                                    </tr>     
+                                                                                </tbody>
+                                                                           }
+                                                                            {efraction===7 &&
+                                                                                <tbody className=''>
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                        <label className='px-3 '>{simpDec.inputsAddNum}</label>
+                                                                                    </tr>  
+                                                                                    
+                                                                                    <tr className='flex items-center mt-1 mb-1'>
+                                                                                        <div className='border-t border-2  border-gray-500   w-10 '></div>
+                                                                                    </tr>
+
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                        <label className='px-3 '>{simpDec.inputsAddDenom}</label>
+                                                                                    </tr>     
+                                                                                </tbody>
+                                                                           }
+                                                                            {efraction===8 &&
+                                                                               <div className='flex flex-row justify-center'>
+                                                                                   {(simpDec.inputsSubNum<0 || simpDec.inputsSubDenom<0) &&
+                                                                                         <tbody className=' flex justify-center'>
+                                                                                        
+                                                                                         <tr className='flex items-center mx-1 mt-1 mb-1'>
+                                                                                             -
+                                                                                         </tr>
+     
+                                                                                           
+                                                                                       </tbody>
+                                                                                   }
+                                                                                   <tbody className=''>
+                                                                                    <tr className=''>
+                                                                                        <td className='bg-gray-200 md:min-w-[65px] text-center'>
+                                                                                           <label className='px-2 min-w-[200px] '>{Math.abs(simpDec.inputsSubNum)}</label>
+                                                                                        </td>
+                                                                                       
+                                                                                    </tr>  
+                                                                                    
+                                                                                    <tr className='flex items-center mt-1 mb-1'>
+                                                                                        <div className='border-t border-2  border-gray-500  w-10 md:w-16 '></div>
+                                                                                    </tr>
+
+                                                                                    <tr className='bg-gray-200 text-center'>
+                                                                                       <td className='bg-gray-200 md:min-w-[65px] text-center'>
+                                                                                        <label className='px-2 '>{Math.abs(simpDec.inputsSubDenom)}</label>
+                                                                                        </td>
+                                                                                    </tr>     
+                                                                                  </tbody>
+                                                                               </div>
+                                                                                
+                                                                           }
                                                                           </table>
 
                                                                       </td>
@@ -1181,268 +1040,9 @@ const SolutionFracModal = ({efraction, showSolutionModal,setShowSolutionModal,se
                                                   </div>
                                                 }
                                                 
-                                                {efraction===6  &&
-                                                     <div className=' flex items-center mb-2 px-2 md:px-4'>
-                                                     <div className='flex flex-col pl-2 md:pl-0 '>
-                                                          <div className='flex flex-col md:flex-row'>
-                                                              <div className='part-1 md:mt-2 pl-3 md:pl-6'>
-                                                                  <table className='digit-solution'>
-                                                                  {/* <button onClick={()=>console.log(inputs)}>show</button> */}
-                                                                      <tr>
-                                                                      <td className='flex flex-row items-center'>
-                                                                          <table className='first col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='text-center'>
-                                                                              {randomDec.numerator1}
-                                                                              </tr>
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-5 '></div>
-                                                                              </tr>
+                                              
 
-                                                                              <tr className='text-center'>{randomDec.denominator1}</tr>      
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-3 md:mx-4'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>+</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          <table className='3rd col '>
-                                                                          <tbody className=''>
-                                                                              <tr className=''>
-                                                                                  {randomDec.number}
-                                                                              </tr>     
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='4th col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='text-center'>
-                                                                               .
-                                                                              </tr>
-                                                                                   
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='4th col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='text-center'>
-                                                                               {randomDec.decimal}
-                                                                              </tr>
-                                                                                   
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-3 md:mx-4'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>=</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          
-                                                                          
-                                                                      </td>
-                                                                      </tr>
-                                                                  </table>  
-                                                              </div>
-
-                                                              <div className='part-2 flex flex-row mt-8 md:mt-0'>
-                                                                  <table className='opertor mr-2 md:mr-4 flex items-center md:hidden'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>=</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                  </table>
-                                                                  <table className='digit-solution'>
-                                                                  {/* <button onClick={()=>console.log(inputs)}>show</button> */}
-                                                                      <tr>
-                                                                      <td className='flex flex-row items-center'>
-                                                                          <table className='first col'>
-                                                                          <tbody className=''>
-                                                                              <tr className=' text-center'>{randomDec.numerator1}</tr>
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-5 '></div>
-                                                                              </tr>
-
-                                                                              <tr className=' text-center'>{randomDec.denominator1}</tr>      
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-2 md:mx-3'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>+</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          <table className='( mr-2 md:mr-4 h-[50px]' >
-                                                                                  <tbody  className=' flex items-center md:pb-4 pt-2 md:pt-0'>
-                                                                          
-                                                                                          <span className='text-[20px] text-gray-500 md:text-[40px]'>{'('}</span>
-                                                                                      
-                                                                                  </tbody>
-                                                                          </table>
-
-
-
-
-                                                                          <table className='2nd col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-2 '>{randomDec.number}</label>
-                                                                              </tr>
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500 md:w-8 '></div>
-                                                                              </tr>
-
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-2 '>1</label>
-                                                                              </tr>    
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-1 md:mx-2'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>+</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          <table className='3rd col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-2 '>{randomDec.decimal}</label>
-                                                                              </tr>   
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-8 '></div>
-                                                                              </tr>
-
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-2 '>10</label>
-                                                                              </tr>      
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className=') ml-2 md:ml-4 h-[50px]' >
-                                                                                  <tbody  className=' flex items-center md:pb-4 pt-2 md:pt-0'>
-                                                                          
-                                                                                          <span className='text-[20px] text-gray-500 md:text-[40px]'>{')'}</span>
-                                                                                      
-                                                                                  </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-3 md:mx-4'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>=</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          
-                                                                          
-                                                                      </td>
-                                                                      </tr>
-                                                                  </table>  
-                                                             </div>
-                                                          </div>
-
-                                                          <div className='bottom-row mt-6 md:mt-8 '>
-                                                              <table className='digit-solution'>
-                                                                  {/* <button onClick={()=>console.log(inputs)}>show</button> */}
-                                                                      <tr>
-                                                                      <td className='flex flex-row items-center'>
-                                                                          <table className='opertor mr-3 md:mr-6'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>=</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          <table className='first col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='text-center'>{randomDec.numerator1}</tr>
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-5 '></div>
-                                                                              </tr>
-
-                                                                              <tr className='text-center'>{randomDec.denominator1}</tr>      
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-3 md:mx-4'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>+</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          <table className='2nd col'>
-                                                                          <tbody className=''>
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-2 '>{simpDec.numerator36}</label>
-                                                                              </tr>  
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-8 '></div>
-                                                                              </tr>
-
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-2'>{simpDec.denominator36}</label>
-                                                                              </tr>    
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                          <table className='opertor mx-2 md:mx-4'>
-                                                                              <tbody>
-                                                                                  <tr>
-                                                                                  <h2>=</h2>
-                                                                                  </tr>
-                                                                              </tbody>
-                                                                          </table>
-
-                                                                          <table className='3rd col'>
-                                                                          <tbody className=''>
-                                                                             <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-3 '>{simpDec.inputsNum6}</label>
-                                                                              </tr>  
-                                                                              
-                                                                              <tr className='flex items-center mt-1 mb-1'>
-                                                                                 <div className='border-t border-2  border-gray-500   w-10 '></div>
-                                                                              </tr>
-
-                                                                              <tr className='bg-gray-200 text-center'>
-                                                                                <label className='px-3 '>{simpDec.inputsDenom6}</label>
-                                                                              </tr>     
-                                                                          </tbody>
-                                                                          </table>
-
-                                                                      </td>
-                                                                      </tr>
-                                                              </table>  
-                                                          </div>
-         
-                                                     </div>
-                                                       
-                              {/*-------------------   solution section ends here -------------------------------*/}
-                                                  </div>
-                                                }
+                                               
                                                 
 
 

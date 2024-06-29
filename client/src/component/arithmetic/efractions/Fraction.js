@@ -5,8 +5,15 @@ import Fraction3 from './Fraction3'
 import Fraction4 from './Fraction4'
 import CheckModal from '../arithmetic/CheckModal'
 import SolutionFracModal from './SolutionFracModal'
+import CFraction1 from './CFraction1'
+import CFraction2 from './CFraction2'
+import CFraction3 from './CFraction3'
+import CFraction4 from './CFraction4'
 import Decimal1 from './Decimal1'
 import Decimal2 from './Decimal2'
+import Decimal3 from './Decimal3'
+import Decimal4 from './Decimal4'
+
 
 
 
@@ -267,7 +274,7 @@ const handleCheck = () => {
     }
    
   }
-/////--------////////---------- Decimal checks --------/////////----------///////////////////
+/////--------////////---------- complex fraction checks --------/////////----------///////////////////
   if(efraction===5){ 
      if (inputsDec.numerator1!==null && inputsDec.denominator1!== null &&
          inputsDec.numerator2!==null && inputsDec.denominator2!== null &&
@@ -314,7 +321,46 @@ const handleCheck = () => {
         {
 
         
-    const [simplyNum, simplyDenom] =  simplifyFraction(randomDec.number * 10 + randomDec.decimal, 10)
+    const [simplyNum, simplyDenom] =  simplifyFraction(randomDec.number * randomDec.denominator2 + randomDec.numerator2, randomDec.denominator2)
+   
+   //////----------------- multiply random numbers for final  check --------///////////////
+   const [simplyRandomNum, simplyRandomDenom] = simplifyFraction(simplyDenom * randomDec.numerator1, simplyNum * randomDec.denominator1) 
+   
+   //////------------------- multiply random numbers with inputs-3 for final check ------//////////
+   const [simplyInputs3Num, simplyInputs3Denom] = simplifyFraction(randomDec.numerator1 * inputsDec.denominator3, randomDec.denominator1 * inputsDec.numerator3)
+   
+   /////-------------------- simplify the last Inputs for final check ----------////////////////////
+   const [simplyInputsNum, simplyInputsDenom] = simplifyFraction(inputsDec.inputsNum, inputsDec.inputsDenom)
+   
+
+
+   if(randomDec.number== Number(inputsDec.numerator1) &&
+      inputsDec.denominator1==1 &&
+      randomDec.numerator2== Number(inputsDec.numerator2) &&
+      randomDec.denominator2== Number(inputsDec.denominator2) &&
+
+      simplyRandomNum== simplyInputs3Num &&
+      simplyRandomDenom== simplyInputs3Denom &&
+     
+      simplyRandomNum == simplyInputsNum &&
+      simplyRandomDenom == simplyInputsDenom) 
+     {
+       checkResult=1
+       inputResult=1
+     }
+
+   }
+ }
+
+  if(efraction===7){ 
+    if (inputsDec.numerator1!==null && inputsDec.denominator1!== null &&
+        inputsDec.numerator2!==null && inputsDec.denominator2!== null &&
+        inputsDec.numerator3!==null && inputsDec.denominator3!== null &&
+        inputsDec.inputsNum!==null && inputsDec.inputsDenom!==null)
+        {
+
+        
+    const [simplyNum, simplyDenom] =  simplifyFraction(randomDec.number * randomDec.denominator2 + randomDec.numerator2, randomDec.denominator2)
    
    //////----------------- multiply random numbers for final  check --------///////////////
    const [simplyRandomNum, simplyRandomDenom] = simplifyFraction((randomDec.numerator1*simplyDenom)+(simplyNum*randomDec.denominator1), randomDec.denominator1*simplyDenom) 
@@ -329,8 +375,8 @@ const handleCheck = () => {
 
    if(randomDec.number== Number(inputsDec.numerator1) &&
       inputsDec.denominator1==1 &&
-      randomDec.decimal== Number(inputsDec.numerator2) &&
-      Number(inputsDec.denominator2) == 10 &&
+      randomDec.numerator2== Number(inputsDec.numerator2) &&
+      randomDec.denominator2==Number(inputsDec.denominator2)  &&
 
       simplyRandomNum== simplyInputs3Num &&
       simplyRandomDenom== simplyInputs3Denom &&
@@ -344,6 +390,48 @@ const handleCheck = () => {
 
    }
  }
+
+ if(efraction===8){ 
+  if (inputsDec.numerator1!==null && inputsDec.denominator1!== null &&
+      inputsDec.numerator2!==null && inputsDec.denominator2!== null &&
+      inputsDec.numerator3!==null && inputsDec.denominator3!== null &&
+      inputsDec.inputsNum!==null && inputsDec.inputsDenom!==null)
+      {
+
+      
+  const [simplyNum, simplyDenom] =  simplifyFraction(randomDec.number * randomDec.denominator2 + randomDec.numerator2, randomDec.denominator2)
+ 
+ //////----------------- multiply random numbers for final  check --------///////////////
+ const [simplyRandomNum, simplyRandomDenom] = simplifyFraction((randomDec.numerator1*simplyDenom)-(simplyNum*randomDec.denominator1), randomDec.denominator1*simplyDenom) 
+ 
+ //////------------------- multiply random numbers with inputs-3 for final check ------//////////
+ const [simplyInputs3Num, simplyInputs3Denom] = simplifyFraction((randomDec.numerator1*inputsDec.denominator3)-(inputsDec.numerator3*randomDec.denominator1), randomDec.denominator1*inputsDec.denominator3)
+ 
+ /////-------------------- simplify the last Inputs for final check ----------////////////////////
+ const [simplyInputsNum, simplyInputsDenom] = simplifyFraction(inputsDec.inputsNum, inputsDec.inputsDenom)
+ 
+ console.log("simply frac", simplyRandomNum, simplyRandomDenom, simplyInputs3Num, simplyInputs3Denom, simplyInputsNum, simplyInputsDenom)
+
+ if(randomDec.number== Number(inputsDec.numerator1) &&
+    inputsDec.denominator1==1 &&
+    randomDec.numerator2== Number(inputsDec.numerator2) &&
+    randomDec.denominator2==Number(inputsDec.denominator2)  &&
+
+    simplyRandomNum== simplyInputs3Num &&
+    simplyRandomDenom== simplyInputs3Denom &&
+   
+    simplyRandomNum == simplyInputsNum &&
+    simplyRandomDenom == simplyInputsDenom) 
+   {
+     checkResult=1
+     inputResult=1
+   }
+
+ }
+}
+
+
+
   
 
   /////////-------------------------------- final result check -------------------//////////////////
@@ -373,9 +461,17 @@ const handleCheck = () => {
                     {efraction===3 && <Fraction3 randomFrac={randomFrac} multiplyNumber={multiplyNumber} inputs={inputs} setInputs={setInputs}/>} 
 
                     {efraction===4 && <Fraction4 randomFrac={randomFrac} multiplyNumber={multiplyNumber} inputs={inputs} setInputs={setInputs} inputs4={inputs4} setInputs4={setInputs4} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}    
+                     
+                    {efraction===5 && <CFraction1 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull}  />}  
+                    {efraction===6 && <CFraction2 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}  
+                    {efraction===7 && <CFraction3 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull}  />}  
+                    {efraction===8 && <CFraction4 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull}  />}  
 
-                    {efraction===5 && <Decimal1 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}   
-                    {efraction===6 && <Decimal2 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}  
+                    {efraction===9 && <Decimal1 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}   
+                    {efraction===10 && <Decimal2 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}  
+
+                    {efraction===11 && <Decimal3 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull}/>}
+                    {efraction===12 && <Decimal4 randomDec={randomDec} inputsDec={inputsDec} setInputsDec={setInputsDec} mathInputNull={mathInputNull} setMathInputNull={setMathInputNull} />}
                        
                   </div>
 

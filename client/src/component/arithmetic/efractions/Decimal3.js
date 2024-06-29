@@ -3,7 +3,7 @@ import MathInputDec from './MathInputDec'
 
 
 
-const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInputNull}) => {
+const Decimal3 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInputNull}) => {
  
   
 
@@ -31,7 +31,7 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                               <table className='opertor mx-3 md:mx-6'>
                                 <tbody>
                                     <tr>
-                                      <h2>&divide;</h2>
+                                      <h2>+</h2>
                                     </tr>
                                 </tbody>
                               </table>
@@ -102,7 +102,7 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                               <table className='opertor mx-2 md:mx-4'>
                                 <tbody>
                                     <tr>
-                                      <h2>&divide;</h2>
+                                      <h2>+</h2>
                                     </tr>
                                 </tbody>
                               </table>
@@ -210,7 +210,7 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                               <table className='opertor mx-3 md:mx-6'>
                                 <tbody>
                                     <tr>
-                                      <h2>&divide;</h2>
+                                      <h2>+</h2>
                                     </tr>
                                 </tbody>
                               </table>
@@ -271,5 +271,5 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
   )
 }
 
-export default Decimal2
+export default Decimal3
 

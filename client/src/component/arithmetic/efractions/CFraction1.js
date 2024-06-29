@@ -3,7 +3,7 @@ import MathInputDec from './MathInputDec'
 
 
 
-const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInputNull}) => {
+const CFraction1 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInputNull}) => {
  
   
 
@@ -31,12 +31,12 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                               <table className='opertor mx-3 md:mx-6'>
                                 <tbody>
                                     <tr>
-                                      <h2>&divide;</h2>
+                                      <h2>&times;</h2>
                                     </tr>
                                 </tbody>
                               </table>
 
-                              <table className='3rd col '>
+                              <table className='3rd col mr-1 md:mr-2'>
                               <tbody className=''>
                                   <tr className=''>
                                      {randomDec.number}
@@ -44,19 +44,19 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                                </tbody>
                              </table>
 
-                             <table className='.'>
-                              <tbody className='pb-2'>
-                                  <tr className=''>
-                                    .
-                                  </tr> 
-                               </tbody>
-                             </table>
-
                               <table className='4th col'>
                               <tbody className=''>
                                   <tr className=''>
-                                  {randomDec.decimal}
-                                  </tr> 
+                                  {randomDec.numerator2}
+                                  </tr>
+                                   
+                                  <tr className='line-tr'>
+                                    <div className='line'></div>
+                                  </tr>
+
+                                  <tr>
+                                     {randomDec.denominator2}
+                                  </tr>      
                                </tbody>
                              </table>
 
@@ -102,7 +102,7 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                               <table className='opertor mx-2 md:mx-4'>
                                 <tbody>
                                     <tr>
-                                      <h2>&divide;</h2>
+                                      <h2>&times;</h2>
                                     </tr>
                                 </tbody>
                               </table>
@@ -210,7 +210,7 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
                               <table className='opertor mx-3 md:mx-6'>
                                 <tbody>
                                     <tr>
-                                      <h2>&divide;</h2>
+                                      <h2>&times;</h2>
                                     </tr>
                                 </tbody>
                               </table>
@@ -271,5 +271,5 @@ const Decimal2 = ({randomDec, inputsDec, setInputsDec, mathInputNull, setMathInp
   )
 }
 
-export default Decimal2
+export default CFraction1
 

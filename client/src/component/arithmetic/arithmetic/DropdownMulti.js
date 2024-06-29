@@ -6,6 +6,8 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
   const [isAdditionSubOpen, setIsAdditionSubOpen] = useState(false);
   const [isSubtractionSubOpen, setIsSubtractionSubOpen] = useState(false);
   const [isEfractionSubOpen, setIsEfractionSubOpen] = useState(false);
+  const [isCfractionSubOpen, setIsCfractionSubOpen] = useState(false);
+  const [isDecimalSubOpen, setIsDecimalSubOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleOperation = (op, same) => {
@@ -66,10 +68,28 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
     setIsEfractionSubOpen(false);
   };
 
+  const handleCfractionMouseEnter = () => {
+    setIsCfractionSubOpen(true);
+  };
+
+  const handleCfractionMouseLeave = () => {
+    setIsCfractionSubOpen(false);
+  };
+
+  const handleDecimalMouseEnter = () => {
+    setIsDecimalSubOpen(true);
+  };
+
+  const handleDecimalMouseLeave = () => {
+    setIsDecimalSubOpen(false);
+  };
+
   useEffect(() => {
        setIsAdditionSubOpen(false);
         setIsSubtractionSubOpen(false);
         setIsEfractionSubOpen(false);
+        setIsCfractionSubOpen(false);
+        setIsDecimalSubOpen(false);
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -77,6 +97,8 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
         setIsAdditionSubOpen(false);
         setIsSubtractionSubOpen(false);
         setIsEfractionSubOpen(false);
+        setIsCfractionSubOpen(false);
+        setIsDecimalSubOpen(false);
       }
     };
 
@@ -97,15 +119,18 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
         <div className='flex flex-row justify-center'>
         { efraction>0?
           <div>
-              {efraction===1 && <div>Fraction 1</div>}
-              {efraction===2 && <div>Fraction 2</div>}
-              {efraction===3 && <div>Fraction 3</div>}
-              {efraction===4 && <div>Fraction 4</div>}
-<<<<<<< HEAD
-=======
-              {efraction===5 && <div>Decimal 1</div>}
-              {efraction===6 && <div>Decimal 2</div>}
->>>>>>> working
+              {efraction===1 && <div>Fraction A</div>}
+              {efraction===2 && <div>Fraction B</div>}
+              {efraction===3 && <div>Fraction C</div>}
+              {efraction===4 && <div>Fraction D</div>}
+              {efraction===5 && <div>C-Fraction 1</div>}
+              {efraction===6 && <div>C-Fraction 2</div>}
+              {efraction===7 && <div>C-Fraction 3</div>}
+              {efraction===8 && <div>C-Fraction 4</div>}
+              {efraction===9 && <div>Decimal 1</div>}
+              {efraction===10 && <div>Decimal 2</div>}
+              {efraction===11 && <div>Decimal 3</div>}
+              {efraction===12 && <div>Decimal 4</div>}
             </div>
             :
             <div>
@@ -128,109 +153,22 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
         </div>
       </button>
       {isOpen && (
-        <div className="absolute z-10 left-0  w-32 md:w-44 font-inter  bg-white rounded-md shadow-lg">
+        <div className="absolute z-10 left-0  w-32 md:w-48 font-inter  bg-white rounded-md shadow-lg">
           <button onClick={()=>handleOperation(3, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Multiplication
           </button>
+          <div className='w-full   px-4'> <div className='w-full border-t border-gray-500'></div></div>
           <button onClick={()=>handleOperation(4, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none" >
             Division
           </button>
-<<<<<<< HEAD
-=======
 
->>>>>>> working
-          <button
-            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
-            onMouseEnter={handleEfractionMouseEnter}
-            onMouseLeave={handleEfractionMouseLeave}
-             // Close dropdown when clicked
-          >
-<<<<<<< HEAD
-            Equal Fractions
-=======
-            Equal Fractions & Decimals
->>>>>>> working
-            {isEfractionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
-                <button
-                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(1)} // Close dropdown when clicked
-                >
-                  Fraction 1
-                </button>
-                <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(2)} // Close dropdown when clicked
-                >
-                  Fraction 2
-                </button>
-                <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(3)} // Close dropdown when clicked
-                >
-                  Fraction 3
-                </button>
-                <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(4)} // Close dropdown when clicked
-                >
-                  Fraction 4
-                </button>
-<<<<<<< HEAD
-              </div>
-            )}
-          </button>
-
-=======
-                <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(5)} // Close dropdown when clicked
-                >
-                  Decimal 1
-                </button>
-                <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(6)} // Close dropdown when clicked
-                >
-                  Decimal 2
-                </button>
-              </div>
-            )}
-          </button>
-          
-          
-          {/* <button
-            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
-            onMouseEnter={handleEfractionMouseEnter}
-            onMouseLeave={handleEfractionMouseLeave}
-             // Close dropdown when clicked
-          >
-            Decimals
-            {isEfractionSubOpen && (
-              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
-                <button
-                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(1)} // Close dropdown when clicked
-                >
-                  Decimal 1
-                </button>
-                <button
-                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
-                  onClick={()=>handleEfraction(2)} // Close dropdown when clicked
-                >
-                  Decimal 2
-                </button>
-               
-              </div>
-            )}
-          </button> */}
->>>>>>> working
+          <div className='w-full  addition px-4'> <div className='w-full border-t border-gray-500'></div></div>
 
           <button
             className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
             onMouseEnter={handleAdditionMouseEnter}
             onMouseLeave={handleAdditionMouseLeave}
-             // Close dropdown when clicked
+            // Close dropdown when clicked
           >
             Addition
             {isAdditionSubOpen && (
@@ -250,11 +188,13 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
               </div>
             )}
           </button>
+
+          <div className='w-full subtraction  px-4'> <div className='w-full border-t border-gray-500'></div></div>
           <button
             className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none relative"
             onMouseEnter={handleSubtractionMouseEnter}
             onMouseLeave={handleSubtractionMouseLeave}
-             // Close dropdown when clicked
+            // Close dropdown when clicked
           >
             Subtraction
             {isSubtractionSubOpen && (
@@ -274,10 +214,136 @@ const Dropdown = ({setOperation, setMixOperation, setSameDenoms, operation, efra
               </div>
             )}
           </button>
-          
+
+          <div className='w-full mixed  px-4'> <div className='w-full border-t border-gray-500'></div></div>
           <button onClick={()=>handleOperation(5, false)} className="block w-full py-2 px-4 text-left hover:bg-gray-700 hover:text-white focus:outline-none" >
             Mixed
           </button>
+
+          <div className='w-full  e-fraction px-4'> <div className='w-full border-t border-gray-500'></div></div>
+          <button
+            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
+            onMouseEnter={handleEfractionMouseEnter}
+            onMouseLeave={handleEfractionMouseLeave}
+             // Close dropdown when clicked
+          >
+            Equal Fractions
+            {isEfractionSubOpen && (
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
+                <button
+                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(1)} // Close dropdown when clicked
+                >
+                Drill A
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(2)} // Close dropdown when clicked
+                >
+                  Drill B
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(3)} // Close dropdown when clicked
+                >
+                  Drill C
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(4)} // Close dropdown when clicked
+                >
+                 Drill D
+                </button>
+               
+              </div>
+            )}
+          </button>
+         
+          <div className='w-full c-fraction  px-4'> <div className='w-full border-t border-gray-500'></div></div>
+          <button
+            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative"
+            onMouseEnter={handleCfractionMouseEnter}
+            onMouseLeave={handleCfractionMouseLeave}
+             // Close dropdown when clicked
+          >
+            Complex Fractions
+            {isCfractionSubOpen && (
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
+                <button
+                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(5)} // Close dropdown when clicked
+                >
+                  Multiplication
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(6)} // Close dropdown when clicked
+                >
+                  Division
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(7)} // Close dropdown when clicked
+                >
+                 Addition
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(8)} // Close dropdown when clicked
+                >
+                  Subtraction
+                </button>
+                
+               
+                
+                
+              </div>
+            )}
+          </button>
+          
+          <div className='w-full   px-4'> <div className='w-full border-t border-gray-500'></div></div>
+          <button
+            className="block font-inter  w-full py-2 px-4 text-left hover:bg-gray-700  hover:text-white focus:outline-none relative "
+            onMouseEnter={handleDecimalMouseEnter}
+            onMouseLeave={handleDecimalMouseLeave}
+             // Close dropdown when clicked
+          >
+            Decimals
+            {isDecimalSubOpen && (
+              <div className="absolute top-0 left-full mt-0 w-[180px] bg-white text-gray-700 rounded-md shadow-lg">
+                <button
+                  className="block w-full p-2 pl-3  text-left hover:bg-gray-700 hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(9)} // Close dropdown when clicked
+                >
+                  Decimal 1
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(10)} // Close dropdown when clicked
+                >
+                  Decimal 2
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(11)} // Close dropdown when clicked
+                >
+                 Decimal 3
+                </button>
+                <button
+                  className="block w-full py-2 pl-3 text-left hover:bg-gray-700  hover:text-white focus:outline-none"
+                  onClick={()=>handleEfraction(12)} // Close dropdown when clicked
+                >
+                  Decimal 4
+                </button>
+                
+               
+                
+                
+              </div>
+            )}
+          </button>
+        
+        
         </div>
       )}
     </div>
