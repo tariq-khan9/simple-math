@@ -1,7 +1,10 @@
 import React from "react";
 import MathInput from "./../arithmetic/MathInput";
-
 import Fraction from "./../efractions/Fraction";
+import FractionDisplay from "./displayCom/FractionDisplay";
+import OperatorDisplay from "./displayCom/OperatorDisplay";
+import AddDivInputsOperator from "./displayCom/AddDivInputsOperator";
+import AddDivInputsFraction from "./displayCom/AddDivInputsFraction";
 
 const DrillSection = ({
   efraction,
@@ -35,129 +38,49 @@ const DrillSection = ({
                   <table className="digit">
                     <tr className="">
                       <td className="first-col px-2 ">
-                        <table className="">
-                          <tbody className="">
-                            <tr className="">{randomNums.numerator1}</tr>
-                            <tr className="line-tr">
-                              <div className="line"></div>
-                            </tr>
-                            <tr>{randomNums.denominator1}</tr>
-                          </tbody>
-                        </table>
+                        <FractionDisplay
+                          numerator={randomNums.numerator1}
+                          denominator={randomNums.denominator1}
+                        />
                       </td>
-
                       <td className="opertor px-4 ">
-                        <table>
-                          <tbody>
-                            {operation > 0 ? (
-                              <tr>
-                                {operation === 1 && <h2>+</h2>}
-                                {operation === 2 && <h2>-</h2>}
-                                {operation === 3 && <h2>&times;</h2>}
-                                {operation === 4 && <h2>&divide;</h2>}
-                              </tr>
-                            ) : (
-                              <tr>
-                                {mixOperation === 1 && <h2>+</h2>}
-                                {mixOperation === 2 && <h2>-</h2>}
-                                {mixOperation === 3 && <h2>&times;</h2>}
-                                {mixOperation === 4 && <h2>&divide;</h2>}
-                              </tr>
-                            )}
-                          </tbody>
-                        </table>
+                        <OperatorDisplay
+                          operation={operation}
+                          mixOperation={mixOperation}
+                        />
                       </td>
-
                       <td className="second-col px-2 ">
-                        <table>
-                          <tbody>
-                            <tr>{randomNums.numerator2}</tr>
-                            <tr className="line-tr">
-                              <div className="line"></div>
-                            </tr>
-                            <tr>
-                              {/* //{(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2} */}
-                              {randomNums.denominator2}
-                            </tr>
-                          </tbody>
-                        </table>
+                        <FractionDisplay
+                          numerator={randomNums.numerator2}
+                          denominator={randomNums.denominator2}
+                        />
                       </td>
-
                       <td className="= px-1 md:px-6">
                         <tr>=</tr>
                       </td>
                       {/* ================================================== input side ========================================== */}
                       <td className="inputs md:px-4 flex flex-row  items-center">
                         <td className="first-col px-2 md:px-4">
-                          <table className="">
-                            <tbody className="">
-                              <tr className="">{randomNums.numerator1}</tr>
-                              <tr className="line-tr">
-                                <div className="line"></div>
-                              </tr>
-                              <tr>{randomNums.denominator1}</tr>
-                            </tbody>
-                          </table>
+                          <FractionDisplay
+                            numerator={randomNums.numerator1}
+                            denominator={randomNums.denominator1}
+                          />
                         </td>
 
                         <td className="opertor px-2 md:px-4  flex items-center">
-                          <table>
-                            <tbody className="">
-                              <tr>
-                                <td className="text-center">
-                                  {" "}
-                                  {/* Add a td element to center the input */}
-                                  <input
-                                    value={divisionInputs.sign}
-                                    onChange={(e) =>
-                                      setDivisionInputs({
-                                        ...divisionInputs,
-                                        sign: e.target.value,
-                                      })
-                                    }
-                                    id="sign"
-                                    className="input-div digit-input text-center"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <AddDivInputsOperator
+                            getterFuction={divisionInputs}
+                            setterFuction={setDivisionInputs}
+                          />
                         </td>
 
                         <td className="second-col md:px-4">
-                          <table>
-                            <tbody>
-                              <tr className="">
-                                <input
-                                  value={divisionInputs.numerator2}
-                                  onChange={(e) =>
-                                    setDivisionInputs({
-                                      ...divisionInputs,
-                                      numerator2: e.target.value,
-                                    })
-                                  }
-                                  id="divisionNum2"
-                                  className="input digit-input"
-                                />
-                              </tr>
-                              <tr className="line-tr">
-                                <div class="line-input"></div>
-                              </tr>
-                              <tr>
-                                <input
-                                  value={divisionInputs.denominator2}
-                                  onChange={(e) =>
-                                    setDivisionInputs({
-                                      ...divisionInputs,
-                                      denominator2: e.target.value,
-                                    })
-                                  }
-                                  id="divisionDeno2"
-                                  className="input digit-input "
-                                />
-                              </tr>
-                            </tbody>
-                          </table>
+                          <AddDivInputsFraction
+                            numerator={divisionInputs.numerator2}
+                            denominator={divisionInputs.denominator2}
+                            getterFuction={divisionInputs}
+                            setterFuction={setDivisionInputs}
+                          />
                         </td>
                       </td>
                     </tr>
@@ -168,53 +91,24 @@ const DrillSection = ({
                   <table className="digit">
                     <tr className="">
                       <td className="first-col ">
-                        <table className="">
-                          <tbody className="">
-                            <tr className="">{randomNums.numerator1}</tr>
-                            <tr className="line-tr">
-                              <div className="line"></div>
-                            </tr>
-                            <tr>{randomNums.denominator1}</tr>
-                          </tbody>
-                        </table>
+                        <FractionDisplay
+                          numerator={randomNums.numerator1}
+                          denominator={randomNums.denominator1}
+                        />
                       </td>
 
                       <td className="opertor px-2  md:pl-4">
-                        <table>
-                          <tbody>
-                            {operation > 0 ? (
-                              <tr>
-                                {operation === 1 && <h2>+</h2>}
-                                {operation === 2 && <h2>-</h2>}
-                                {operation === 3 && <h2>&times;</h2>}
-                                {operation === 4 && <h2>&divide;</h2>}
-                              </tr>
-                            ) : (
-                              <tr>
-                                {mixOperation === 1 && <h2>+</h2>}
-                                {mixOperation === 2 && <h2>-</h2>}
-                                {mixOperation === 3 && <h2>&times;</h2>}
-                                {mixOperation === 4 && <h2>&divide;</h2>}
-                              </tr>
-                            )}
-                          </tbody>
-                        </table>
+                        <OperatorDisplay
+                          operation={operation}
+                          mixOperation={mixOperation}
+                        />
                       </td>
 
                       <td className="second-col md:px-4">
-                        <table>
-                          <tbody>
-                            <tr>{randomNums.numerator2}</tr>
-                            <tr className="line-tr">
-                              <div class="line"></div>
-                            </tr>
-                            <tr>
-                              {/* {(operation<3 && sameDenoms)? randomNums.denominator1 : randomNums.denominator2}
-                               */}
-                              {randomNums.denominator2}
-                            </tr>
-                          </tbody>
-                        </table>
+                        <FractionDisplay
+                          numerator={randomNums.numerator2}
+                          denominator={randomNums.denominator2}
+                        />
                       </td>
 
                       <td className="= px-2 md:px-6">
@@ -223,99 +117,28 @@ const DrillSection = ({
                       {/* ================================================== input side ========================================== */}
                       <td className="inputs md:px-4 flex flex-row items-center">
                         <td className="first-col md:px-4">
-                          <table>
-                            <tbody>
-                              <tr className="">
-                                <input
-                                  value={divisionInputs.numerator1}
-                                  onChange={(e) =>
-                                    setDivisionInputs({
-                                      ...divisionInputs,
-                                      numerator1: e.target.value,
-                                    })
-                                  }
-                                  id="divisionNum1"
-                                  className="input digit-input"
-                                />
-                              </tr>
-                              <tr className="line-tr">
-                                <div class="line-input"></div>
-                              </tr>
-                              <tr>
-                                <input
-                                  value={divisionInputs.denominator1}
-                                  onChange={(e) =>
-                                    setDivisionInputs({
-                                      ...divisionInputs,
-                                      denominator1: e.target.value,
-                                    })
-                                  }
-                                  id="divisionDeno1"
-                                  className="input digit-input "
-                                />
-                              </tr>
-                            </tbody>
-                          </table>
+                          <AddDivInputsFraction
+                            numerator={divisionInputs.numerator1}
+                            denominator={divisionInputs.denominator1}
+                            getterFuction={divisionInputs}
+                            setterFuction={setDivisionInputs}
+                          />
                         </td>
 
                         <td className="opertor px-2 md:px-4  flex items-center">
-                          <table>
-                            <tbody className="">
-                              <tr>
-                                <td className="text-center">
-                                  {" "}
-                                  {/* Add a td element to center the input */}
-                                  <input
-                                    value={divisionInputs.sign}
-                                    onChange={(e) =>
-                                      setDivisionInputs({
-                                        ...divisionInputs,
-                                        sign: e.target.value,
-                                      })
-                                    }
-                                    id="divisionSign"
-                                    className="input-div digit-input text-center"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <AddDivInputsOperator
+                            getterFuction={divisionInputs}
+                            setterFuction={setDivisionInputs}
+                          />
                         </td>
 
                         <td className="second-col md:px-4">
-                          <table>
-                            <tbody>
-                              <tr className="">
-                                <input
-                                  value={divisionInputs.numerator2}
-                                  onChange={(e) =>
-                                    setDivisionInputs({
-                                      ...divisionInputs,
-                                      numerator2: e.target.value,
-                                    })
-                                  }
-                                  id="divisionNum2"
-                                  className="input digit-input"
-                                />
-                              </tr>
-                              <tr className="line-tr">
-                                <div class="line-input"></div>
-                              </tr>
-                              <tr>
-                                <input
-                                  value={divisionInputs.denominator2}
-                                  onChange={(e) =>
-                                    setDivisionInputs({
-                                      ...divisionInputs,
-                                      denominator2: e.target.value,
-                                    })
-                                  }
-                                  id="divisionDeno2"
-                                  className="input digit-input "
-                                />
-                              </tr>
-                            </tbody>
-                          </table>
+                          <AddDivInputsFraction
+                            numerator={divisionInputs.numerator2}
+                            denominator={divisionInputs.denominator2}
+                            getterFuction={divisionInputs}
+                            setterFuction={setDivisionInputs}
+                          />
                         </td>
                       </td>
                     </tr>
@@ -345,65 +168,22 @@ const DrillSection = ({
                             </tr>
                           </tbody>
                         </table>
-                        <table className="">
-                          <tbody className="">
-                            <tr className="">
-                              <div className="max-w-3">
-                                <input
-                                  value={additionInputs.numerator1}
-                                  onChange={(e) =>
-                                    setAdditionInputs({
-                                      ...additionInputs,
-                                      numerator1: e.target.value,
-                                    })
-                                  }
-                                  id="num"
-                                  className="input digit-input"
-                                />
-                              </div>
-                            </tr>
-                            <tr className="line-tr">
-                              <div class="line-input"></div>
-                            </tr>
-                            <tr>
-                              <input
-                                value={additionInputs.denominator1}
-                                onChange={(e) =>
-                                  setAdditionInputs({
-                                    ...additionInputs,
-                                    denominator1: e.target.value,
-                                  })
-                                }
-                                id="num"
-                                className="input digit-input"
-                              />
-                            </tr>
-                          </tbody>
-                        </table>
+
+                        <AddDivInputsFraction
+                          numerator={additionInputs.numerator1}
+                          denominator={additionInputs.denominator1}
+                          getterFuction={additionInputs}
+                          setterFuction={setAdditionInputs}
+                        />
                       </div>
                     )}
                   </td>
 
                   <td className="opertor px-2 md:px-3 pl-3 md:pl-5 ">
-                    <table>
-                      <tbody>
-                        {operation > 0 ? (
-                          <tr>
-                            {operation === 1 && <h2>+</h2>}
-                            {operation === 2 && <h2>-</h2>}
-                            {operation === 3 && <h2>&times;</h2>}
-                            {operation === 4 && <h2>&divide;</h2>}
-                          </tr>
-                        ) : (
-                          <tr>
-                            {mixOperation === 1 && <h2>+</h2>}
-                            {mixOperation === 2 && <h2>-</h2>}
-                            {mixOperation === 3 && <h2>&times;</h2>}
-                            {mixOperation === 4 && <h2>&divide;</h2>}
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
+                    <OperatorDisplay
+                      operation={operation}
+                      mixOperation={mixOperation}
+                    />
                   </td>
 
                   <td className="second-col flex  flex-row px-2 md:px-3">
@@ -429,41 +209,12 @@ const DrillSection = ({
                             </tr>
                           </tbody>
                         </table>
-                        <table className="">
-                          <tbody className="">
-                            <tr className="">
-                              <div className="max-w-4">
-                                <input
-                                  value={additionInputs.numerator2}
-                                  onChange={(e) =>
-                                    setAdditionInputs({
-                                      ...additionInputs,
-                                      numerator2: e.target.value,
-                                    })
-                                  }
-                                  id="num"
-                                  className="input digit-input"
-                                />
-                              </div>
-                            </tr>
-                            <tr className="line-tr">
-                              <div class="line-input"></div>
-                            </tr>
-                            <tr>
-                              <input
-                                value={additionInputs.denominator2}
-                                onChange={(e) =>
-                                  setAdditionInputs({
-                                    ...additionInputs,
-                                    denominator2: e.target.value,
-                                  })
-                                }
-                                id="num"
-                                className="input digit-input"
-                              />
-                            </tr>
-                          </tbody>
-                        </table>
+                        <AddDivInputsFraction
+                          numerator={additionInputs.numerator2}
+                          denominator={additionInputs.denominator2}
+                          getterFuction={additionInputs}
+                          setterFuction={setAdditionInputs}
+                        />
                       </div>
                     )}
                   </td>
