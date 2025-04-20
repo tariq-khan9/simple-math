@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Youtube from "./Youtube";
-import Arithmetic from "./arithmetic/Arithmetic";
+import Arithmetic from "./arithmeticPage/Arithmetic";
 
 const Main = () => {
   const [component, setComponent] = useState(1);

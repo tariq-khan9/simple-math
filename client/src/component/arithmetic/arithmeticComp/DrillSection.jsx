@@ -1,5 +1,5 @@
 import React from "react";
-import MathInput from "./../arithmetic/MathInput";
+import MathInput from "./../arithmeticPage/MathInput";
 import Fraction from "./../efractions/Fraction";
 import FractionDisplay from "./displayCom/FractionDisplay";
 import OperatorDisplay from "./displayCom/OperatorDisplay";
