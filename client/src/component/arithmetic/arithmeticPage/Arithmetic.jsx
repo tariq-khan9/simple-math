@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { useArithmetic } from "../../../hooks/useArithmetic";
 import CheckModal from "./CheckModal";
-import RandomSheets from "./RandomSheets";
-import SolutionModal from "./SolutionModal";
+import RandomSheets from "../randomSheet/RandomSheets";
+import SolutionModal from "../solutionModal/SolutionModal";
 import DropdownMulti from "./DropdownMulti";
 
 import DifficultySelector from "../arithmeticComp/DifficultySelector";
@@ -132,6 +132,7 @@ const Arithmetic = () => {
                   getRandomNumber={getRandomNumber}
                   showRandomSheets={showRandomSheets}
                   operation={operation}
+                  mixOperation={mixOperation}
                   totalSheets={totalSheets}
                   inputRange={inputRange}
                   additionInputs={additionInputs}

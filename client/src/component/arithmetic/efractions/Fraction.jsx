@@ -4,7 +4,7 @@ import Fraction2 from "./Fraction2";
 import Fraction3 from "./Fraction3";
 import Fraction4 from "./Fraction4";
 import CheckModal from "../arithmeticPage/CheckModal";
-import SolutionFracModal from "./SolutionFracModal";
+import SolutionFracModal from "../solutionFracModal/SolutionFracModal";
 import CFraction from "./displayCFraction/CFraction";
 import useFraction from "../../../hooks/useFraction";
 import Decimal from "./displayDecimal/Decimal";
