@@ -31,10 +31,7 @@ const useRandomSheets = ({
 
     const getRandomOperation = () => {
       let randomNum;
-      do {
-        randomNum = Math.floor(Math.random() * 4) + 1;
-      } while (randomNum === 3);
-      return randomNum;
+      return (randomNum = Math.floor(Math.random() * 4) + 1);
     };
 
     let mixOperation;

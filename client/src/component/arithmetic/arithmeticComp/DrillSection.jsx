@@ -76,10 +76,9 @@ const DrillSection = ({
 
                         <td className="second-col md:px-4">
                           <AddDivInputsFraction
-                            numerator={divisionInputs.numerator2}
-                            denominator={divisionInputs.denominator2}
                             getterFuction={divisionInputs}
                             setterFuction={setDivisionInputs}
+                            change={2}
                           />
                         </td>
                       </td>
@@ -118,10 +117,9 @@ const DrillSection = ({
                       <td className="inputs md:px-4 flex flex-row items-center">
                         <td className="first-col md:px-4">
                           <AddDivInputsFraction
-                            numerator={divisionInputs.numerator1}
-                            denominator={divisionInputs.denominator1}
                             getterFuction={divisionInputs}
                             setterFuction={setDivisionInputs}
+                            change={1}
                           />
                         </td>
 
@@ -134,10 +132,9 @@ const DrillSection = ({
 
                         <td className="second-col md:px-4">
                           <AddDivInputsFraction
-                            numerator={divisionInputs.numerator2}
-                            denominator={divisionInputs.denominator2}
                             getterFuction={divisionInputs}
                             setterFuction={setDivisionInputs}
+                            change={2}
                           />
                         </td>
                       </td>
@@ -170,10 +167,9 @@ const DrillSection = ({
                         </table>
 
                         <AddDivInputsFraction
-                          numerator={additionInputs.numerator1}
-                          denominator={additionInputs.denominator1}
                           getterFuction={additionInputs}
                           setterFuction={setAdditionInputs}
+                          change={1}
                         />
                       </div>
                     )}
@@ -210,10 +206,9 @@ const DrillSection = ({
                           </tbody>
                         </table>
                         <AddDivInputsFraction
-                          numerator={additionInputs.numerator2}
-                          denominator={additionInputs.denominator2}
                           getterFuction={additionInputs}
                           setterFuction={setAdditionInputs}
+                          change={2}
                         />
                       </div>
                     )}

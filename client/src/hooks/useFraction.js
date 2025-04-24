@@ -163,6 +163,11 @@ const useFraction = (efraction, difficulty2) => {
     // Random numbers for fractions
     var numerator = getRandomNumber(inputRange.min, inputRange.max);
     var denominator = getRandomNumber(inputRange.min, inputRange.max);
+    if (difficulty2 === 1) {
+      while (denominator === 1) {
+        denominator = getRandomNumber(inputRange.min, inputRange.max);
+      }
+    }
 
     if (difficulty2 === 3 && numerator < 0 && denominator < 0) {
       denominator = Math.abs(denominator);
@@ -176,9 +181,19 @@ const useFraction = (efraction, difficulty2) => {
     // Random numbers for decimal
     var numerator1 = getRandomNumber(inputRange.min, inputRange.max);
     var denominator1 = getRandomNumber(inputRange.min, inputRange.max);
+    if (difficulty2 === 1) {
+      while (denominator1 === 1) {
+        denominator1 = getRandomNumber(inputRange.min, inputRange.max);
+      }
+    }
     var num = getRandomNumber(inputRange.min, inputRange.max);
     var numerator2 = getRandomNumber(inputRange.min, inputRange.max);
     var denominato2 = getRandomNumber(inputRange.min, inputRange.max);
+    if (difficulty2 === 1) {
+      while (denominato2 === 1) {
+        denominato2 = getRandomNumber(inputRange.min, inputRange.max);
+      }
+    }
 
     setRandomDec({
       numerator1: numerator1,

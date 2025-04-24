@@ -92,10 +92,8 @@ export const useArithmetic = () => {
 
   const getRandomOperation = () => {
     let randomNum;
-    do {
-      randomNum = Math.floor(Math.random() * 4) + 1;
-    } while (randomNum === 3);
-    return randomNum;
+
+    return (randomNum = Math.floor(Math.random() * 4) + 1);
   };
 
   const handleNext = () => {
@@ -132,8 +130,20 @@ export const useArithmetic = () => {
       var negativeCount = 0;
       var numerator1 = getRandomNumber(inputRange.min, inputRange.max);
       var denominator1 = getRandomNumber(inputRange.min, inputRange.max);
+
+      if (difficulty === 1) {
+        while (denominator1 === 1) {
+          denominator1 = getRandomNumber(inputRange.min, inputRange.max);
+        }
+      }
       var numerator2 = getRandomNumber(inputRange.min, inputRange.max);
       var denominator2 = getRandomNumber(inputRange.min, inputRange.max);
+      // make sure that for simple difficulty the denominator is not 1
+      if (difficulty === 1) {
+        while (denominator2 === 1) {
+          denominator2 = getRandomNumber(inputRange.min, inputRange.max);
+        }
+      }
 
       if (numerator1 < 0) negativeCount++;
       if (denominator1 < 0) negativeCount++;
@@ -383,7 +393,6 @@ export const useArithmetic = () => {
     setShowCheckModal,
     showSolutionModal,
     setShowSolutionModal,
-
     clearAllInputs,
     getRandomNumber,
     getRandomOperation,
