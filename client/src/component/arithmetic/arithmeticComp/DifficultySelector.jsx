@@ -19,6 +19,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty2(1);
+              setDifficulty(1);
               setTimeout(() => {
                 btnFracNextRef.current.click();
               }, 20);
@@ -33,6 +34,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty2(2);
+              setDifficulty(1);
               setTimeout(() => {
                 btnFracNextRef.current.click();
               }, 20);
@@ -47,6 +49,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty2(3);
+              setDifficulty(1);
               setTimeout(() => {
                 btnFracNextRef.current.click();
               }, 20);
@@ -61,6 +64,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty2(4);
+              setDifficulty(1);
               setTimeout(() => {
                 btnFracNextRef.current.click();
               }, 20);
@@ -77,6 +81,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty(1);
+              setDifficulty2(1);
               setTimeout(() => {
                 btnNextRef.current.click();
               }, 20);
@@ -91,6 +96,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty(2);
+              setDifficulty2(1);
               setTimeout(() => {
                 btnNextRef.current.click();
               }, 20);
@@ -105,6 +111,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty(3);
+              setDifficulty2(1);
               setTimeout(() => {
                 btnNextRef.current.click();
               }, 20);
@@ -119,6 +126,7 @@ const DifficultySelector = ({
           <button
             onClick={() => {
               setDifficulty(4);
+              setDifficulty2(1);
               setTimeout(() => {
                 btnNextRef.current.click();
               }, 20);

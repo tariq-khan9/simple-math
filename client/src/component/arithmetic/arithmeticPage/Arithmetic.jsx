@@ -65,6 +65,8 @@ const Arithmetic = () => {
                   operation={operation}
                   efraction={efraction}
                   setEfraction={setEfraction}
+                  setDifficulty={setDifficulty}
+                  setDifficulty2={setDifficulty2}
                 />
               </div>
             </div>

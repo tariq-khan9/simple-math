@@ -9,7 +9,12 @@ import CFraction from "./displayCFraction/CFraction";
 import useFraction from "../../../hooks/useFraction";
 import Decimal from "./displayDecimal/Decimal";
 
-const Fraction = ({ efraction, difficulty2, btnFracNextRef }) => {
+const Fraction = ({
+  efraction,
+  difficulty2,
+
+  btnFracNextRef,
+}) => {
   const {
     randomFrac,
     randomDec,
