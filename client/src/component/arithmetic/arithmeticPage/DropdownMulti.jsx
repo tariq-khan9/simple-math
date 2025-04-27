@@ -43,7 +43,7 @@ const Dropdown = ({
   const handleEfraction = (fr) => {
     setDifficulty2(1);
     setEfraction(fr);
-    console.log("e fraction ", efraction);
+
     setIsOpen(false);
   };
 
@@ -114,6 +114,10 @@ const Dropdown = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, [isOpen]);
+
+  useEffect(() => {
+    console.log("users difficulty here");
   }, [isOpen]);
 
   return (
