@@ -29,14 +29,6 @@ const DrillSection = ({
   btnNextRef,
   btnFracNextRef,
 }) => {
-  console.log(
-    "operation ",
-    operation,
-    mixOperation,
-    "difficulty",
-    difficulty,
-    difficulty2
-  );
   return (
     <div className="card-drill">
       <div className="math  flex justify-start  mt-4">

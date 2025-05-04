@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { usePracticeTracker } from "./usePracticeTracker";
 
 export const useArithmetic = () => {
+  const { prepareParams } = usePracticeTracker();
   const [randomNums, setRandomNums] = useState({
     numerator1: 1,
     denominator1: 1,
@@ -362,7 +364,14 @@ export const useArithmetic = () => {
     } else {
       setResult(false);
     }
-    console.log("result right before check", result);
+    prepareParams({
+      operation: operation,
+      mixOperation: mixOperation,
+      difficulty: difficulty,
+      success: checkResult == inputResult,
+      efraction: 0,
+      sameDenoms: sameDenoms,
+    });
     setShowCheckModal(true);
   };
 

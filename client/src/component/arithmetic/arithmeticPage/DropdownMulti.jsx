@@ -119,7 +119,7 @@ const Dropdown = ({
   useEffect(() => {
     console.log("users difficulty here");
   }, [isOpen]);
-
+  console.log("efraction code ", efraction);
   return (
     <div className=" pt-8 relative h-[100px]">
       <div className=" z-50" ref={dropdownRef}>

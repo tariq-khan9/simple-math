@@ -2,12 +2,20 @@ import React, { useState, useEffect } from "react";
 import logo from "./../images/logo.png";
 import menu from "./../images/nav-menu.png";
 import close from "./../images/close.png";
+import { getUserStates } from "../utils/apiCalls";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [getOperationsData, setGetOperationsData] = useState([]);
 
   // Close the menu when clicking anywhere on the page
   useEffect(() => {
+    const fetchOperations = async () => {
+      const ops = await getUserStates();
+      console.log("operations in client", ops);
+      setGetOperationsData(ops); // Save them into state if you need
+    };
+    fetchOperations();
     const closeMenu = () => {
       setIsOpen(false);
     };

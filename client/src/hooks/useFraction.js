@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
+import { usePracticeTracker } from "./usePracticeTracker";
 
 const useFraction = (efraction, difficulty2) => {
+  const { prepareParams } = usePracticeTracker();
   const [randomFrac, setRandomFrac] = useState({
     numerator: 1,
     denominator: 1,
@@ -338,6 +340,14 @@ const useFraction = (efraction, difficulty2) => {
     } else {
       setResult(false);
     }
+    prepareParams({
+      operation: 0,
+      mixOperation: 0,
+      difficulty: difficulty2,
+      success: checkResult == inputResult,
+      efraction: efraction,
+      sameDenoms: false,
+    });
     setShowCheckModal(true);
   };
 
