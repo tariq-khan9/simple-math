@@ -1,39 +1,28 @@
 import React, { useState } from "react";
-import { userLogin } from "../../utils/apiCalls";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthContext";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [token, setToken] = useState(null);
+  const { loading, error, loginUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
     try {
-      const data = await userLogin({ email, password });
-      console.log(data);
-      setToken(data.user.email);
-      setEmail("");
-      setPassword("");
-      localStorage.setItem("token", data.token);
-      alert("auth done");
+      await loginUser({ email, password });
+      navigate("/dashboard"); // Redirect after successful login
     } catch (err) {
-      console.log("uer error", err);
-      setError(err.message); // Show error message if something goes wrong
-    } finally {
-      setLoading(false); // Stop the loading spinner
+      console.error("Login error:", err);
     }
   };
 
   return (
-    <div className="mt-24  flex justify-center">
+    <div className="mt-24 flex justify-center">
       <form
         onSubmit={handleSubmit}
-        className=" sm:min-w-[500px] border-2 border-gray-200 rounded-md px-4 sm:px-10"
+        className="sm:min-w-[500px] border-2 border-gray-200 rounded-md px-4 sm:px-10"
       >
         <div className="flex justify-center">
           <h2 className="form-heading">Login</h2>
@@ -74,6 +63,9 @@ const Login = () => {
               {loading ? "Logging in..." : "Login"}
             </button>
           </div>
+          <button onClick={() => navigate("/register")}>
+            dont have account? register here!
+          </button>
         </div>
       </form>
     </div>

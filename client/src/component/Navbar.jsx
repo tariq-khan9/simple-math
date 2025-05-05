@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import logo from "./../images/logo.png";
 import menu from "./../images/nav-menu.png";
 import close from "./../images/close.png";
+import { useNavigate } from "react-router-dom";
 import { getUserStates } from "../utils/apiCalls";
+import { useAuth } from "../hooks/AuthContext";
 
 const Navbar = () => {
+  const { user, logoutUser } = useAuth();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [getOperationsData, setGetOperationsData] = useState([]);
 
@@ -97,8 +101,13 @@ const Navbar = () => {
       </div>
 
       <div className="buttom-div flex flex-row w-[20%] md:w-[15%] items-center justify-end">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-2 lg:px-4 py-[4px] md:py-[8px]  rounded-[5px] text-[12px] md:text-[15px]">
-          Register
+        <button
+          onClick={() => {
+            user ? logoutUser() : navigate("/login");
+          }}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-2 lg:px-4 py-[4px] md:py-[8px]  rounded-[5px] text-[12px] md:text-[15px]"
+        >
+          {user ? "Logout" : "Login"}
         </button>
       </div>
     </div>

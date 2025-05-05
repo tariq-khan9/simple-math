@@ -1,6 +1,7 @@
 // src/pages/VerifyEmail.jsx
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthContext";
 import axios from "axios";
 import { Row, Col, Typography, Spin, Button, Alert, Card } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
@@ -8,30 +9,21 @@ import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 
 const VerifyEmail = () => {
-  const { token } = useParams();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const { token } = useParams();
+  const { verifyUserEmail, loading, error } = useAuth();
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    const verifyToken = async () => {
+    const verify = async () => {
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/api/users/verify-email/`,
-          { authToken: token }
-        );
-        setMessage(response.data.message);
-        setLoading(false);
-      } catch (err) {
-        setError(
-          err.response?.data?.message || "Invalid or expired verification link"
-        );
-        setLoading(false);
+        const result = await verifyUserEmail(token);
+        setMessage(result.message);
+      } catch (error) {
+        console.error("Verification error:", error);
       }
     };
-
-    verifyToken();
+    verify();
   }, [token]);
 
   if (loading) {

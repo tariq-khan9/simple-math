@@ -2,110 +2,47 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/AuthContext";
 import axios from "axios";
 import { Modal } from "antd";
 
 const Register = () => {
   const navigate = useNavigate();
   const {
-    register,
+    register: register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const [imagePreview, setImagePreview] = useState(null);
+  const { loading, error, user, registerUser, sendVerificationEmail } =
+    useAuth();
   const [imageFile, setImageFile] = useState(null);
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [imagePreview, setImagePreview] = useState();
+  const [success, setSuccess] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState("");
-
+  console.log("user in register ", user);
   const onSubmit = async (data) => {
     const formData = new FormData();
-
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("password", data.password);
     if (imageFile) formData.append("image", imageFile);
 
     try {
-      const register = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/users/register/`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-
-      //   const verify = await axios.post(
-      //     `${process.env.REACT_APP_SERVER_URL}/verify/send-verification-email`,
-      //     { email: data.email },
-      //     {
-      //       headers: { "Content-Type": "application/json" },
-      //     }
-      //   );
-
-      // Modal.success({
-      //   title: "Registration Completes!",
-      //   content:
-      //     "A verification email has been sent. Please click the verification link within 24 hours to complete registration",
-      //   onOk() {
-      //     navigate("/login");
-      //   },
-      // });
-
-      setRegistrationSuccess(true);
-      setRegisteredEmail(data.email);
-    } catch (error) {
-      console.error("Error registering user:", error);
-      //   const deleteUser = await axios.post(
-      //     `${process.env.REACT_APP_SERVER_URL}/verify/delete-user`,
-      //     { email: data.email },
-      //     {
-      //       headers: { "Content-Type": "application/json" },
-      //     }
-      //   );
-
-      //   console.log("user deleted ", deleteUser);
-    }
-  };
-
-  const resendVerificationEmail = async (email) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/users/resend-email/`,
-        { email },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      Modal.success({
-        title: "Email sent again",
-        content:
-          "A verification email has been sent. Please click the verification link within 24 hours to complete registration",
-        onOk() {
-          // navigate("/login");
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw (
-        error.response?.data || {
-          detail: "Failed to resend verification email",
-        }
-      );
+      const result = await registerUser(formData);
+      setRegisteredEmail(result.email);
+      setSuccess(true);
+    } catch (err) {
+      console.error("Registration error:", err);
     }
   };
 
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(file);
-    }
+    if (file) setImageFile(file);
   };
 
-  if (registrationSuccess) {
+  if (success) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
@@ -142,7 +79,7 @@ const Register = () => {
               Didn't receive the email? Check your spam folder or{" "}
               <button
                 className="text-blue-600 hover:underline"
-                onClick={() => resendVerificationEmail(registeredEmail)}
+                onClick={() => sendVerificationEmail(registeredEmail)}
               >
                 resend verification email
               </button>

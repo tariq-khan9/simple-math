@@ -1,12 +1,13 @@
 from django.http import JsonResponse
-from django.contrib.auth import authenticate
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import AccessToken
 from django.contrib.auth.hashers import check_password
 import jwt
 from django.core.mail import send_mail
 from decouple import config
 from rest_framework import status
-from rest_framework.decorators import api_view, parser_classes
+from rest_framework.decorators import api_view, parser_classes,authentication_classes, permission_classes
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from simple_math import settings
@@ -194,6 +195,21 @@ def login_view(request):
         # If the password doesn't match
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
     
+
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def current_user(request):
+    user = request.user
+    return Response({
+        'user': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            # Add other fields you need
+        }
+    })
+
 
 @api_view(['POST'])
 def bulk_update_user_states(request):
