@@ -12,18 +12,18 @@ export const getOperations = async () => {
   return res.json(); // only if response is ok
 };
 
-export const getUserStates = async () => {
+export const getUserStates = async (user_id) => {
   const res = await fetch(
-    `${process.env.REACT_APP_SERVER_URL}/api/users/states/`
+    `${process.env.REACT_APP_SERVER_URL}/api/users/states/${user_id}/`
   );
 
   if (!res.ok) {
     const errorText = await res.text();
     console.error("Fetch failed:", res.status, errorText);
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch user states");
   }
 
-  return res.json(); // only if response is ok
+  return res.json();
 };
 
 export const userLogin = async ({ email, password }) => {

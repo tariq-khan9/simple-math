@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "./AuthContext";
+import { useSharedState } from "./SharedContext";
 
 export function usePracticeTracker() {
+  const { user } = useAuth();
+  const { setFetchStates } = useSharedState();
+
   const [practiceData, setPracticeData] = useState([]);
   const [operationId, setOperationId] = useState(0);
   const [difficulty, setDifficulty] = useState(0);
@@ -14,6 +19,7 @@ export function usePracticeTracker() {
     success,
     sameDenoms,
   }) => {
+    if (!user) return;
     const getOperationId = (operation, mixOperation, sameDenoms, efraction) => {
       if (operation > 0) {
         if (operation === 3) return 1;
@@ -33,12 +39,10 @@ export function usePracticeTracker() {
       efraction
     );
 
-    handleAttempt(2, operationId, difficulty, success);
+    handleAttempt(user.id, operationId, difficulty, success);
   };
 
   const handleAttempt = (userId, operationId, difficultyLevel, success) => {
-    console.log("three in handleAttempt", practiceData);
-
     setPracticeData((prev) => {
       const existingIndex = prev.findIndex(
         (item) =>
@@ -75,12 +79,14 @@ export function usePracticeTracker() {
   };
 
   useEffect(() => {
+    if (!user) return;
     const interval = setInterval(() => {
       if (Object.keys(practiceData).length > 0) {
         savePracticeDataToServer(practiceData);
         setPracticeData([]);
+        setFetchStates(true);
       }
-    }, 30000);
+    }, 15000);
 
     return () => clearInterval(interval);
   }, [practiceData]);

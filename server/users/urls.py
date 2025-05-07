@@ -5,7 +5,7 @@ from .views import math_operation, users, user_states, login_view,current_user, 
 urlpatterns = [
     path("operation/", math_operation),
     path("users/", users),
-    path("states/", user_states),
+    path("states/<int:user_id>/", user_states),
     path("login/", login_view),
     path("current-user", current_user),
     path("register/", register_user),

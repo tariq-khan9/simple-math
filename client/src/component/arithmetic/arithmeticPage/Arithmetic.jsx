@@ -75,6 +75,9 @@ const Arithmetic = () => {
               btnFracNextRef={btnFracNextRef}
               btnNextRef={btnNextRef}
               efraction={efraction}
+              operation={operation}
+              sameDenoms={sameDenoms}
+              mixOperation={mixOperation}
               setDifficulty2={setDifficulty2}
               difficulty2={difficulty2}
               difficulty={difficulty}

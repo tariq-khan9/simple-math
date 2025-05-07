@@ -14,12 +14,6 @@ const Navbar = () => {
 
   // Close the menu when clicking anywhere on the page
   useEffect(() => {
-    const fetchOperations = async () => {
-      const ops = await getUserStates();
-      console.log("operations in client", ops);
-      setGetOperationsData(ops); // Save them into state if you need
-    };
-    fetchOperations();
     const closeMenu = () => {
       setIsOpen(false);
     };
