@@ -154,9 +154,9 @@ def verify_email(request):
 
 
 @api_view(["GET"])
-def user_states(request):
-    state = UserStates.objects.all()
-    serializer = UserStatesSerializer(state, many=True)
+def user_states(request, user_id):
+    states = UserStates.objects.filter(user_id=user_id)
+    serializer = UserStatesSerializer(states, many=True)
     return Response(serializer.data)
 
 

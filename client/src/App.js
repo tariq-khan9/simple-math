@@ -5,21 +5,24 @@ import Login from "./component/user/Login"; // Import the Login component
 import Register from "./component/user/Register";
 import VerifyEmail from "./component/user/VerifyEmail";
 import { AuthProvider } from "./hooks/AuthContext";
+import { SharedProvider } from "./hooks/SharedContext";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
-        <div className="App">
-          <Navbar />
+        <SharedProvider>
+          <div className="App">
+            <Navbar />
 
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/verify/:token" element={<VerifyEmail />} />
-          </Routes>
-        </div>
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/verify/:token" element={<VerifyEmail />} />
+            </Routes>
+          </div>
+        </SharedProvider>
       </AuthProvider>
     </Router>
   );

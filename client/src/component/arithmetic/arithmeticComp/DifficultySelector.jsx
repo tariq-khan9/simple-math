@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getUserStates } from "../../../utils/apiCalls";
+import { useAuth } from "./../../../hooks/AuthContext";
+import useDifficultyManager from "../../../hooks/useDifficultyManager";
 
 const DifficultySelector = ({
   btnFracNextRef,
   btnNextRef,
   efraction,
+  operation,
+  sameDenoms,
+  mixOperation,
   setDifficulty2,
   difficulty2,
   difficulty,
   setDifficulty,
 }) => {
+  const { easy, medium, hard } = useDifficultyManager(operation, sameDenoms);
+
   return (
     <div>
       <h4 className="font-inter text-[11px] sm:text-[13px] md:text-[16px] text-black text-start">
@@ -94,6 +102,7 @@ const DifficultySelector = ({
           </button>
 
           <button
+            disabled={easy}
             onClick={() => {
               setDifficulty(2);
               setDifficulty2(1);
@@ -101,14 +110,15 @@ const DifficultySelector = ({
                 btnNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out  ${
               difficulty == 2 && "bg-gray-700 text-white hover:tracking-normal"
-            } `}
+            }  `}
           >
             Easy
           </button>
 
           <button
+            disabled={medium}
             onClick={() => {
               setDifficulty(3);
               setDifficulty2(1);
@@ -116,7 +126,7 @@ const DifficultySelector = ({
                 btnNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty == 3 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >
@@ -124,6 +134,7 @@ const DifficultySelector = ({
           </button>
 
           <button
+            disabled={hard}
             onClick={() => {
               setDifficulty(4);
               setDifficulty2(1);
@@ -131,7 +142,7 @@ const DifficultySelector = ({
                 btnNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty == 4 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >
