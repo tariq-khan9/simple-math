@@ -15,12 +15,17 @@ const DifficultySelector = ({
   difficulty,
   setDifficulty,
 }) => {
-  const { easy, medium, hard } = useDifficultyManager(
-    operation,
-    mixOperation,
-    sameDenoms,
-    efraction
-  );
+  const { user } = useAuth();
+  const { easy, setEasy, medium, setMedium, hard, setHard } =
+    useDifficultyManager(operation, mixOperation, sameDenoms, efraction);
+
+  useEffect(() => {
+    if (!user) {
+      setEasy(false);
+      setMedium(false);
+      setHard(false);
+    }
+  }, [user]);
 
   return (
     <div>
@@ -53,7 +58,7 @@ const DifficultySelector = ({
                 btnFracNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter font-semibold disabled:bg-orange-500 border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter font-semibold  border border-gray-700 disabled:text-red-600 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty2 == 2 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >
@@ -69,7 +74,7 @@ const DifficultySelector = ({
                 btnFracNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:text-red-600 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty2 == 3 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >
@@ -85,7 +90,7 @@ const DifficultySelector = ({
                 btnFracNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 disabled:text-red-600 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty2 == 4 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >
@@ -118,7 +123,7 @@ const DifficultySelector = ({
                 btnNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out  ${
+            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:text-red-600  disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out  ${
               difficulty == 2 && "bg-gray-700 text-white hover:tracking-normal"
             }  `}
           >
@@ -134,7 +139,7 @@ const DifficultySelector = ({
                 btnNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter font-semibold border border-gray-700 disabled:text-red-600  disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty == 3 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >
@@ -150,7 +155,7 @@ const DifficultySelector = ({
                 btnNextRef.current.click();
               }, 20);
             }}
-            className={`flex-1 font-inter  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
+            className={`flex-1 font-inter disabled:text-red-600  rounded-r-sm md:rounded-r-md font-semibold border border-gray-700 disabled:tracking-normal hover:tracking-widest transition-all duration-300 ease-in-out ${
               difficulty == 4 && "bg-gray-700 text-white hover:tracking-normal"
             } `}
           >

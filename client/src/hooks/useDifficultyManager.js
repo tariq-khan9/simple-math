@@ -10,6 +10,7 @@ const useDifficultyManager = (
   efraction
 ) => {
   const { user } = useAuth();
+
   const { fetchStates, setFetchStates } = useSharedState();
   const [userStates, setUserStates] = useState([]);
   const [easy, setEasy] = useState(false);
@@ -51,7 +52,6 @@ const useDifficultyManager = (
 
   useEffect(() => {
     const userLevelManager = () => {
-      console.log("operations in manager ", operation, mixOperation, efraction);
       if (!user) return;
       const relevantOperationMap = {
         3: 1, // 1 is operation id in database
@@ -100,9 +100,9 @@ const useDifficultyManager = (
     };
 
     userLevelManager();
-  }, [userStates, operation, efraction, sameDenoms]);
+  }, [userStates, operation, efraction, sameDenoms, user]);
 
-  return { easy, medium, hard };
+  return { easy, setEasy, medium, setMedium, hard, setHard };
 };
 
 export default useDifficultyManager;
