@@ -3,7 +3,12 @@ import { getUserStates } from "../utils/apiCalls";
 import { useAuth } from "./AuthContext";
 import { useSharedState } from "./SharedContext";
 
-const useDifficultyManager = (operation, sameDenoms) => {
+const useDifficultyManager = (
+  operation,
+  mixOperation,
+  sameDenoms,
+  efraction
+) => {
   const { user } = useAuth();
   const { fetchStates, setFetchStates } = useSharedState();
   const [userStates, setUserStates] = useState([]);
@@ -46,6 +51,7 @@ const useDifficultyManager = (operation, sameDenoms) => {
 
   useEffect(() => {
     const userLevelManager = () => {
+      console.log("operations in manager ", operation, mixOperation, efraction);
       if (!user) return;
       const relevantOperationMap = {
         3: 1, // 1 is operation id in database
@@ -55,8 +61,18 @@ const useDifficultyManager = (operation, sameDenoms) => {
         5: 7,
       };
 
-      const referenceOp = relevantOperationMap[operation];
-      console.log("reference operation ", referenceOp);
+      function gettingReferenceOp(operation, mixOperation, efraction) {
+        if (efraction > 0) return efraction + 7;
+        if (operation > 0) return relevantOperationMap[operation];
+        if (mixOperation > 0) return relevantOperationMap[5];
+      }
+
+      const referenceOp = gettingReferenceOp(
+        operation,
+        mixOperation,
+        efraction
+      );
+
       if (!referenceOp) {
         setEasy(false);
         setMedium(false);
@@ -67,7 +83,7 @@ const useDifficultyManager = (operation, sameDenoms) => {
       const filteredStates = userStates.filter(
         (item) => item.operation === referenceOp
       );
-      console.log("filterd states ", filteredStates);
+      console.log("filtered data ", referenceOp, filteredStates);
       const easyPassed = !!filteredStates.find(
         (item) => item.difficulty_level === 1 && item.successes > 2
       );
@@ -78,34 +94,13 @@ const useDifficultyManager = (operation, sameDenoms) => {
         (item) => item.difficulty_level === 3 && item.successes > 2
       );
 
-      console.log(
-        "level states ",
-        filteredStates,
-        easyPassed,
-        mediumPassed,
-        hardPassed
-      );
-
       setEasy(!easyPassed);
       setMedium(!mediumPassed);
       setHard(!hardPassed);
-
-      // const existingDifficultiesSet = new Set(
-      //   filteredStates.map((item) => item.difficulty_level)
-      // );
-
-      // const allDifficulties = [1, 2, 3, 4];
-      // const missingDifficulties = allDifficulties.filter(
-      //   (level) => !existingDifficultiesSet.has(level)
-      // );
-
-      // setEasy(missingDifficulties.includes(2));
-      // setMedium(missingDifficulties.includes(3));
-      // setHard(missingDifficulties.includes(4));
     };
 
     userLevelManager();
-  }, [userStates, operation, sameDenoms]);
+  }, [userStates, operation, efraction, sameDenoms]);
 
   return { easy, medium, hard };
 };
