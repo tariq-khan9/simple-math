@@ -4,9 +4,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class MathUser(AbstractUser):
+    username = models.CharField(max_length=150, unique=False)
     email = models.EmailField(unique=True)
     USERNAME_FIELD = 'email'  # Allow users to log in with email
-    REQUIRED_FIELDS = ['username']  # If you want the username to remain required
+    REQUIRED_FIELDS = ['username']
     
     def __str__(self):
         return self.username

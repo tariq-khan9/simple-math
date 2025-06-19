@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useAuth } from "../../hooks/AuthContext";
 import { getUserStates } from "../../utils/apiCalls";
 
 const StateDashboard = () => {
   const { user } = useAuth();
-
   const [data, setData] = useState([]);
-  console.log("states in dashbaord ", data);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (!user) return;
 
     const fetchInitialStates = async () => {
       try {
         const states = await getUserStates(user.id);
+
         setData(states);
       } catch (err) {
         console.error("Error fetching user states:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -51,39 +54,46 @@ const StateDashboard = () => {
     4: "Hard",
   };
 
-  const groupedMap = {};
+  const groupedBy = useMemo(() => {
+    const groupedMap = {};
 
-  data.forEach((row) => {
-    const key = `${row.operation}-${row.difficulty_level}`;
-    if (!groupedMap[key]) {
-      groupedMap[key] = {
-        operation: row.operation,
-        difficulty_level: row.difficulty_level,
-        total_attempts: 0,
-        total_successes: 0,
-      };
-    }
-    groupedMap[key].total_attempts += row.attempts;
-    groupedMap[key].total_successes += row.successes;
-  });
+    data.forEach((row) => {
+      const key = `${row.operation}-${row.difficulty_level}`;
+      if (!groupedMap[key]) {
+        groupedMap[key] = {
+          operation: row.operation,
+          difficulty_level: row.difficulty_level,
+          total_attempts: 0,
+          total_successes: 0,
+        };
+      }
+      groupedMap[key].total_attempts += row.attempts;
+      groupedMap[key].total_successes += row.successes;
+    });
 
-  const groupedArray = Object.values(groupedMap).map((item) => ({
-    ...item,
-    success_rate:
-      item.total_attempts > 0
-        ? ((item.total_successes / item.total_attempts) * 100).toFixed(0)
-        : "0",
-  }));
+    const groupedArray = Object.values(groupedMap).map((item) => ({
+      ...item,
+      success_rate:
+        item.total_attempts > 0
+          ? ((item.total_successes / item.total_attempts) * 100).toFixed(0)
+          : "0",
+    }));
 
-  // Sort and group by operation for rowSpan logic
-  const groupedByOperation = {};
-  groupedArray.forEach((item) => {
-    if (!groupedByOperation[item.operation]) {
-      groupedByOperation[item.operation] = [];
-    }
-    groupedByOperation[item.operation].push(item);
-  });
-  if (!user) return;
+    // Sort and group by operation for rowSpan logic
+    const groupedByOperation = {};
+    groupedArray.forEach((item) => {
+      if (!groupedByOperation[item.operation]) {
+        groupedByOperation[item.operation] = [];
+      }
+      groupedByOperation[item.operation].push(item);
+    });
+
+    return groupedByOperation;
+  }, [data]);
+
+  if (!user || loading) {
+    return <div className="p-4">Loading progress data...</div>;
+  }
   return (
     <div className="p-2 mt-16 sm:p-4">
       <div className="w-full flex justify-center ">
@@ -113,51 +123,40 @@ const StateDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(groupedByOperation).map(
-                ([operationId, rows], opIndex) =>
-                  rows.map((row, index) => (
-                    <tr
-                      key={`${operationId}-${row.difficulty_level}`}
-                      className={`text-center ${
-                        opIndex % 2 === 1 ? "bg-gray-100" : "bg-white"
-                      }`}
-                    >
-                      {index === 0 && (
-                        <>
-                          <td
-                            className="p-1 sm:p-2 border"
-                            rowSpan={rows.length}
-                          >
-                            {opIndex + 1}
-                          </td>
-                          <td
-                            className="p-1 sm:p-2 border"
-                            rowSpan={rows.length}
-                          >
-                            <span className="hidden sm:inline">
-                              {operationMap[row.operation]}
-                            </span>
-                            <span className="sm:hidden">
-                              {operationMap[row.operation]
-                                .split(" ")
-                                .map((word) => word[0])
-                                .join("")}
-                            </span>
-                          </td>
-                        </>
-                      )}
-                      <td className="p-1 sm:p-2 border">
-                        {difficultyMap[row.difficulty_level]}
-                      </td>
-                      <td className="p-1 sm:p-2 border">
-                        {row.total_attempts}
-                      </td>
-                      <td className="p-1 sm:p-2 border">
-                        {row.total_successes}
-                      </td>
-                      <td className="p-1 sm:p-2 border">{row.success_rate}%</td>
-                    </tr>
-                  ))
+              {Object.entries(groupedBy).map(([operationId, rows], opIndex) =>
+                rows.map((row, index) => (
+                  <tr
+                    key={`${operationId}-${row.difficulty_level}`}
+                    className={`text-center ${
+                      opIndex % 2 === 1 ? "bg-gray-100" : "bg-white"
+                    }`}
+                  >
+                    {index === 0 && (
+                      <>
+                        <td className="p-1 sm:p-2 border" rowSpan={rows.length}>
+                          {opIndex + 1}
+                        </td>
+                        <td className="p-1 sm:p-2 border" rowSpan={rows.length}>
+                          <span className="hidden sm:inline">
+                            {operationMap[row.operation]}
+                          </span>
+                          <span className="sm:hidden">
+                            {operationMap[row.operation]
+                              .split(" ")
+                              .map((word) => word[0])
+                              .join("")}
+                          </span>
+                        </td>
+                      </>
+                    )}
+                    <td className="p-1 sm:p-2 border">
+                      {difficultyMap[row.difficulty_level]}
+                    </td>
+                    <td className="p-1 sm:p-2 border">{row.total_attempts}</td>
+                    <td className="p-1 sm:p-2 border">{row.total_successes}</td>
+                    <td className="p-1 sm:p-2 border">{row.success_rate}%</td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>

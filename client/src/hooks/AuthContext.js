@@ -124,7 +124,7 @@ export const AuthProvider = ({ children }) => {
   const logoutUser = (navigate) => {
     localStorage.removeItem("token");
     setUser(null);
-    if (navigate) navigate("/login");
+    // navigate("/");
   };
 
   // Value provided to consumers

@@ -12,7 +12,7 @@ class MathUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MathUser
-        fields = ['username','email', 'profile']
+        fields = ['id','username','email', 'profile']
 
 
 class MathOperationSerializer(serializers.ModelSerializer):
