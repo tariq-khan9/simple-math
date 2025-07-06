@@ -227,7 +227,7 @@ export const useArithmetic = () => {
   const handleCheck = () => {
     let checkResult;
     let inputResult = inputs.inputNum / inputs.inputDenom;
-
+    console.log("operation code ", operation);
     if (operation === 1 || mixOperation === 1) {
       if (sameDenoms) {
         const checkDeno = randomNums.denominator1;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useAuth } from "../../hooks/AuthContext";
+import { useGlobalContext } from "../../utils/AuthContext";
 import { getUserStates } from "../../utils/apiCalls";
 
 const StateDashboard = () => {
-  const { user } = useAuth();
+  const { user } = useGlobalContext();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +24,7 @@ const StateDashboard = () => {
 
     fetchInitialStates();
   }, [user]);
-
+  console.log("states are ", data);
   const operationMap = {
     1: "Multiplication",
     2: "Division",
@@ -58,11 +58,11 @@ const StateDashboard = () => {
     const groupedMap = {};
 
     data.forEach((row) => {
-      const key = `${row.operation}-${row.difficulty_level}`;
+      const key = `${row.operationId}-${row.difficultyLevel}`;
       if (!groupedMap[key]) {
         groupedMap[key] = {
-          operation: row.operation,
-          difficulty_level: row.difficulty_level,
+          operation: row.operationId,
+          difficulty_level: row.difficultyLevel,
           total_attempts: 0,
           total_successes: 0,
         };

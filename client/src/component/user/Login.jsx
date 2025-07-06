@@ -1,74 +1,74 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/AuthContext";
+import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "../../utils/AuthContext";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { Modal } from "antd";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login, user } = useGlobalContext();
+  const { token } = useParams(); // ✅ Get token from URL param
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loading, error, loginUser } = useAuth();
 
-  const handleSubmit = async (e) => {
+  const handleLocalLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginUser({ email, password });
-
-      navigate("/dashboard");
+      await login(email, password);
+      navigate("/");
     } catch (err) {
-      console.error("Login error:", err);
+      Modal.error({
+        title: "Authentication failed!",
+        content:
+          "Invalid email or password, please provide a verified email address and correct password.",
+        onOk() {},
+      });
     }
   };
 
   return (
-    <div className="mt-24 flex justify-center">
-      <form
-        onSubmit={handleSubmit}
-        className="sm:min-w-[500px] border-2 border-gray-200 rounded-md px-4 sm:px-10"
-      >
-        <div className="flex justify-center">
-          <h2 className="form-heading">Login</h2>
-        </div>
-        {error && <div className="error-message">{error}</div>}
-        <div className="flex flex-col w-full">
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
+    <div className="w-full font-barlow flex flex-row justify-center items-center mt-24">
+      <div className="bg-gray-100 rounded-xl md:w-[500px] md:h-[400px] p-4 flex flex-col sm:flex-row justify-center space-y-10 sm:space-y-0">
+        <div className=" p-2 md:px-8 w-full">
+          <div className="form-heading text-center">Login here!</div>
+          <form className="flex flex-col p-4" onSubmit={handleLocalLogin}>
+            <label className="form-label">Username</label>
             <input
-              type="email"
-              id="email"
               className="form-input"
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="Enter your email"
             />
-          </div>
-          <div className="form-group mt-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
+            <label className="mt-4 form-label">Password</label>
             <input
-              type="password"
-              id="password"
               className="form-input"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Enter your password"
             />
-          </div>
+            <div className="flex justify-end mt-1 font-montserrat text-[10px] sm:text-[12px] xl:text-[13px]">
+              <button
+                className="hover:text-gray-500 text-gray-600 "
+                onClick={() =>
+                  Modal.error({
+                    title: "Email Validation Failed",
+                    content: "Failed to validate your email. Please try again!",
+                  })
+                }
+              >
+                forgot password?
+              </button>
+            </div>
 
-          <div className="mt-4 mb-8 h-10 w-full">
-            <button type="submit" disabled={loading} className="form-button">
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </div>
-          <button onClick={() => navigate("/register")}>
-            dont have account? register here!
-          </button>
+            <div className="w-full flex flex-row  justify-between mt-6">
+              <button className="form-button" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

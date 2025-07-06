@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/AuthContext";
+import { useGlobalContext } from "../../utils/AuthContext";
 import { ChevronDown } from "lucide-react"; // optional icon
 
 const UserMenu = () => {
-  const { user, logoutUser } = useAuth();
+  const { user, logout } = useGlobalContext();
   const [last, setLast] = useState("");
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -61,7 +61,7 @@ const UserMenu = () => {
               </button>
               <button
                 onClick={() => {
-                  logoutUser();
+                  logout();
                   navigate("/");
                   setOpen(false);
                 }}

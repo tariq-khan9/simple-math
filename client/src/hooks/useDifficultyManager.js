@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserStates } from "../utils/apiCalls";
-import { useAuth } from "./AuthContext";
+import { useGlobalContext } from "../utils/AuthContext";
 import { useSharedState } from "./SharedContext";
 
 const useDifficultyManager = (
@@ -9,7 +9,7 @@ const useDifficultyManager = (
   sameDenoms,
   efraction
 ) => {
-  const { user } = useAuth();
+  const { user } = useGlobalContext();
 
   const { fetchStates, setFetchStates } = useSharedState();
   const [userStates, setUserStates] = useState([]);

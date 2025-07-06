@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getUserStates } from "../../../utils/apiCalls";
-import { useAuth } from "./../../../hooks/AuthContext";
+import { useGlobalContext } from "../../../utils/AuthContext";
 import useDifficultyManager from "../../../hooks/useDifficultyManager";
 
 const DifficultySelector = ({
@@ -15,7 +15,7 @@ const DifficultySelector = ({
   difficulty,
   setDifficulty,
 }) => {
-  const { user } = useAuth();
+  const { user } = useGlobalContext();
   const { easy, setEasy, medium, setMedium, hard, setHard } =
     useDifficultyManager(operation, mixOperation, sameDenoms, efraction);
 

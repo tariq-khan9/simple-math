@@ -4,11 +4,12 @@ import menu from "./../images/nav-menu.png";
 import close from "./../images/close.png";
 import { useNavigate } from "react-router-dom";
 import { getUserStates } from "../utils/apiCalls";
-import { useAuth } from "../hooks/AuthContext";
+import { useGlobalContext } from "../utils/AuthContext";
 import UserMenu from "./others/UserMenu";
 
 const Navbar = () => {
-  const { user, logoutUser } = useAuth();
+  const { user, logout } = useGlobalContext();
+
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [getOperationsData, setGetOperationsData] = useState([]);

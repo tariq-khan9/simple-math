@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "./AuthContext";
+import { useGlobalContext } from "../utils/AuthContext";
 import { useSharedState } from "./SharedContext";
 
 export function usePracticeTracker() {
-  const { user } = useAuth();
+  const { user } = useGlobalContext();
   const { setFetchStates } = useSharedState();
 
   const [practiceData, setPracticeData] = useState([]);
@@ -92,8 +92,9 @@ export function usePracticeTracker() {
   }, [practiceData]);
 
   const savePracticeDataToServer = async (data) => {
+    console.log("practice data ", practiceData);
     try {
-      await fetch("http://127.0.0.1:8000/api/users/update-states", {
+      await fetch("http://127.0.0.1:8000/update-states", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

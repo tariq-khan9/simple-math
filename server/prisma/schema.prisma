@@ -1,0 +1,69 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model User {
+  id         Int      @id @default(autoincrement())
+  email   String   @unique
+  isEmailVerified Boolean
+  password   String
+  name       String
+  authType   AuthType
+  userType  UserType
+  resetPasswordToken    String?   // Optional field for reset token
+  resetPasswordExpires  DateTime?
+  image      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  userStates  UserStates[]
+  
+}
+
+
+
+model MathOperation {
+  id          Int          @id @default(autoincrement())
+  code        Int          @default(0)
+  name        String
+  description String
+
+  userStates  UserStates[]
+}
+
+model UserStates {
+  id              Int           @id @default(autoincrement())
+  userId          Int
+  operationId     Int
+  difficultyLevel Int
+  attempts        Int           @default(0)
+  successes       Int           @default(0)
+
+  user            User      @relation(fields: [userId], references: [id])
+  operation       MathOperation @relation(fields: [operationId], references: [id])
+
+  @@unique([userId, operationId, difficultyLevel])
+
+}
+
+
+enum AuthType {
+  google
+  github
+  local
+}
+
+enum UserType {
+  admin
+  moderator
+  member
+}
